@@ -15,7 +15,20 @@ class DefaultController extends Controller
     {
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', array(
-            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+            
+        ));
+    }
+    
+    public function menuFooterNewsAction(Request $request)
+    {
+        return $this->render('default/_menuFooterNews.html.twig', array(
+            
+        ));
+    }
+    public function menuFooterStationsAction(Request $request)
+    {
+        return $this->render('default/_menuFooterStations.html.twig', array(
+            
         ));
     }
 }

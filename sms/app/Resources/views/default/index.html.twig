@@ -1,76 +1,456 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% block body %}
-    <div id="wrapper">
-        <div id="container">
-            <div id="welcome">
-                <h1><span>Welcome to</span> Symfony {{ constant('Symfony\\Component\\HttpKernel\\Kernel::VERSION') }}</h1>
+        <!--======= HOME MAIN SLIDER =========-->
+        <section class="home-slider">
+            <div class="tp-banner-container">
+                <div class="tp-banner-fix">
+                    <ul>
+                        <!-- SLIDE  -->
+                        <li data-transition="random" data-slotamount="7"> 
+                            <!-- MAIN IMAGE --> 
+                            <img src="images/slides/slides-1.jpg"  alt=""  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat"> 
+                            <!-- LAYERS --> 
+
+                            <!-- LAYER NR. 1 -->
+                            <div class="tp-caption text-uppercase font-bold sft tp-resizeme" 
+                                 data-x="center" data-hoffset="0" 
+                                 data-y="center" data-voffset="-100" 
+                                 data-speed="500" 
+                                 data-start="500" 
+                                 data-easing="Power3.easeInOut" 
+                                 data-splitin="words" 
+                                 data-splitout="none" 
+                                 data-elementdelay="0.1" 
+                                 data-endelementdelay="0.1" 
+                                 data-endspeed="700" 
+                                 style="z-index: 5; font-size:65px; color:#fff;">Solar Nowcasting System </div>
+
+                            <!-- LAYER NR. 2 -->
+                            <div class="tp-caption letter-space-1 sfb tp-resizeme" 
+                                 data-x="center" data-hoffset="0" 
+                                 data-y="center" data-voffset="0" 
+                                 data-speed="500" 
+                                 data-start="1000" 
+                                 data-easing="Power3.easeInOut" 
+                                 data-splitin="words" 
+                                 data-splitout="none" 
+                                 data-elementdelay="0.1" 
+                                 data-endelementdelay="0.1" 
+                                 data-endspeed="700" 
+                                 style="z-index: 5; font-size:25px; color:#fff; font-weight:100;">Sistema de pronóstico infrahorario (nowcasting) de irradiancia solar basado en cámaras todo cielo</div>
+
+                            <!-- LAYER NR. 2 -->
+                            <div class="tp-caption sfb tp-resizeme" 
+                                 data-x="center" data-hoffset="0" 
+                                 data-y="center" data-voffset="100" 
+                                 data-speed="500" 
+                                 data-start="1500" 
+                                 data-easing="Power3.easeInOut" 
+                                 data-splitin="none" 
+                                 data-splitout="none" 
+                                 data-elementdelay="0.1" 
+                                 data-endelementdelay="0.1" 
+                                 data-endspeed="300" 
+                                 style="z-index: 6; white-space: normal;"><a href="acerca.html" class="btn btn-med btn-color">VER PROYECTO</a> </div>
+                        </li>
+
+                        <!-- SLIDE  -->
+                        <li data-transition="random" data-slotamount="7"> 
+                            <!-- MAIN IMAGE --> 
+                            <img src="images/slides/slides-2.jpg"  alt=""  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat"> 
+                            <!-- LAYERS --> 
+
+                            <!-- LAYER NR. 1 -->
+                            <div class="tp-caption text-uppercase font-bold sft tp-resizeme" 
+                                 data-x="center" data-hoffset="0" 
+                                 data-y="center" data-voffset="-100" 
+                                 data-speed="500" 
+                                 data-start="500" 
+                                 data-easing="Power3.easeInOut" 
+                                 data-splitin="words" 
+                                 data-splitout="none" 
+                                 data-elementdelay="0.1" 
+                                 data-endelementdelay="0.1" 
+                                 data-endspeed="700" 
+                                 style="z-index: 5; font-size:65px; color:#fff;">SNS</div>
+
+                            <!-- LAYER NR. 2 -->
+                            <div class="tp-caption letter-space-1 sfb tp-resizeme" 
+                                 data-x="center" data-hoffset="0" 
+                                 data-y="center" data-voffset="0" 
+                                 data-speed="500" 
+                                 data-start="1000" 
+                                 data-easing="Power3.easeInOut" 
+                                 data-splitin="words" 
+                                 data-splitout="none" 
+                                 data-elementdelay="0.1" 
+                                 data-endelementdelay="0.1" 
+                                 data-endspeed="700" 
+                                 style="z-index: 5; font-size:25px; color:#fff; font-weight:100;">5 estaciones instaladas en un entorno de la planta fotovoltaica de Salto Grande "Asahi”</div>
+
+                            <!-- LAYER NR. 2 -->
+                            <div class="tp-caption sfb tp-resizeme" 
+                                 data-x="center" data-hoffset="0" 
+                                 data-y="center" data-voffset="100" 
+                                 data-speed="500" 
+                                 data-start="1500" 
+                                 data-easing="Power3.easeInOut" 
+                                 data-splitin="none" 
+                                 data-splitout="none" 
+                                 data-elementdelay="0.1" 
+                                 data-endelementdelay="0.1" 
+                                 data-endspeed="300" 
+                                 style="z-index: 6; white-space: normal;"><a href="prototipo.html" class="btn btn-med btn-color">VER SISTEMA</a> </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
+        </section>
 
-            <div id="status">
-                <p>
-                    <svg id="icon-status" width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1671 566q0 40-28 68l-724 724-136 136q-28 28-68 28t-68-28l-136-136-362-362q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 295 656-657q28-28 68-28t68 28l136 136q28 28 28 68z" fill="#759E1A"/></svg>
+        <!-- Content -->
+        <div id="content"> 
 
-                    Your application is ready to start working on it at:
-                    <code>{{ base_dir }}/</code>
-                </p>
+            <!-- Services -->
+            <section class="welcome padding-top-100 padding-bottom-30 ">
+                <div class="container"> 
+                    <!-- HEADING BLOCK -->
+                    <div class="heading-block text-center margin-bottom-80">
+                        <h3>SNS | Solar Nowcasting System</h3>
+                        <hr>
+                        <span class=" margin-top-20">La variabilidad del recurso solar en el corto plazo y a nivel local, debido a la influencia de la nubosidad, significa un gran desafío para el operador de una red eléctrica con relativa participación de energía solar fotovoltaica. Por ello, se vuelve necesario el desarrollo de sistemas capaces de realizar predicciones de corto plazo del input solar.  
+
+                            </br> </br>  El presente proyecto implica el diseño y construcción de un<a href="prototipo.html"> sistema</a> de pronóstico infrahorario (nowcasting) de irradiancia solar basado en cámaras todo cielo, el cual estima el campo de velocidad actual de nubes y predice la irradiancia solar global con un horizonte temporal de entre 3 y 20 minutos aproximadamente, dependiendo de la velocidad y altura de base de nubes. </span>
+
+
+
+                    </div>
+
+                </div>
+            </section>
+            <!-- PROMO -->
+            <section class="promo pink-bg padding-bottom-60 padding-top-60">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <h3 class="text-white text-uppercase no-margin">Desea probar SNS? </h3>
+                        </div>
+                        <div class="col-md-5 text-center"> <a href="imagenes.html" class="waves-effect waves-light btn  btn-white margin-right-20">ver imágenes</a> <a href="contacto.html" class="waves-effect btn btn-blue margin-left-20">contactanos</a> </div>
+                    </div>
+                </div>
+            </section>
+            <div class="container">    <section class="welcome padding-top-40 padding-bottom-100 ">
+                    <!-- Icon Row -->
+
+                    <div class="row">
+                        <div class="col-md-7">
+                            <ul class="row margin-top-70">
+
+                                <!-- Services -->
+                                <li class="col-md-6 margin-bottom-50">
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <div class="icon"> <i class="ion-ios-speedometer-outline"></i> </div>
+                                        </div>
+                                        <div class="media-body">
+                                            <h5>Velocidad Nubes</h5>
+                                            <p>El sistema estima el campo de velocidad actual de nubes.</p>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <!-- Services -->
+                                <li class="col-md-6 margin-bottom-50">
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <div class="icon"> <i class="ion-ios-color-wand-outline"></i> </div>
+                                        </div>
+                                        <div class="media-body">
+                                            <h5>Posición de nubes</h5>
+                                            <p>Estimación de la velocidad y altura de base de nubes. </p>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <!-- Services -->
+                                <li class="col-md-6">
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <div class="icon"> <i class="ion-ios-infinite-outline"></i> </div>
+                                        </div>
+                                        <div class="media-body">
+                                            <h5>Nowcasting</h5>
+                                            <p>Predicción de irradiancia solar global  </p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="col-md-6">
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <div class="icon"> <i class="ion-ios-monitor-outline"></i> </div>
+                                        </div>
+                                        <div class="media-body">
+                                            <h5>Tiempo</h5>
+                                            <p>Horizonte temporal de entre 3 y 20 minutos  </p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-5"> <img class="img-responsive" src="images/intro-tabs.png" alt="" > </div>
+                    </div>
             </div>
+            </section>
 
-            <div id="next">
-                <h2>What's next?</h2>
-                <p>
-                    <svg id="icon-book" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="-12.5 9 64 64" enable-background="new -12.5 9 64 64" xml:space="preserve">
-                        <path fill="#AAA" d="M6.8,40.8c2.4,0.8,4.5-0.7,4.9-2.5c0.2-1.2-0.3-2.1-1.3-3.2l-0.8-0.8c-0.4-0.5-0.6-1.3-0.2-1.9
-                            c0.4-0.5,0.9-0.8,1.8-0.5c1.3,0.4,1.9,1.3,2.9,2.2c-0.4,1.4-0.7,2.9-0.9,4.2l-0.2,1c-0.7,4-1.3,6.2-2.7,7.5
-                            c-0.3,0.3-0.7,0.5-1.3,0.6c-0.3,0-0.4-0.3-0.4-0.3c0-0.3,0.2-0.3,0.3-0.4c0.2-0.1,0.5-0.3,0.4-0.8c0-0.7-0.6-1.3-1.3-1.3
-                            c-0.6,0-1.4,0.6-1.4,1.7s1,1.9,2.4,1.8c0.8,0,2.5-0.3,4.2-2.5c2-2.5,2.5-5.4,2.9-7.4l0.5-2.8c0.3,0,0.5,0.1,0.8,0.1
-                            c2.4,0.1,3.7-1.3,3.7-2.3c0-0.6-0.3-1.2-0.9-1.2c-0.4,0-0.8,0.3-1,0.8c-0.1,0.6,0.8,1.1,0.1,1.5c-0.5,0.3-1.4,0.6-2.7,0.4l0.3-1.3
-                            c0.5-2.6,1-5.7,3.2-5.8c0.2,0,0.8,0,0.8,0.4c0,0.2,0,0.2-0.2,0.5c-0.2,0.3-0.3,0.4-0.2,0.7c0,0.7,0.5,1.1,1.2,1.1
-                            c0.9,0,1.2-1,1.2-1.4c0-1.2-1.2-1.8-2.6-1.8c-1.5,0.1-2.8,0.9-3.7,2.1c-1.1,1.3-1.8,2.9-2.3,4.5c-0.9-0.8-1.6-1.8-3.1-2.3
-                            c-1.1-0.7-2.3-0.5-3.4,0.3c-0.5,0.4-0.8,1-1,1.6c-0.4,1.5,0.4,2.9,0.8,3.4l0.9,1c0.2,0.2,0.6,0.8,0.4,1.5c-0.3,0.8-1.2,1.3-2.1,1
-                            c-0.4-0.2-1-0.5-0.9-0.9c0.1-0.2,0.2-0.3,0.3-0.5s0.1-0.3,0.1-0.3c0.2-0.6-0.1-1.4-0.7-1.6c-0.6-0.2-1.2,0-1.3,0.8
-                            C4.3,38.4,4.7,40,6.8,40.8z M46.1,20.9c0-4.2-3.2-7.5-7.1-7.5h-3.8C34.8,10.8,32.7,9,30.2,9L-2.3,9.1c-2.8,0.1-4.9,2.4-4.9,5.4
-                            L-7,58.6c0,4.8,8.1,13.9,11.6,14.1l34.7-0.1c3.9,0,7-3.4,7-7.6L46.1,20.9z M-0.3,36.4c0-8.6,6.5-15.6,14.5-15.6
-                            c8,0,14.5,7,14.5,15.6S22.1,52,14.2,52C6.1,52-0.3,45-0.3,36.4z M42.1,65.1c0,1.8-1.5,3.1-3.1,3.1H4.6c-0.7,0-3-1.8-4.5-4.4h30.4
-                            c2.8,0,5-2.4,5-5.4V17.9h3.7c1.6,0,2.9,1.4,2.9,3.1V65.1L42.1,65.1z"/>
-                    </svg>
+            <!-- PROMO -->
+            <section class="promo text-center padding-bottom-100 padding-top-100" style="background:url(images/bg/promo-bg.jpg) center center no-repeat;
+                     background-size: cover;">
 
-                    Read Symfony documentation to learn
-                    <a href="http://symfony.com/doc/{{ constant('Symfony\\Component\\HttpKernel\\Kernel::VERSION')[:3] }}/book/page_creation.html">
-                        How to create your first page in Symfony
-                    </a>
-                </p>
+                <div class="container">
+                    <h6>Estaciones</h6>
+                    <h3>El sistema está compuesto por 5 estaciones instaladas en un entorno de la planta fotovoltaica de Salto Grande "Asahi”. </h3>
+                    <a href="prototipo.html" class="waves-effect waves-light btn btn-white margin-right-20">Ver Prototipo</a> <a href="estaciones.html" class="waves-effect waves-light btn margin-left-20">Ver Estaciones</a> </div>
+            </section>
+
+            <!-- Intro Coporate -->
+            <section class="list-style-featured light-gray-bg padding-top-80 padding-bottom-80 ">
+                <div class="container"> 
+
+                    <!-- HEADING BLOCK -->
+                    <div class="heading-block text-center margin-bottom-10">
+                        <h3>Prototipo</h3>
+                        <hr>
+                        <span class=" margin-top-20">El prototipo desarrollado está compuesto por los siguientes subsistemas </span> </div>
+                    <div class="row"> 
+
+                        <!-- LIST LEFT -->
+                        <div class="col-md-4">
+                            <ul class="margin-top-50 text-right">
+                                <li>
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <h4>Captura</h4>
+                                            <p>Está conformado por una cámara Canon EOS 60D y una lente Sigma Fisheye. </p>
+                                        </div>
+                                        <div class="media-right">
+                                            <div class="icon"> <img src="images/list-icon-1.png" alt=""></div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <h4>Alimentación</h4>
+                                            <p>Es un sistema autónomo basado en dos módulos fotovoltaicos marca Kyocera, una batería estacionaria de ciclo profundo, un controlador de carga y boosters DC.
+                                            </p>
+                                        </div>
+                                        <div class="media-right">
+                                            <div class="icon"> <img src="images/list-icon-2.png" alt=""></div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <h4>Comunicación</h4>
+                                            <p>Modem de Banda Ancha Móvil (BAM) conectado a la red 3G de Antel, y una antena exterior Yagi de 12 dBd de ganancia. </p>
+                                        </div>
+                                        <div class="media-right">
+                                            <div class="icon"> <img src="images/list-icon-3.png" alt=""></div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- LIST IMAGE -->
+                        <div class="col-md-4 text-center no-padding"> <img class="img-responsive" src="images/prototipo.png" alt=""> </div>
+
+                        <!-- LIST ICON RIGHT -->
+                        <div class="col-md-4">
+                            <ul class="margin-top-50">
+                                <li>
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <div class="icon"> <img src="images/list-icon-4.png" alt=""> </div>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4>Monitoreo y control</h4>
+                                            <p>Está conformado por sensores, dos resistencias para calentamiento del domo, un módulo Arduino y un software de control de desarrollo propio. </p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <div class="icon"> <img src="images/list-icon-5.png" alt=""> </div>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4>Sensores</h4>
+                                            <p>Los sensores de temperatura y humedad están ubicados al interior del gabinete. Los sensores de tensión monitorean la tensión de baterías, PC y cámara.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <div class="icon"> <img src="images/list-icon-6.png" alt=""> </div>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4>Software</h4>
+                                            <p>CanonCC permite la adquisición una vez por minuto y de forma automática de una imagen, y su envío también automático a un servidor FTP especificado por el usuario.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <!-- PORTFOLIO -->
+            <section class="portfolio port-wrap pink-bg padding-top-80">
+                <div class="container"> 
+                    <!-- HEADING BLOCK -->
+                    <div class="heading-block text-center margin-bottom-80">
+                        <h3 class="text-white no-margin">Estaciones</h3>
+                    </div>
+                </div>
+
+                <!-- PORTFOLIO ITEMS -->
+                <div class="items row col-5"> 
+
+                    <!-- ITEM -->
+                    <article class="portfolio-item pf-web-design">
+                        <div class="portfolio-image"> <a href="imagenes.html"> <img class="img-responsive" alt="Estaciones" src="images/portfolio/img-1.jpg"> </a>
+                            <div class="portfolio-overlay style-2">
+                                <div class="detail-info">
+                                    <h3><a href="imagenes.html">LES</a></h3>
+                                    <span><a href="imagenes.html">Ver Imagenes</a></span> </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- ITEM -->
+                    <article class="portfolio-item pf-photography pf-branding-design">
+                        <div class="portfolio-image"> <a href="imagenes.html"> <img class="img-responsive" alt="Estaciones" src="images/portfolio/img-2.jpg"> </a>
+                            <div class="portfolio-overlay style-2">
+                                <div class="detail-info">
+                                    <h3><a href="imagenes.html">Escuela 70 “Salto Grande”</a></h3>
+                                    <span><a href="imagenes.html">Ver Imagenes</a></span> </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- ITEM -->
+                    <article class="portfolio-item pf-web-design pf-branding-design">
+                        <div class="portfolio-image"> <a href="#."> <img class="img-responsive" alt="Estaciones" src="images/portfolio/img-3.jpg"> </a>
+                            <div class="portfolio-overlay style-2">
+                                <div class="detail-info">
+                                    <h3><a href="imagenes.html">Escuela 91”Portugal”</a></h3>
+                                    <span><a href="imagenes.html">Ver Imagenes</a></span> </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- ITEM -->
+                    <article class="portfolio-item pf-web-design pf-digital-art ">
+                        <div class="portfolio-image"> <a href="#."> <img class="img-responsive" alt="Estaciones" src="images/portfolio/img-4.jpg"> </a>
+                            <div class="portfolio-overlay style-2">
+                                <div class="detail-info">
+                                    <h3><a href="imagenes.html">Escuela 26 “Osimani Llerena”</a></h3>
+                                    <span><a href="imagenes.html">Ver Imagenes</a></span> </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- ITEM -->
+                    <article class="portfolio-item pf-web-design pf-digital-art ">
+                        <div class="portfolio-image"> <a href="imagenes.html"> <img class="img-responsive" alt="Estaciones" src="images/portfolio/img-5.jpg"> </a>
+                            <div class="portfolio-overlay style-2">
+                                <div class="detail-info">
+                                    <h3><a href="imagenes.html">CTM</a></h3>
+                                    <span><a href="imagenes.html">Ver Imagenes</a></span> </div>
+                            </div>
+                        </div>
+                    </article>
+
+
+
+                </div>
+            </section>
+
+
+
+
+
+
+
+
+
+
+            <!-- Blog -->
+            <section class="blog padding-top-100 padding-bottom-100">
+                <div class="container"> 
+
+                    <!-- HEADING BLOCK -->
+                    <div class="heading-block text-center margin-bottom-80">
+                        <h3>Últimas Novedades</h3>
+                        <hr>
+                        <span class=" margin-top-20">Últimas noticias y publicaciones del proyecto </span> </div>
+
+                    <!-- Blog Row -->
+                    <div class="row"> 
+
+                        <!-- Blog Post -->
+                        <div class="col-md-4">
+                            <div class="blog-post z-depth-1"> <img class="img-responsive" src="images/blog-img-1.jpg" alt="" > <span class="tags">ETIQUETA 1, ETIQUETA 2</span> <a href="noticia_ejemplo.html" class="post-tittle">	Ejemplo de noticia nro 1</a> <span class="font-italic font-12px margin-bottom-15 margin-top-15 color-primary-pink">22 de noviembre, 2015</span>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec orci sed diam sollicitudin finibus. Ut tortor odio, vulputate eget tempor a, euismod eu quam. Nunc vitae ligula sem. Proin tincidunt purus leo, et congue quam lobortis ac.  </p>
+
+                                <a href="noticia_ejemplo.html" class="waves-effect waves-light btn btn-white">Leer Más</a> </div>
+                        </div>
+                        <!-- Blog Post -->
+                        <div class="col-md-4">
+                            <div class="blog-post z-depth-1"> <img class="img-responsive" src="images/blog-img-2.jpg" alt="" > <span class="tags">ETIQUETA 1, ETIQUETA 2</span> <a href="noticia_ejemplo.html" class="post-tittle">	Ejemplo de noticia nro 2</a> <span class="font-italic font-12px margin-bottom-15 margin-top-15 color-primary-pink">22 de noviembre, 2015</span>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec orci sed diam sollicitudin finibus. Ut tortor odio, vulputate eget tempor a, euismod eu quam. Nunc vitae ligula sem. Proin tincidunt purus leo, et congue quam lobortis ac.  </p>
+                                <a href="noticia_ejemplo.html" class="waves-effect waves-light btn btn-white">Leer Más</a> </div>
+                        </div>
+
+                        <!-- Blog Post -->
+                        <div class="col-md-4">
+                            <div class="blog-post z-depth-1"> <img class="img-responsive" src="images/blog-img-3.jpg" alt="" > <span class="tags">ETIQUETA 1, ETIQUETA 2</span> <a href="noticia_ejemplo.html" class="post-tittle">	Ejemplo de noticia nro 3</a> <span class="font-italic font-12px margin-bottom-15 margin-top-15 color-primary-pink">22 de noviembre, 2015</span>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec orci sed diam sollicitudin finibus. Ut tortor odio, vulputate eget tempor a, euismod eu quam. Nunc vitae ligula sem. Proin tincidunt purus leo, et congue quam lobortis ac.  </p>
+
+                                <a href="noticia_ejemplo.html" class="waves-effect waves-light btn btn-white">Leer Más</a> </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- News Letter -->
+            <div class="container">
+                <section class="news-letter">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Suscribirse a nuestro newsletter</h5>
+                            <p>Mantenerse informado sobre el proyecto</p>
+                        </div>
+                        <div class="col-md-6">
+                            <form>      <input type="email" class="z-depth-1" placeholder="Dirección de mail" required>
+                                <button type="submit" class="btn waves-effect waves-light">suscribirme</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
             </div>
-
         </div>
-    </div>
+        <!-- End Content -->     
 {% endblock %}
 
 {% block stylesheets %}
-<style>
-    body { background: #F5F5F5; font: 18px/1.5 sans-serif; }
-    h1, h2 { line-height: 1.2; margin: 0 0 .5em; }
-    h1 { font-size: 36px; }
-    h2 { font-size: 21px; margin-bottom: 1em; }
-    p { margin: 0 0 1em 0; }
-    a { color: #0000F0; }
-    a:hover { text-decoration: none; }
-    code { background: #F5F5F5; max-width: 100px; padding: 2px 6px; word-wrap: break-word; }
-    #wrapper { background: #FFF; margin: 1em auto; max-width: 800px; width: 95%; }
-    #container { padding: 2em; }
-    #welcome, #status { margin-bottom: 2em; }
-    #welcome h1 span { display: block; font-size: 75%; }
-    #icon-status, #icon-book { float: left; height: 64px; margin-right: 1em; margin-top: -4px; width: 64px; }
-    #icon-book { display: none; }
 
-    @media (min-width: 768px) {
-        #wrapper { width: 80%; margin: 2em auto; }
-        #icon-book { display: inline-block; }
-        #status a, #next a { display: block; }
-
-        @-webkit-keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
-        @keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
-        .sf-toolbar { opacity: 0; -webkit-animation: fade-in 1s .2s forwards; animation: fade-in 1s .2s forwards;}
-    }
-</style>
 {% endblock %}

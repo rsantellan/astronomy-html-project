@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 ie9-and-less ie8-and-less ie7-and-less" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 ie9-and-less ie8-and-less ie7-and-less" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 ie9-and-less ie8-and-less" lang="en"> <![endif]-->
+<!--[if IE 9]>    <html class="no-js ie9 ie9-and-less" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!-->
+<html class="signin no-js" lang="es"><!--<![endif]-->
+  <head>
+	<meta charset="UTF-8" />
+    <title>SMS Admin</title>
+    <link rel="icon" type="image/x-icon" href="{#{ asset('bundles/maithcommonadmin/images/favicon.ico') }#}" />
+	
+	<!-- page level plugin styles -->
+    <link rel="stylesheet" href="{{ asset('bundles/app/admin/vendor/offline/theme.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/app/admin/vendor/pace/theme.css') }}">
+    <!-- /page level plugin styles -->
+
+    <!-- core styles -->
+    <link rel="stylesheet" href="{{ asset('bundles/app/admin/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/app/admin/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/app/admin/css/animate.min.css') }}">
+    <!-- /core styles -->
+
+    <!-- template styles -->
+    <link rel="stylesheet" href="{{ asset('bundles/app/admin/css/skins/palette.6.css') }}" id="skin">
+    <link rel="stylesheet" href="{{ asset('bundles/app/admin/css/fonts/style.1.css') }}" id="font">
+    <link rel="stylesheet" href="{{ asset('bundles/app/admin/css/main.css') }}">
+    <!-- template styles -->
+
+	{% block stylesheets %}{% endblock %}
+
+	  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	  <!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	  <![endif]-->
+
+	  <!-- load modernizer -->
+	  
+	  <script src="{{ asset('bundles/app/admin/vendor/modernizr.js') }}"></script>    
+
+  </head>
+<body class="bg-color center-wrapper">
+    <div class="center-content">
+        <div class="row">
+
+        {% for type, messages in app.session.flashbag.all() %}
+            {% for message in messages %}
+		<div class="flash-{{ type }}">
+                    {{ message }}
+		  </div>
+            {% endfor %}
+        {% endfor %}
+
+        {% block fos_user_content %}
+        {% endblock fos_user_content %}
+        </div>
+	  </div>
+
+
+	{% block javascripts %}{% endblock %}
+	</body>
+
+  </html>

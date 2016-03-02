@@ -1,0 +1,58 @@
+{% extends 'FOSUserBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+{% endblock %}
+{% block javascripts %}
+{% endblock %}
+
+{#% trans_default_domain 'FOSUserBundle' %#}
+
+{% block fos_user_content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="">
+          <section class="panel panel-default">
+            <header class="panel-heading">Loguearse</header>
+            <div class="bg-white user pd-md">
+              <h6>
+                <strong>Bienvenido.</strong></h6>
+                  {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                      Estas logueado como: app.user.username
+                      <a href="{{ path('fos_user_security_logout') }}">
+                        Desloguearse
+                      </a>
+                  {% endif %}
+              <form action="{{ path("fos_user_security_check") }}" method="post" accept-charset="utf-8" role="form">
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                <div class="form-group">
+                  <label for="username">Correo Electronico</label>
+                  <input name="_username" required="required" value="{{ last_username }}" type="text" class="form-control mg-b-sm" placeholder="Correo Electronico" autofocus>
+                </div>
+                <div class="form-group">
+                  <label for="username">Contraseña</label>
+                  <input type="password" name="_password" required="required" class="form-control" placeholder="Contraseña">
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="_remember_me" value="on" class="checkbox  pull-left"><label>Recuerda mi usuario</label>
+                </div>
+                <div class="form-group">
+                  <div class="text-right mg-b-sm mg-t-sm">
+                    <a href="{{ path('fos_user_resetting_request')}}">¿Olvidaste la contraseña?</a>
+                  </div>
+                </div>
+                
+                <button class="btn btn-info btn-block" type="submit" name="_submit">Loguearse</button>
+              </form>
+              {% if error %}
+                  <div style="font-weight: bold; color: red;">{{ error }} {#{ error.messageKey|trans(error.messageData, 'security') }#}</div>
+              {% endif %}        
+            </div>
+          </section>
+        </div>      
+    </div>
+    <div class="col-md-3"></div>
+  </div>    
+</div>    
+{% endblock fos_user_content %}

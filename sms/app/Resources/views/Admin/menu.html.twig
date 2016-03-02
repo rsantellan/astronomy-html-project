@@ -1,0 +1,156 @@
+<div class="collapse navbar-collapse pull-left no-padding" id="hor-menu">
+  <ul class="nav navbar-nav">
+    <li>
+      <a href="{#{ path('admin_alertas')}#}">{% trans %}menu_alertas{% endtrans %}</a>
+    </li>
+    <li>
+      <a href="{#{ path('admin_alertas')}#}">{% trans %}menu_textos{% endtrans %}</a>
+    </li>
+    <li class="dropdown show-on-hover">
+      <a href="javascript:;" data-toggle="dropdown">
+        <span>{% trans %}menu_alumnos{% endtrans %}</span>
+        <b class="caret"></b>
+      </a>
+      <ul class="dropdown-menu">
+        <li>
+          <a href="{#{ path('estudiante') }#}">
+            <span>{% trans %}menu_alumnos_corrientes{% endtrans %}</span>
+          </a>
+        </li>
+        <li>
+          <a href="forms.html">
+            <span>Exportar Corrientes</span>
+          </a>
+        </li>
+        <li>
+          <a href="tables.html">
+            <span>Futuros</span>
+          </a>
+        </li>
+        <li>
+          <a href="calendar.html">
+            <span>Egresados</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+    {% if is_expr_granted("hasRole('ROLE_MANAGE_NEWSLETTER')") %}
+    <li class="{% if (activemenu is defined) and activemenu == 'newsletter' %}active{%endif%}">
+		<a href="{{ path('admin_newsletter_index')}}">
+			<span>{% trans %}app_admin_menu_newsletter{% endtrans %}</span>
+		</a>
+	</li>
+    {% endif %}
+    <li class="dropdown active show-on-hover">
+      <a href="javascript:;" data-toggle="dropdown">
+        <span>Layouts</span>
+        <b class="caret"></b>
+      </a>
+      <ul class="dropdown-menu">
+        <li>
+          <a href="boxed.html">
+            <span>Boxed</span>
+          </a>
+        </li>
+        <li class="active">
+          <a href="horizontal.html">
+            <span>Horizontal menu</span>
+          </a>
+        </li>
+        <li>
+          <a href="horizontal_boxed.html">
+            <span>Horizontal Boxed</span>
+          </a>
+        </li>
+        <li>
+          <a href="small-sidebar.html">
+            <span>Small sidebar</span>
+          </a>
+        </li>
+        <li>
+          <a href="right-sidebar.html">
+            <span>Right Sidebar</span>
+          </a>
+        </li>
+        <li>
+          <a href="right-sidebar-collapsible.html">
+            <span>Right Sidebar collapsible</span>
+          </a>
+        </li>
+        <li>
+          <a href="both.html">
+            <span>Mixed menus</span>
+          </a>
+        </li>
+        <li>
+          <a href="collapsible.html">
+            <span>Collapsible Menu</span>
+          </a>
+        </li>
+        <li>
+          <a href="footer.html">
+            <span>With Footer</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li class="dropdown show-on-hover">
+      <a href="javascript:;" data-toggle="dropdown">
+        <span>Pages</span>
+        <b class="caret"></b>
+      </a>
+      <ul class="dropdown-menu">
+        <li>
+          <a href="tasks.html">
+            <span>Tasks</span>
+          </a>
+        </li>
+        <li>
+          <a href="profile.html">
+            <span>Profile</span>
+          </a>
+        </li>
+        <li>
+          <a href="invoice.html">
+            <span>Invoice</span>
+          </a>
+        </li>
+        <li>
+          <a href="gallery.html">
+            <span>Gallery</span>
+          </a>
+        </li>
+        <li>
+          <a href="signin.html">
+            <span>Signin</span>
+          </a>
+        </li>
+        <li>
+          <a href="signup.html">
+            <span>Signup</span>
+          </a>
+        </li>
+        <li>
+          <a href="lock.html">
+            <span>Lock Screen</span>
+          </a>
+        </li>
+        <li>
+          <a href="404.html">
+            <span>404 Page</span>
+          </a>
+        </li>
+        <li>
+          <a href="500.html">
+            <span>500 Page</span>
+          </a>
+        </li>
+        <li>
+          <a href="blank.html">
+            <span>Blank</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
