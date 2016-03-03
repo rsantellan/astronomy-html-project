@@ -3,11 +3,12 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Article
  *
- * @ORM\Table()
+ * @ORM\Table(name="sms_article")
  * @ORM\Entity
  */
 class Article
@@ -31,6 +32,13 @@ class Article
     /**
      * @var string
      *
+     * @ORM\Column(name="excerpt", type="string", length=255)
+     */
+    private $excerpt;
+    
+    /**
+     * @var string
+     *
      * @ORM\Column(name="description", type="text")
      */
     private $description;
@@ -45,6 +53,7 @@ class Article
     /**
      * @var \DateTime
      *
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(name="createdAt", type="datetimetz")
      */
     private $createdAt;
@@ -52,11 +61,38 @@ class Article
     /**
      * @var \DateTime
      *
+     * @Gedmo\Timestampable(on="update") 
      * @ORM\Column(name="updatedAt", type="datetimetz")
      */
     private $updatedAt;
 
 
+    /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"title"})
+     * @ORM\Column(name="slug", type="string", length=255)
+     */    
+    private $slug;
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="ArticleTag", inversedBy="articles")
+     * @ORM\JoinTable(name="sms_article_tag_relation",
+     *      joinColumns={@ORM\JoinColumn(name="article_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="article_tag_id", referencedColumnName="id")}
+     *      )
+     **/    
+    private $tags;
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="ArticleCategory", inversedBy="articles")
+     * @ORM\JoinTable(name="sms_article_category_relation",
+     *      joinColumns={@ORM\JoinColumn(name="article_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="article_category_id", referencedColumnName="id")}
+     *      )
+     **/    
+    private $categories;
+    
     /**
      * Get id
      *
@@ -180,5 +216,159 @@ class Article
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    public function getFullClassName()
+    {
+      return get_class($this);
+    }
+    
+    public function retrieveAlbums()
+    {
+      return array('principal');
+    }
+    
+    public function showSpanishDate()
+    {
+      // date('d \\d\\e F, Y')
+      $string = $this->getCreatedAt()->format('d'). ' de ';
+      $verm = array(
+        1 => "Enero",
+        2 => "Febrero",
+        3 => "Marzo",
+        4 => "Abril",
+        5 => "Mayo",
+        6 => "Junio",
+        7 => "Julio",
+        8 => "Agosto",
+        9 => "Septiembre",
+        10 => "Octubre",
+        11 => "Noviembre", 
+        12 => "Diciembre"
+      );
+      $string .= $verm[(int)$this->getCreatedAt()->format('n')];
+      $string .= ', '.$this->getCreatedAt()->format('Y');
+      return $string;
+    }
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Article
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Add tags
+     *
+     * @param \AppBundle\Entity\ArticleTag $tags
+     * @return Article
+     */
+    public function addTag(\AppBundle\Entity\ArticleTag $tags)
+    {
+        $this->tags[] = $tags;
+
+        return $this;
+    }
+
+    /**
+     * Remove tags
+     *
+     * @param \AppBundle\Entity\ArticleTag $tags
+     */
+    public function removeTag(\AppBundle\Entity\ArticleTag $tags)
+    {
+        $this->tags->removeElement($tags);
+    }
+
+    /**
+     * Get tags
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Add categories
+     *
+     * @param \AppBundle\Entity\ArticleCategory $categories
+     * @return Article
+     */
+    public function addCategory(\AppBundle\Entity\ArticleCategory $categories)
+    {
+        $this->categories[] = $categories;
+
+        return $this;
+    }
+
+    /**
+     * Remove categories
+     *
+     * @param \AppBundle\Entity\ArticleCategory $categories
+     */
+    public function removeCategory(\AppBundle\Entity\ArticleCategory $categories)
+    {
+        $this->categories->removeElement($categories);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
+     * Set excerpt
+     *
+     * @param string $excerpt
+     * @return Article
+     */
+    public function setExcerpt($excerpt)
+    {
+        $this->excerpt = $excerpt;
+
+        return $this;
+    }
+
+    /**
+     * Get excerpt
+     *
+     * @return string 
+     */
+    public function getExcerpt()
+    {
+        return $this->excerpt;
     }
 }

@@ -97,8 +97,8 @@ stof_doctrine_extensions:
         default:
             tree: false # not needed: listeners are not enabled by default
             timestampable: true
-            sortable: false
-            sluggable: false
+            sortable: true
+            sluggable: true
             translatable: false      
             
 jms_security_extra:

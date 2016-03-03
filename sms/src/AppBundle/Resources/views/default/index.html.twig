@@ -1,4 +1,4 @@
-{% extends 'layout.html.twig' %}
+{% extends 'AppBundle::layout.html.twig' %}
 
 {% block body %}
         <!--======= HOME MAIN SLIDER =========-->
@@ -9,7 +9,7 @@
                         <!-- SLIDE  -->
                         <li data-transition="random" data-slotamount="7"> 
                             <!-- MAIN IMAGE --> 
-                            <img src="images/slides/slides-1.jpg"  alt=""  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat"> 
+                            <img src="{{ asset('images/slides/slides-1.jpg') }}"  alt=""  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat"> 
                             <!-- LAYERS --> 
 
                             <!-- LAYER NR. 1 -->
@@ -58,7 +58,7 @@
                         <!-- SLIDE  -->
                         <li data-transition="random" data-slotamount="7"> 
                             <!-- MAIN IMAGE --> 
-                            <img src="images/slides/slides-2.jpg"  alt=""  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat"> 
+                            <img src="{{ asset('images/slides/slides-1.jpg') }}"  alt=""  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat"> 
                             <!-- LAYERS --> 
 
                             <!-- LAYER NR. 1 -->
@@ -432,21 +432,7 @@
             </section>
 
             <!-- News Letter -->
-            <div class="container">
-                <section class="news-letter">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h5>Suscribirse a nuestro newsletter</h5>
-                            <p>Mantenerse informado sobre el proyecto</p>
-                        </div>
-                        <div class="col-md-6">
-                            <form>      <input type="email" class="z-depth-1" placeholder="Dirección de mail" required>
-                                <button type="submit" class="btn waves-effect waves-light">suscribirme</button>
-                            </form>
-                        </div>
-                    </div>
-                </section>
-            </div>
+            {{ render(controller('AppBundle:Default:newsletterForm')) }}
         </div>
         <!-- End Content -->     
 {% endblock %}

@@ -1,0 +1,101 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block body %}
+         <!--======= SUB BANNER =========-->
+  <section class="sub-banner bg-parallax" style="background:url({{ asset('images/sg.jpg') }}) no-repeat">
+    <div class="container">
+      <div class="position-center-center">
+        <h1>Noticias</h1>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Content -->
+  <div id="content"> 
+    
+    <!-- PORTFOLIO -->
+    <section class="blog padding-bottom-100 padding-top-100">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-9 padding-right-50"> 
+            
+           {% for article in articles %}
+           <!-- Blog Post --> 
+           <div class="blog-post z-depth-1 margin-bottom-50"> 
+               <img class="img-responsive" src="{{ article.id | mAvatar(article.fullClassName, 'principal') | mImage(1280, 724, 'rce') }}" alt="" /> 
+               <span class="tags">ETIQUETA</span>
+               <a href="noticia_ejemplo.html" class="post-tittle">{{ article.title }}</a>
+               <span class="font-italic font-12px margin-bottom-15 margin-top-15 color-primary-pink">{{ article.showSpanishDate }}</span>
+               <p>{{ article.description|length > 50 ? article.description|slice(0, 50) ~ '...' : myentity.description }}</p>
+               <a href="noticia_ejemplo.html" class="waves-effect waves-light btn btn-white">leer mas</a> 
+           </div>
+           {% endfor %}
+           </div>
+          <!-- Sidebar -->
+          <div class="col-md-3 padding-left-20">
+            <div class="side-bar"> 
+              
+              <!-- Categories -->
+              <h4>categorías</h4>
+              <hr>
+              <ul class="cate">
+                <li><a href="#.">Noticias <span>(10)</span></a></li>
+                <li><a href="#.">Eventos<span>(20)</span></a></li>
+                <li><a href="#.">Publicaciones<span>(28)</span></a></li>
+                
+              </ul>
+              
+              <!-- Recent Posts -->
+              <h4 class="margin-top-50">Noticias Recientes</h4>
+              <hr>
+              <div class="papu-post margin-t-40">
+                <ul class="bg-defult">
+                  <li class="media">
+                    <div class="media-left"> <a href="#"> <img class="media-object" src="images/portfolio/img-2-1.jpg" alt=""></a> </div>
+                    <div class="media-body"> <a class="media-heading" href="#.">Ejemplo de noticia nro 1 </a> <span>11 de noviembre, 2015</span> </div>
+                  </li>
+                  <li class="media">
+                    <div class="media-left"> <a href="#"> <img class="media-object" src="images/portfolio/img-2-2.jpg" alt=""></a> </div>
+                    <div class="media-body"> <a class="media-heading" href="#.">Ejemplo de noticia nro 2 </a> <span>11 de noviembre, 2015</span> </div>
+                  </li>
+                  <li class="media">
+                    <div class="media-left"> <a href="#"> <img class="media-object" src="images/portfolio/img-2-3.jpg" alt=""></a> </div>
+                    <div class="media-body"> <a class="media-heading" href="#.">Ejemplo de noticia nro 3 </a> <span>11 de noviembre, 2015</span> </div>
+                  </li>
+                </ul>
+              </div>
+              
+              <!-- Archives -->
+              <h4 class="margin-top-50">Fecha</h4>
+              <hr>
+              <ul class="cate">
+                <li><a href="#.">Noviembre <span>(10)</span></a></li>
+                <li><a href="#.">Diciembre<span>(15)</span></a></li>
+                <li><a href="#.">Enero<span>(2)</span></a></li>
+                
+              </ul>
+              
+              <!-- TAGS -->
+              <h4 class="margin-top-50">ETIQUETAS</h4>
+              <hr>
+              <ul class="tags">
+                <li><a href="#.">Etiqueta 1</a></li>
+                <li><a href="#.">Etiqueta 2</a></li>
+                <li><a href="#.">Etiqueta 3</a></li>
+                <li><a href="#.">Etiqueta 4</a></li>
+                
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- News Letter -->
+    {{ render(controller('AppBundle:Default:newsletterForm')) }}
+</div>
+<!-- End Content -->     
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}

@@ -1,0 +1,3 @@
+noticias:
+    path:     /noticias.html
+    defaults: { _controller: "AppBundle:Default:articleList" }

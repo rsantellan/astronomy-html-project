@@ -1,3 +1,15 @@
+app_admin_article:
+    resource: "@AppBundle/Resources/config/routing/article.yml"
+    prefix:   /admin/article
+
+app_admin_slider:
+    resource: "@AppBundle/Resources/config/routing/slider.yml"
+    prefix:   /admin/slider
+
+site_routes:
+    resource: "@AppBundle/Resources/config/routing/site.yml"
+    prefix:   /
+
 homepage:
     path:     /
     defaults: { _controller: AppBundle:Default:index }  

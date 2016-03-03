@@ -1,0 +1,10 @@
+admin_slider:
+    path:     /
+    defaults: { _controller: "AppBundle:Slider:index" }
+
+admin_slider_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:Slider:show" }
+
+
+

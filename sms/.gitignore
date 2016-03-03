@@ -4,9 +4,11 @@
 /app/config/parameters.yml
 /app/logs/*
 /web/galleries/noticias/*
+/web/upload/*
 !app/cache/.gitkeep
 !app/logs/.gitkeep
 !web/galleries/noticias/.gitkeep
+!web/upload/.gitkeep
 /app/phpunit.xml
 /build/
 /vendor/
