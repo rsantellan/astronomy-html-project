@@ -3,17 +3,20 @@
 namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class AdminController extends Controller
 {
-    /**
-     * @Route("/admin")
-     * 
-     */
+
     public function indexAction()
     {
-        return $this->render('Admin/index.html.twig', array());
+        return $this->render('AppBundle:Admin:index.html.twig', array());
     }
+    
+    public function galleriesAction()
+    {
+      return $this->render('AppBundle:Admin:galleries.html.twig', array(
+                
+            )); 
+    }    
 
 }

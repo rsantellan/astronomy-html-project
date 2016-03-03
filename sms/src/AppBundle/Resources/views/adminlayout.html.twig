@@ -37,13 +37,13 @@
   <!-- body -->
 
   <body>
-    <div class="app boxed horizontal {% if (smallnavigation is defined) and smallnavigation %} small-sidebar{% endif %}" {% if (smallnavigation is defined) and smallnavigation %}data-sidebar="locked"{% endif %}>
+    <div class="app horizontal {% if (smallnavigation is defined) and smallnavigation %} small-sidebar{% endif %}" {% if (smallnavigation is defined) and smallnavigation %}data-sidebar="locked"{% endif %}>
 	  <!-- top header -->
 	  <header class="header header-fixed navbar">
 
 		<div class="brand">
 		  <a href="javascript:;" class="fa fa-bars off-left visible-xs" data-toggle="off-canvas" data-move="ltr"></a>
-		  <a href="{{ path('app_admin_index')}}" class="navbar-brand text-white">
+		  <a href="{{ path('admin_index')}}" class="navbar-brand text-white">
 			<i class="fa fa-stop mg-r-sm"></i>
 			<span class="heading-font">
 			  <b>SMS</b>
@@ -51,9 +51,9 @@
 		  </a>
 		</div>
         
-                {{ include('Admin/menu.html.twig') }}
+                {{ include('AppBundle:Admin:menu.html.twig') }}
         
-		{{ include('Admin/userheader.html.twig') }}
+		{{ include('AppBundle:Admin:userheader.html.twig') }}
 	  </header>
 	  <!-- /top header -->
 

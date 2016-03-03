@@ -3,8 +3,10 @@
 /app/cache/*
 /app/config/parameters.yml
 /app/logs/*
+/web/galleries/noticias/*
 !app/cache/.gitkeep
 !app/logs/.gitkeep
+!web/galleries/noticias/.gitkeep
 /app/phpunit.xml
 /build/
 /vendor/
