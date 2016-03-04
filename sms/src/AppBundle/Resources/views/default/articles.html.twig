@@ -23,10 +23,12 @@
            <!-- Blog Post --> 
            <div class="blog-post z-depth-1 margin-bottom-50"> 
                <img class="img-responsive" src="{{ article.id | mAvatar(article.fullClassName, 'principal') | mImage(1280, 724, 'rce') }}" alt="" /> 
-               <span class="tags">ETIQUETA</span>
+               {% for tag in article.tags %}
+               <span class="tags">{{ tag.name }}</span>
+               {% endfor %}
                <a href="noticia_ejemplo.html" class="post-tittle">{{ article.title }}</a>
                <span class="font-italic font-12px margin-bottom-15 margin-top-15 color-primary-pink">{{ article.showSpanishDate }}</span>
-               <p>{{ article.description|length > 50 ? article.description|slice(0, 50) ~ '...' : myentity.description }}</p>
+               <p>{{ article.excerpt }}</p>
                <a href="noticia_ejemplo.html" class="waves-effect waves-light btn btn-white">leer mas</a> 
            </div>
            {% endfor %}
@@ -39,10 +41,9 @@
               <h4>categorías</h4>
               <hr>
               <ul class="cate">
-                <li><a href="#.">Noticias <span>(10)</span></a></li>
-                <li><a href="#.">Eventos<span>(20)</span></a></li>
-                <li><a href="#.">Publicaciones<span>(28)</span></a></li>
-                
+                {% for category in categories %}  
+                <li><a href="#.">{{ category.name }} <span>({{ category.articles | length }})</span></a></li>
+                {% endfor %}
               </ul>
               
               <!-- Recent Posts -->
@@ -50,18 +51,12 @@
               <hr>
               <div class="papu-post margin-t-40">
                 <ul class="bg-defult">
-                  <li class="media">
-                    <div class="media-left"> <a href="#"> <img class="media-object" src="images/portfolio/img-2-1.jpg" alt=""></a> </div>
-                    <div class="media-body"> <a class="media-heading" href="#.">Ejemplo de noticia nro 1 </a> <span>11 de noviembre, 2015</span> </div>
-                  </li>
-                  <li class="media">
-                    <div class="media-left"> <a href="#"> <img class="media-object" src="images/portfolio/img-2-2.jpg" alt=""></a> </div>
-                    <div class="media-body"> <a class="media-heading" href="#.">Ejemplo de noticia nro 2 </a> <span>11 de noviembre, 2015</span> </div>
-                  </li>
-                  <li class="media">
-                    <div class="media-left"> <a href="#"> <img class="media-object" src="images/portfolio/img-2-3.jpg" alt=""></a> </div>
-                    <div class="media-body"> <a class="media-heading" href="#.">Ejemplo de noticia nro 3 </a> <span>11 de noviembre, 2015</span> </div>
-                  </li>
+                  {% for article in recentArticles %}
+                    <li class="media">
+                        <div class="media-left"> <a href="#"> <img src='{{ article.id | mAvatar(article.fullClassName, 'principal') | mImage(50, 50, 'rce') }}' class="media-object" /></a> </div>
+                        <div class="media-body"> <a class="media-heading" href="#.">{{ article.title }}</a> <span style="color:#CCC">{{ article.showSpanishDate }}</span> </div>
+                    </li>
+                  {% endfor %}  
                 </ul>
               </div>
               
@@ -69,21 +64,18 @@
               <h4 class="margin-top-50">Fecha</h4>
               <hr>
               <ul class="cate">
-                <li><a href="#.">Noviembre <span>(10)</span></a></li>
-                <li><a href="#.">Diciembre<span>(15)</span></a></li>
-                <li><a href="#.">Enero<span>(2)</span></a></li>
-                
+                {% for month in perMonths %}
+                    <li><a href="#.">{{ month['month'] }} <span>({{ month['cantidad'] }})</span></a></li>
+                {% endfor %}
               </ul>
               
               <!-- TAGS -->
               <h4 class="margin-top-50">ETIQUETAS</h4>
               <hr>
               <ul class="tags">
-                <li><a href="#.">Etiqueta 1</a></li>
-                <li><a href="#.">Etiqueta 2</a></li>
-                <li><a href="#.">Etiqueta 3</a></li>
-                <li><a href="#.">Etiqueta 4</a></li>
-                
+                {% for tag in tags %}  
+                <li><a href="#.">{{ tag.name }}</a></li>
+                {% endfor %}  
               </ul>
             </div>
           </div>

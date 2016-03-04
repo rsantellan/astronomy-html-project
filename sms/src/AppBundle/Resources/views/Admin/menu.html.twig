@@ -1,46 +1,29 @@
 <div class="collapse navbar-collapse pull-left no-padding" id="hor-menu">
   <ul class="nav navbar-nav">
     <li>
-      <a href="{#{ path('admin_alertas')}#}">{% trans %}menu_alertas{% endtrans %}</a>
+      <a href="{{ path('admin_article')}}">{% trans %}menu_admin_noticias{% endtrans %}</a>
     </li>
     <li>
       <a href="{#{ path('admin_alertas')}#}">{% trans %}menu_textos{% endtrans %}</a>
     </li>
-    <li class="dropdown show-on-hover">
+    <li class="dropdown active show-on-hover">
       <a href="javascript:;" data-toggle="dropdown">
-        <span>{% trans %}menu_alumnos{% endtrans %}</span>
+        <span>{% trans %}admin_menu_user_management{% endtrans %}</span>
         <b class="caret"></b>
       </a>
       <ul class="dropdown-menu">
         <li>
-          <a href="{#{ path('estudiante') }#}">
-            <span>{% trans %}menu_alumnos_corrientes{% endtrans %}</span>
+          <a href="{{ path('user')}}">
+            <span>{% trans %}admin_menu_usuarios{% endtrans %}</span>
           </a>
         </li>
         <li>
-          <a href="forms.html">
-            <span>Exportar Corrientes</span>
-          </a>
-        </li>
-        <li>
-          <a href="tables.html">
-            <span>Futuros</span>
-          </a>
-        </li>
-        <li>
-          <a href="calendar.html">
-            <span>Egresados</span>
+          <a href="{{ path('grouprole')}}">
+            <span>{% trans %}admin_menu_grupos_roles{% endtrans %}</span>
           </a>
         </li>
       </ul>
     </li>
-    {% if is_expr_granted("hasRole('ROLE_MANAGE_NEWSLETTER')") %}
-    <li class="{% if (activemenu is defined) and activemenu == 'newsletter' %}active{%endif%}">
-		<a href="{{ path('admin_newsletter_index')}}">
-			<span>{% trans %}app_admin_menu_newsletter{% endtrans %}</span>
-		</a>
-	</li>
-    {% endif %}
     <li class="dropdown active show-on-hover">
       <a href="javascript:;" data-toggle="dropdown">
         <span>Layouts</span>

@@ -29,7 +29,7 @@ admin_article_delete:
     defaults: { _controller: "AppBundle:Article:delete" }
     methods:  [POST, DELETE]
 
-admin_category_article_new:
+admin_article_category_new:
     path:     /new-category
     defaults: { _controller: "AppBundle:Article:newCategory" }
     
@@ -50,4 +50,27 @@ admin_article_category_update:
 admin_article_category_delete:
     path:     /{id}/delete-category
     defaults: { _controller: "AppBundle:Article:deleteCategory" }
+    methods:  [POST, DELETE]    
+
+admin_article_tag_new:
+    path:     /new-tag
+    defaults: { _controller: "AppBundle:Article:newTag" }
+    
+admin_article_tag_create:
+    path:     /create-tag
+    defaults: { _controller: "AppBundle:Article:createTag" }
+    methods:  POST
+    
+admin_article_tag_edit:
+    path:     /{id}/edit-tag
+    defaults: { _controller: "AppBundle:Article:editTag" }
+
+admin_article_tag_update:
+    path:     /{id}/update-tag
+    defaults: { _controller: "AppBundle:Article:updateTag" }
+    methods:  [POST, PUT]
+    
+admin_article_tag_delete:
+    path:     /{id}/delete-tag
+    defaults: { _controller: "AppBundle:Article:deleteTag" }
     methods:  [POST, DELETE]    

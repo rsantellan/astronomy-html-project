@@ -20,6 +20,7 @@ class ArticleType extends AbstractType
             ->add('description')
             ->add('active')
             ->add('categories')
+            ->add('tags')
         ;
     }
     

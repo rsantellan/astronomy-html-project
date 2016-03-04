@@ -13,6 +13,10 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class Article
 {
+  
+    const RECENTARTICLES = 'recent_articles';
+    const PASTYEARARTICLESDATA = 'last_year_articles';
+  
     /**
      * @var integer
      *
@@ -39,7 +43,7 @@ class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
@@ -232,6 +236,14 @@ class Article
     {
       // date('d \\d\\e F, Y')
       $string = $this->getCreatedAt()->format('d'). ' de ';
+      
+      $string .= self::retrieveMonthNameFromNumber((int)$this->getCreatedAt()->format('n'));
+      $string .= ', '.$this->getCreatedAt()->format('Y');
+      return $string;
+    }
+    
+    public static function retrieveMonthNameFromNumber($month)
+    {
       $verm = array(
         1 => "Enero",
         2 => "Febrero",
@@ -246,9 +258,7 @@ class Article
         11 => "Noviembre", 
         12 => "Diciembre"
       );
-      $string .= $verm[(int)$this->getCreatedAt()->format('n')];
-      $string .= ', '.$this->getCreatedAt()->format('Y');
-      return $string;
+      return $verm[$month];
     }
     
     /**

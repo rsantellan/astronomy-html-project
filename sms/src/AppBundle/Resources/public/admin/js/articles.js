@@ -70,3 +70,60 @@ function removeArticleCategory(element, confirmation){
 
   return false;  
 }
+
+function saveArticleTag(form){
+    $.ajax({
+      url: $(form).attr('action'),
+      data: $(form).serialize(),
+      type: 'post',
+      dataType: 'json',
+      success: function(json){
+          if(json.result)
+          {
+            toastr.info(json.message);
+            if(!json.update){
+                $('#article_tags_table_body').append(json.html);
+            }else{
+                $('#article_tag_row_'+json.id).replaceWith(json.html);
+            }
+            $('#showModal').modal('hide');
+          }
+          else
+          {
+              toastr.error(json.message);
+          }
+          
+          
+      }
+      , 
+      complete: function()
+      {
+      }
+  });
+  return false; 
+}
+
+function removeArticleTag(element, confirmation){
+  if(confirm(confirmation))
+  {
+    $.ajax({
+      url: $(element).attr('href'),
+      type: 'post',
+      dataType: 'json',
+      success: function(json){
+        if(json.result){
+            toastr.info(json.message);
+            $('#article_tag_row_'+json.id).remove();
+        }else{
+            toastr.error(json.message);
+        }
+      }, 
+      complete: function()
+      {
+      }
+    });
+  }
+  
+
+  return false;  
+}

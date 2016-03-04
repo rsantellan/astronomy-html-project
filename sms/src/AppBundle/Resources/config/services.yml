@@ -1,0 +1,24 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+
+services:
+    fscache:
+        class: Doctrine\Common\Cache\FilesystemCache
+        arguments: ["%kernel.cache_dir%"]
+#    facturas:
+#        class: AppBundle\Service\FacturasManager
+#        arguments: ["@doctrine.orm.entity_manager", "@logger"]
+#    cuentas:
+#        class: AppBundle\Service\CuentasService
+#        arguments: ["@doctrine.orm.entity_manager", "@logger"]
+#    newslettersync:
+#        class: AppBundle\Service\NewsletterSyncService
+#        arguments: ["@doctrine.orm.entity_manager", "@logger"]
+#    migrations:
+#        class: AppBundle\Service\MigrationService
+#        arguments: ["@doctrine.orm.entity_manager", "@logger", "%old_db_host%", "%old_db_user%", "%old_db_password%", '@cuentas', '@newslettersync', '@fos_user.user_manager']
+#    pdfs:
+#        class: AppBundle\Service\PdfManager
+#        arguments: ["@doctrine.orm.entity_manager", "@logger", "%kernel.root_dir%"]

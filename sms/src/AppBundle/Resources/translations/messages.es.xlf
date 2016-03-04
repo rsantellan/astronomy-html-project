@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="es" target-language="es" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="ae0541749dce3ff6faedb513663ae9fa" resname="menu_admin_noticias">
+        <source>menu_admin_noticias</source>
+        <target>Noticias</target>
+      </trans-unit>
+      <trans-unit id="4ef78373577f69d0ca383335b875af15" resname="menu_textos">
+        <source>menu_textos</source>
+        <target>Textos</target>
+      </trans-unit>
+      <trans-unit id="ddd54814fa26c37b91bb4b20f0b21ee7" resname="article_categories_remove_question">
+        <source>article_categories_remove_question</source>
+        <target>Esta seguro de querer eliminar la categoria?</target>
+      </trans-unit>
+      <trans-unit id="49130419d3c37b9be2a87715b02f7ead" resname="article_tags_name">
+        <source>article_tags_name</source>
+        <target>Nombre</target>
+      </trans-unit>
+      <trans-unit id="7fda1af7c763f602878fd7d7930cb871" resname="article_tags_save">
+        <source>article_tags_save</source>
+        <target>Guardar</target>
+      </trans-unit>
+      <trans-unit id="97eb7607a244301d8fef8deeca484109" resname="article_update_entry">
+        <source>article_update_entry</source>
+        <target>Actualizar</target>
+      </trans-unit>
+      <trans-unit id="e6c4c1a8bfac190fb89806e3128a9264" resname="article_title">
+        <source>article_title</source>
+        <target>Titulo</target>
+      </trans-unit>
+      <trans-unit id="d10a0819bc1ebcf4c0e7376b2d242743" resname="article_excerpt">
+        <source>article_excerpt</source>
+        <target>Copete</target>
+      </trans-unit>
+      <trans-unit id="374e254507c870b96d10d5fd4cf5c902" resname="article_description">
+        <source>article_description</source>
+        <target>Cuerpo</target>
+      </trans-unit>
+      <trans-unit id="6694884f727937d6fa8f476277719566" resname="article_categories">
+        <source>article_categories</source>
+        <target>Categorias</target>
+      </trans-unit>
+      <trans-unit id="5c7de2a4809be9f904c0994c730c58df" resname="article_tags">
+        <source>article_tags</source>
+        <target>Etiquetas</target>
+      </trans-unit>
+      <trans-unit id="f24ebd483f93004fe401ef7a6877f9b0" resname="article_active">
+        <source>article_active</source>
+        <target>Activo</target>
+      </trans-unit>
+      <trans-unit id="5b358bab88d73e87e00c07453454306a" resname="article_save">
+        <source>article_save</source>
+        <target>Guardar</target>
+      </trans-unit>
+      <trans-unit id="5456aaf1ba07caeebf64dabfc21d3d71" resname="article_back_to_list">
+        <source>article_back_to_list</source>
+        <target>Volver al listado</target>
+      </trans-unit>
+      <trans-unit id="6e0bb727f22d22b98817887e53b29e13" resname="article_delete">
+        <source>article_delete</source>
+        <target>Eliminar</target>
+      </trans-unit>
+      <trans-unit id="15e38c4da8df0b44dc0bc5394e70d233" resname="article_tags_remove_question">
+        <source>article_tags_remove_question</source>
+        <target>Esta seguro de querer borrar la etiqueta?</target>
+      </trans-unit>
+      <trans-unit id="3552dea740b66aee72eb1386816174bd" resname="article_categories_name">
+        <source>article_categories_name</source>
+        <target>Nombre</target>
+      </trans-unit>
+      <trans-unit id="20dbac43398b647546c4b9e59ca151cc" resname="article_categories_save">
+        <source>article_categories_save</source>
+        <target>Guardar</target>
+      </trans-unit>
+      <trans-unit id="b9da1124c7d7052a01f3d07cfb13d93d" resname="article_list_title">
+        <source>article_list_title</source>
+        <target>Listado de noticias</target>
+      </trans-unit>
+      <trans-unit id="6a39fbba025386ee2aebbd9c071bb526" resname="article_image">
+        <source>article_image</source>
+        <target>Imagen</target>
+      </trans-unit>
+      <trans-unit id="e76fc74402ac931dfebe184678845f23" resname="article_createdat">
+        <source>article_createdat</source>
+        <target>Creado el</target>
+      </trans-unit>
+      <trans-unit id="bd6032f504261fdd01d908da7fcb6ed3" resname="article_actions">
+        <source>article_actions</source>
+        <target>Acciones</target>
+      </trans-unit>
+      <trans-unit id="5859d67058087ce5549a840266a59d69" resname="article_create">
+        <source>article_create</source>
+        <target>Crear</target>
+      </trans-unit>
+      <trans-unit id="609bf204c5b7b440d33346fd5a907209" resname="article_categories_title">
+        <source>article_categories_title</source>
+        <target>Listado de categorias</target>
+      </trans-unit>
+      <trans-unit id="b204b9668addaf8561cb6bc3639b6421" resname="article_categories_actions">
+        <source>article_categories_actions</source>
+        <target>Acciones</target>
+      </trans-unit>
+      <trans-unit id="345c711057355fb9286b51abc7ab1f5d" resname="article_create_category">
+        <source>article_create_category</source>
+        <target>Crear</target>
+      </trans-unit>
+      <trans-unit id="c31b06e13080ed954d8ff2ea8cc8500a" resname="article_tags_title">
+        <source>article_tags_title</source>
+        <target>Listado de etiquetas</target>
+      </trans-unit>
+      <trans-unit id="2fbf04cf821e03792d2fc3a7d3cdbd9f" resname="article_tags_actions">
+        <source>article_tags_actions</source>
+        <target>Acciones</target>
+      </trans-unit>
+      <trans-unit id="0dc8a31df5b1ecd67d185e11b591045c" resname="article_create_tag">
+        <source>article_create_tag</source>
+        <target>Crear</target>
+      </trans-unit>
+      <trans-unit id="8662d8f7373a6405b795d9dac3025fd1" resname="article_create_entry">
+        <source>article_create_entry</source>
+        <target>Crear</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

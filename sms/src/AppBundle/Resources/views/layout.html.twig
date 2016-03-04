@@ -79,16 +79,16 @@
                     <!-- Nav -->
                     <nav>
                         <ul id="ownmenu" class="ownmenu">
-                            <li class="active"><a href="index.html">Inicio</a></li>
-                            <li><a href="#">Sistema</a>
+                            <li  class="{% if (activemenu is defined) and activemenu == 'inicio' %}active{%endif%}"><a href="index.html">Inicio</a></li>
+                            <li class="{% if (activemenu is defined) and activemenu == 'sistema' %}active{%endif%}"><a href="#">Sistema</a>
                                 <ul class="dropdown">
                                     <li><a href="prototipo.html">Prototipo</a> </li>
                                     <li><a href="estaciones.html">Estaciones</a> </li>
                                 </ul>
                             </li>
-                            <li><a href="imagenes.html">Imágenes y videos</a></li>
-                            <li><a href="acerca.html">Acerca del proyecto</a></li>
-                            <li><a href="{{ path('noticias')}}">Noticias</a> </li>
+                            <li class="{% if (activemenu is defined) and activemenu == 'imagenes' %}active{%endif%}"><a href="imagenes.html">Imágenes y videos</a></li>
+                            <li class="{% if (activemenu is defined) and activemenu == 'acerca' %}active{%endif%}"><a href="acerca.html">Acerca del proyecto</a></li>
+                            <li class="{% if (activemenu is defined) and activemenu == 'noticias' %}active{%endif%}"><a href="{{ path('noticias')}}">Noticias</a> </li>
                         </ul>
                     </nav>
                     <a href="contacto.html" class="waves-effect waves-ripple any-help z-depth-1">Consultas?</a> </div>

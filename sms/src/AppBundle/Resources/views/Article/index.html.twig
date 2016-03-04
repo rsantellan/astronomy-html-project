@@ -27,6 +27,8 @@
                                     <th>{% trans %}article_image{% endtrans %}</th>
                                     <th>{% trans %}article_title{% endtrans %}</th>
                                     <th>{% trans %}article_active{% endtrans %}</th>
+                                    <th>{% trans %}article_categories{% endtrans %}</th>
+                                    <th>{% trans %}article_tags{% endtrans %}</th>
                                     <th>{% trans %}article_createdat{% endtrans %}</th>
                                     <th>{% trans %}article_actions{% endtrans %}</th>
                                 </tr>
@@ -36,7 +38,15 @@
                                     <tr>
                                         <td><img src='{{ entity.id | mAvatar(entity.fullClassName, 'principal') | mImage(60, 60, 'rce') }}' class="img-responsive" /></td>
                                         <td>{{ entity.title }}</td>
-                                        <td>{{ entity.active }}</td>
+                                        <td>{% if entity.active %}SI{% else %}NO{% endif%}</td>
+                                        <td>{% for category in entity.categories %}
+                                                {{ category.name }} {% if not loop.last %}, {% endif%} 
+                                            {% endfor %}
+                                        </td>
+                                        <td>{% for tag in entity.tags %}
+                                                {{ tag.name }} {% if not loop.last %}, {% endif%} 
+                                            {% endfor %}
+                                        </td>
                                         <td>{{ entity.createdAt | date('d/m/Y')}}</td>
                                         <td>
                                             <ul>
@@ -76,8 +86,31 @@
                           </tbody>
                     </table>
                     <div class="col-md-12 text-center">
-                        <a href="{{ path('admin_category_article_new') }}" onclick="return showArticleCategoryModal(this)" class="btn btn-info">
-                            {% trans %}article_create{% endtrans %}
+                        <a href="{{ path('admin_article_category_new') }}" onclick="return showArticleCategoryModal(this)" class="btn btn-info">
+                            {% trans %}article_create_category{% endtrans %}
+                        </a>
+                    </div>      
+                </div>
+            </section>
+            <section class="panel panel-info">
+                <header class="panel-heading">{% trans %}article_tags_title{% endtrans %}</header>
+                <div class="panel-body">
+                    <table class="table table-bordered table-striped mg-t datatable" id="tag-list">
+                        <thead>
+                            <tr>
+                              <th>{% trans %}article_tags_name{% endtrans %}</th>
+                              <th>{% trans %}article_tags_actions{% endtrans %}</th>
+                            </tr>
+                          </thead>
+                          <tbody id="article_tags_table_body">
+                            {% for tag in tags %}
+                                {% include 'AppBundle:Article:_articleTagRow.html.twig' with { 'tag' : tag } %}
+                            {% endfor %}
+                          </tbody>
+                    </table>
+                    <div class="col-md-12 text-center">
+                        <a href="{{ path('admin_article_tag_new') }}" onclick="return showArticleCategoryModal(this)" class="btn btn-info">
+                            {% trans %}article_create_tag{% endtrans %}
                         </a>
                     </div>      
                 </div>

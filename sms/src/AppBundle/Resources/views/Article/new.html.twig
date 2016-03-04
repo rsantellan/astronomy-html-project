@@ -37,6 +37,11 @@
             <label for="{{ form.categories.vars.id }}">{% trans %}article_categories{% endtrans %}</label>
             {{ form_widget(form.categories, {'attr' : {'class' : 'form-control'}}) }}
           </div>
+          <div class="form-group">
+            {{ form_errors(form.tags) }}
+            <label for="{{ form.tags.vars.id }}">{% trans %}article_tags{% endtrans %}</label>
+            {{ form_widget(form.tags, {'attr' : {'class' : 'form-control'}}) }}
+          </div>
           <div class="checkbox">
             {{ form_errors(form.active) }}  
             <label>

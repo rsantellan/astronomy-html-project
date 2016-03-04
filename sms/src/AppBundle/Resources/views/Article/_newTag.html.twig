@@ -1,0 +1,11 @@
+<form action="{{ path('admin_article_tag_create') }}" method="post" {{ form_enctype(form) }} role="form" onsubmit="return saveArticleTag(this)">
+    <div class="form-group">
+        {{ form_errors(form.name) }}
+        <label for="{{ form.name.vars.id }}">{% trans %}article_tags_name{% endtrans %}</label>
+        {{ form_widget(form.name, {'attr' : {'class' : 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-default">{% trans %}article_tags_save{% endtrans %}</button>
+    </div>	
+    {{ form_rest(form) }}
+</form>
