@@ -1,3 +1,11 @@
 noticias:
     path:     /noticias.html
     defaults: { _controller: "AppBundle:Default:articleList" }
+
+contacto:
+    path:     /contacto.html
+    defaults: { _controller: "AppBundle:Default:contacto" }
+
+contact_send:
+    path:     /contacto-send.html
+    defaults: { _controller: "AppBundle:Default:contactoSend" }

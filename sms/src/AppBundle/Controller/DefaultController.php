@@ -4,8 +4,10 @@ namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 use AppBundle\Entity\Article;
+use AppBundle\Form\ContactType;
 
 class DefaultController extends Controller
 {
@@ -98,5 +100,40 @@ class DefaultController extends Controller
             'recentArticles' => $this->retrieveRecentArticles(),
             'perMonths' => $this->retrievePerMonthOfLastYear($em),
         ));
+    }
+    
+    public function contactoAction(Request $request)
+    {
+      $form = $this->createForm(new ContactType());
+      return $this->render('AppBundle:default:contacto.html.twig', array(
+            'activemenu' => 'contacto',
+            'form' => $form->createView(),
+        ));
+    }
+    
+    public function contactoSendAction(Request $request)
+    {
+      $form = $this->createForm(new ContactType());
+      $form->handleRequest($request);
+      $result = false;
+      $formView = false;
+      if ($form->isValid()) {
+        $message = \Swift_Message::newInstance()
+                  ->setSubject('[SMS] Contacto desde sitio web')
+                  ->setFrom(array('info@sms.com.uy' => 'SMS'))
+                  ->setReplyTo($form->get('email')->getData())
+                  ->setTo('rsantellan@gmail.com')
+                  ->setBody('Mail de algo');
+
+        $this->get('mailer')->send($message);
+        $result = true;
+      }else{
+        $formView = $this->renderView('AppBundle:Article:_contactForm.html.twig', array(
+            'form' => $form->createView(),
+          ));
+      }
+      $response = new JsonResponse();
+      $response->setData(array('result' => $result, 'html' => $formView));
+      return $response;
     }
 }

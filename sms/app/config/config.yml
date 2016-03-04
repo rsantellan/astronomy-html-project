@@ -108,4 +108,4 @@ jms_security_extra:
     
 services:
     fos_user.doctrine_registry:
-        alias: doctrine       
+        alias: doctrine

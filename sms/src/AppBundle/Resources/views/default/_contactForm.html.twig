@@ -1,0 +1,36 @@
+<form role="form" id="contact_form" class="contact-form" method="post" onSubmit="return sendContactForm(this)" action="{{ path('contact_send')}}">
+  <ul class="row">
+    <li class="col-sm-4">
+      <label>
+        {{ form_errors(form.name) }}
+        {{ form_widget(form.name, {'attr' : {'class' : 'form-control' }}) }}
+        {# <input type="text" class="form-control" name="name" id="name" placeholder="Nombre *"> #}
+      </label>
+    </li>
+    <li class="col-sm-4">
+      <label>
+        {{ form_errors(form.email) }}
+        {{ form_widget(form.email, {'attr' : {'class' : 'form-control' }}) }}
+        {# <input type="text" class="form-control" name="email" id="email" placeholder="Dirección de mail *"> #}
+      </label>
+    </li>
+    <li class="col-sm-4">
+      <label>
+        {{ form_errors(form.phone) }}
+        {{ form_widget(form.phone, {'attr' : {'class' : 'form-control' }}) }}
+        {# <input type="text" class="form-control" name="company" id="company" placeholder="Teléfono "> #}
+      </label>
+    </li>
+    <li class="col-sm-12">
+      <label>
+        {{ form_errors(form.message) }}
+        {{ form_widget(form.message, {'attr' : {'class' : 'form-control' }}) }}
+        {# <textarea class="form-control" name="message" id="message" rows="5" placeholder="Mensaje"></textarea> #}
+      </label>
+    </li>
+    <li class="col-sm-12">
+      <button type="submit" class="btn" value="submit" id="btn_submit">Enviar</button>
+    </li>
+  </ul>
+  {{ form_rest(form) }}
+</form>

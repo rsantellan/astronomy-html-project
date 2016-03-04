@@ -26,7 +26,7 @@ class LoadUserFixture extends AbstractFixture implements OrderedFixtureInterface
     }
 
     public function load(ObjectManager $manager) {
-        
+        /*
         $role = new Role();
         $role->setName("ROLE_ADMIN");
         $manager->persist($role);
@@ -42,6 +42,8 @@ class LoadUserFixture extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($admin);
         
         $manager->flush();
+         * 
+         */
     }
 
     public function setContainer(ContainerInterface $container = null) {

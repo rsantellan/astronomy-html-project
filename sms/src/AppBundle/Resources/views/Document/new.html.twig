@@ -1,0 +1,30 @@
+{% extends 'AppBundle::adminlayout.html.twig' %}
+
+{% block body -%}
+  
+<div class="row">
+  <div class="col-lg-6">
+    <section class="panel">
+      <header class="panel-heading">{% trans %}document_create_entry{% endtrans %}</header>
+      <div class="panel-body">
+        <form action="{{ path('admin_document_create') }}" method="post" {{ form_enctype(form) }} role="form">
+          <div class="form-group">
+            {{ form_errors(form.name) }}
+            <label for="{{ form.name.vars.id }}">{% trans %}document_name{% endtrans %}</label>
+            {{ form_widget(form.name, {'attr' : {'class' : 'form-control'}}) }}
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-default">{% trans %}document_save{% endtrans %}</button>
+          </div>	
+              {{ form_rest(form) }}
+          </form>
+        </div>
+      </section>
+    </div>
+    <div class="col-lg-8 text-center">
+	  <a href="{{ path('admin_document') }}" class="btn btn-info">
+		  {% trans %}document_back_to_list{% endtrans %}
+	  </a>
+	</div>
+</div>
+{% endblock %}

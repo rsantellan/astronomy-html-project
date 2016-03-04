@@ -1,0 +1,56 @@
+{% extends 'AppBundle::adminlayout.html.twig' %}
+{% block pagestylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/app/admin/vendor/chosen/chosen.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/app/admin/vendor/datatables/jquery.dataTables.css') }}" />
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('bundles/app/admin/vendor/chosen/chosen.jquery.min.js') }}"></script>
+    <script src="{{ asset('bundles/app/admin/vendor/datatables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('bundles/app/admin/js/datatables.js') }}"></script>
+{% endblock %}
+
+{% block body -%}
+<div class="row">
+        <div class="col-lg-8">    
+            <section class="panel panel-info">
+                <header class="panel-heading">{% trans %}document_list_title{% endtrans %}</header>
+                <div class="panel-body">
+                    <div class="table-responsive no-border">
+                        <table class="table table-bordered table-striped mg-t datatable">
+                            <thead>
+                                <tr>
+                                    <th>{% trans %}document_file{% endtrans %}</th>
+                                    <th>{% trans %}document_title{% endtrans %}</th>
+                                    <th>{% trans %}document_createdat{% endtrans %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for entity in entities %}
+                                    <tr>
+                                        <td><a href="{{ path('admin_document_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                                        <td>{{ entity.name }}</td>
+                                        <td>{{ entity.createdAt | date('d/m/Y')}}</td>
+                                        <td>
+                                        <ul>
+                                            <li>
+                                                <a href="{{ path('admin_document_edit', { 'id': entity.id }) }}"><i class="fa fa-pencil-square-o fa-2x"></i></a>
+                                            </li>
+                                        </ul>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        <div class="col-lg-12 text-center">
+                            <a href="{{ path('admin_document_new') }}" class="btn btn-info">
+                                {% trans %}article_create{% endtrans %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>  
+    
+{% endblock %}

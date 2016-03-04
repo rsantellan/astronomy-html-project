@@ -1,0 +1,30 @@
+admin_document:
+    path:     /
+    defaults: { _controller: "AppBundle:Document:index" }
+
+admin_document_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:Document:show" }
+
+admin_document_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Document:new" }
+
+admin_document_create:
+    path:     /create
+    defaults: { _controller: "AppBundle:Document:create" }
+    methods:  POST
+
+admin_document_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:Document:edit" }
+
+admin_document_update:
+    path:     /{id}/update
+    defaults: { _controller: "AppBundle:Document:update" }
+    methods:  [POST, PUT]
+
+admin_document_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:Document:delete" }
+    methods:  [POST, DELETE]

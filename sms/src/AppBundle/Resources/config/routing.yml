@@ -1,3 +1,7 @@
+app_admin_document:
+    resource: "@AppBundle/Resources/config/routing/document.yml"
+    prefix:   /admin/document
+
 app_admin_article:
     resource: "@AppBundle/Resources/config/routing/article.yml"
     prefix:   /admin/article
