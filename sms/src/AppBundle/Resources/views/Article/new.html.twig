@@ -18,15 +18,24 @@
       <div class="panel-body">
         <form action="{{ path('admin_article_create') }}" method="post" {{ form_enctype(form) }} role="form">
           <div class="form-group">
-			  {{ form_errors(form.title) }}
-              <label for="{{ form.title.vars.id }}">{% trans %}article_title{% endtrans %}</label>
-			  {{ form_widget(form.title, {'attr' : {'class' : 'form-control'}}) }}
+            {{ form_errors(form.title) }}
+            <label for="{{ form.title.vars.id }}">{% trans %}article_title{% endtrans %}</label>
+            {{ form_widget(form.title, {'attr' : {'class' : 'form-control'}}) }}
           </div>
-          
           <div class="form-group">
-			  {{ form_errors(form.description) }}
-                          <label for="{{ form.description.vars.id }}">{% trans %}article_description{% endtrans %}</label>
-			  {{ form_widget(form.description, {'attr' : {'class' : 'form-control'}}) }}
+            {{ form_errors(form.excerpt) }}
+            <label for="{{ form.excerpt.vars.id }}">{% trans %}article_excerpt{% endtrans %}</label>
+            {{ form_widget(form.excerpt, {'attr' : {'class' : 'form-control'}}) }}
+          </div>
+          <div class="form-group">
+            {{ form_errors(form.description) }}
+            <label for="{{ form.description.vars.id }}">{% trans %}article_description{% endtrans %}</label>
+            {{ form_widget(form.description, {'attr' : {'class' : 'form-control'}}) }}
+          </div>
+          <div class="form-group">
+            {{ form_errors(form.categories) }}
+            <label for="{{ form.categories.vars.id }}">{% trans %}article_categories{% endtrans %}</label>
+            {{ form_widget(form.categories, {'attr' : {'class' : 'form-control'}}) }}
           </div>
           <div class="checkbox">
             {{ form_errors(form.active) }}  

@@ -1,0 +1,8 @@
+<tr id="article_category_row_{{ category.id}}">
+    <td>{{ category.name }}</td>
+    <td>
+        <a href="{{ path('admin_article', { 'category': category.id }) }}" class="btn"><i class="fa fa-eye"></i></a>
+        <a href="{{ path('admin_article_category_edit', { 'id': category.id }) }}" class="btn" onclick='return showArticleCategoryModal(this);'><i class="fa fa fa-pencil"></i></a>
+        <a href="{{ path('admin_article_category_delete', { 'id': category.id }) }}" class="btn" onclick='return removeArticleCategory(this, "{% trans %}article_categories_remove_question{% endtrans %}");'><i class="fa fa fa-remove"></i></a>
+    </td>
+</tr>

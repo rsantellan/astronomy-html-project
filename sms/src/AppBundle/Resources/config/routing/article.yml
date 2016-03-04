@@ -32,3 +32,22 @@ admin_article_delete:
 admin_category_article_new:
     path:     /new-category
     defaults: { _controller: "AppBundle:Article:newCategory" }
+    
+admin_article_category_create:
+    path:     /create-category
+    defaults: { _controller: "AppBundle:Article:createCategory" }
+    methods:  POST
+    
+admin_article_category_edit:
+    path:     /{id}/edit-category
+    defaults: { _controller: "AppBundle:Article:editCategory" }
+
+admin_article_category_update:
+    path:     /{id}/update-category
+    defaults: { _controller: "AppBundle:Article:updateCategory" }
+    methods:  [POST, PUT]
+    
+admin_article_category_delete:
+    path:     /{id}/delete-category
+    defaults: { _controller: "AppBundle:Article:deleteCategory" }
+    methods:  [POST, DELETE]    

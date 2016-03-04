@@ -26,9 +26,19 @@
               {{ form_widget(edit_form.title, {'attr' : {'class' : 'form-control'}}) }}
           </div>
           <div class="form-group">
+            {{ form_errors(edit_form.excerpt) }}
+            <label for="{{ edit_form.excerpt.vars.id }}">{% trans %}article_excerpt{% endtrans %}</label>
+            {{ form_widget(edit_form.excerpt, {'attr' : {'class' : 'form-control'}}) }}
+          </div>
+          <div class="form-group">
                 {{ form_errors(edit_form.description) }}
                 <label for="{{ edit_form.description.vars.id }}">{% trans %}article_description{% endtrans %}</label>
                 {{ form_widget(edit_form.description, {'attr' : {'class' : 'form-control'}}) }}
+          </div>
+          <div class="form-group">
+            {{ form_errors(edit_form.categories) }}
+            <label for="{{ edit_form.categories.vars.id }}">{% trans %}article_categories{% endtrans %}</label>
+            {{ form_widget(edit_form.categories, {'attr' : {'class' : 'form-control'}}) }}
           </div>
           <div class="checkbox">
             {{ form_errors(edit_form.active) }}  

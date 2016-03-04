@@ -1,0 +1,11 @@
+<form action="{{ path('admin_article_category_update', {'id' : entity.id}) }}" method="post" {{ form_enctype(form) }} role="form" onsubmit="return saveArticleCategory(this)">
+    <div class="form-group">
+        {{ form_errors(form.name) }}
+        <label for="{{ form.name.vars.id }}">{% trans %}article_categories_name{% endtrans %}</label>
+        {{ form_widget(form.name, {'attr' : {'class' : 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-default">{% trans %}article_categories_save{% endtrans %}</button>
+    </div>	
+    {{ form_rest(form) }}
+</form>

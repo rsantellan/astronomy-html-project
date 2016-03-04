@@ -3,12 +3,15 @@
 {% block pagestylesheets %}
     <link rel="stylesheet" href="{{ asset('bundles/app/admin/vendor/chosen/chosen.min.css') }}">
     <link rel="stylesheet" href="{{ asset('bundles/app/admin/vendor/datatables/jquery.dataTables.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/app/admin/vendor/toastr/toastr.css') }}">
 {% endblock %}
 
 {% block javascripts %}
+    <script src="{{ asset('bundles/app/admin/vendor/toastr/toastr.min.js') }}"></script>
     <script src="{{ asset('bundles/app/admin/vendor/chosen/chosen.jquery.min.js') }}"></script>
     <script src="{{ asset('bundles/app/admin/vendor/datatables/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('bundles/app/admin/js/datatables.js') }}"></script>
+    <script src="{{ asset('bundles/app/admin/js/articles.js') }}"></script>
 {% endblock %}
 
 {% block body -%}
@@ -68,12 +71,12 @@
                           </thead>
                           <tbody id="article_categories_table_body">
                             {% for category in categories %}
-                                {% include 'MaithNewsletterBundle:Default:_groupRow.html.twig' with { 'group' : group } %}
+                                {% include 'AppBundle:Article:_articleCategoryRow.html.twig' with { 'category' : category } %}
                             {% endfor %}
                           </tbody>
                     </table>
                     <div class="col-md-12 text-center">
-                        <a href="{{ path('admin_category_article_new') }}" class="btn btn-info">
+                        <a href="{{ path('admin_category_article_new') }}" onclick="return showArticleCategoryModal(this)" class="btn btn-info">
                             {% trans %}article_create{% endtrans %}
                         </a>
                     </div>      
