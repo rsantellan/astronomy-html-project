@@ -11,6 +11,8 @@ use AppBundle\Form\ContactType;
 
 class DefaultController extends Controller
 {
+    const ARTICLESPERPAGE = 10;
+  
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
@@ -18,6 +20,13 @@ class DefaultController extends Controller
         return $this->render('AppBundle:default:index.html.twig', array(
             'slider' => $slider,
             'activemenu' => 'inicio',
+        ));
+    }
+    
+    public function lastArticlesAction(Request $request)
+    {
+        return $this->render('AppBundle:default:_lastArticles.html.twig', array(
+            'articles' => $this->retrieveRecentArticles(),
         ));
     }
     
@@ -50,7 +59,7 @@ class DefaultController extends Controller
       {
         $em = $this->getDoctrine()->getManager();
 
-        $queryArticles = $em->createQuery("select c from AppBundle:Article c order by c.createdAt asc")
+        $queryArticles = $em->createQuery("select c from AppBundle:Article c order by c.createdAt desc")
                             ->setFirstResult(0)
                             ->setMaxResults(3);
 
@@ -76,27 +85,73 @@ class DefaultController extends Controller
         }
         $cache->save(Article::PASTYEARARTICLESDATA, $data);
       }
-      
-      
       return $data;
     }
     
-    public function articleListAction(Request $request)
+    private function retrieveArticleCategories($em)
     {
+      $categories = $em->createQuery('select ac from AppBundle:ArticleCategory ac')->getResult();
+      return $categories;
+    }
+    
+    private function retrieveArticleTags($em)
+    {
+      $tags = $em->createQuery('select at from AppBundle:ArticleTag at')->getResult();
+      return $tags;
+    }
+    
+    private function retrieveArticles($page)
+    {
+      $intPage = (int) $page;
+      $start = $intPage * self::ARTICLESPERPAGE;
       $em = $this->getDoctrine()->getManager();
         
-      $queryArticles = $em->createQuery("select c from AppBundle:Article c where c.active = 1 order by c.createdAt asc");
-                          //->setFirstResult(0)
-                          //->setMaxResults(3);
-      
-      $articles = $queryArticles->useResultCache(true, 360)->getResult();
-      $categories = $em->createQuery('select ac from AppBundle:ArticleCategory ac')->getResult();
-      $tags = $em->createQuery('select at from AppBundle:ArticleTag at')->getResult();
+      $queryArticles = $em->createQuery("select c from AppBundle:Article c where c.active = 1 order by c.createdAt asc")
+                          ->setFirstResult($start)
+                          ->setMaxResults(self::ARTICLESPERPAGE);
+      $articles = $queryArticles->getResult();
+      return $articles;
+    }
+    
+    private function doReturnArticleList($page)
+    {
       return $this->render('AppBundle:default:articles.html.twig', array(
-            'articles' => $articles,
+            'articles' => $this->retrieveArticles($page),
             'activemenu' => 'noticias',
-            'categories' => $categories,
-            'tags' => $tags,
+            'perpage' => self::ARTICLESPERPAGE,
+            'page' => $page,
+        ));
+    }
+    public function articleListAction(Request $request)
+    {
+      
+      return $this->doReturnArticleList(0);
+    }
+    
+    public function articleListPagerAction(Request $request, $page)
+    {
+      return $this->doReturnArticleList($page);
+    }
+    
+    
+    public function articleAction(Request $request, $slug)
+    {
+      $em = $this->getDoctrine()->getManager();
+
+      $article = $em->getRepository('AppBundle:Article')->findOneBy(array('slug' => $slug));
+      return $this->render('AppBundle:default:article.html.twig', array(
+            'article' => $article,
+            'activemenu' => 'noticias',
+        ));
+    }
+    
+    
+    public function articleSideBarAction(Request $request)
+    {
+      $em = $this->getDoctrine()->getManager();
+      return $this->render('AppBundle:default:_articleSidebar.html.twig', array(
+            'categories' => $this->retrieveArticleCategories($em),
+            'tags' => $this->retrieveArticleTags($em),
             'recentArticles' => $this->retrieveRecentArticles(),
             'perMonths' => $this->retrievePerMonthOfLastYear($em),
         ));
@@ -135,5 +190,17 @@ class DefaultController extends Controller
       $response = new JsonResponse();
       $response->setData(array('result' => $result, 'html' => $formView));
       return $response;
+    }
+    
+    public function aboutAction(Request $request)
+    {
+      $em = $this->getDoctrine()->getManager();
+      $integrantes = $em->createQuery('select e from AppBundle:Integrante e order by e.posicionVisual')->getResult();
+      $documents = $em->createQuery('select e from AppBundle:Document e order by e.createdAt')->getResult();
+      return $this->render('AppBundle:default:acerca.html.twig', array(
+            'activemenu' => 'acerca',
+            'integrantes' => $integrantes,
+            'documents' => $documents,
+        ));
     }
 }

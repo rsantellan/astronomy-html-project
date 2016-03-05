@@ -1,0 +1,43 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block body %}
+<!--======= SUB BANNER =========-->
+  <section class="sub-banner bg-parallax" style="background:url({{ asset('images/sg.jpg') }}) no-repeat">
+    <div class="container">
+      <div class="position-center-center">
+        <h1>{{ article.title }}</h1>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Content -->
+  <div id="content"> 
+    
+    <!-- PORTFOLIO -->
+    <section class="blog padding-bottom-100 padding-top-100">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-9 padding-right-50"> 
+            <!-- Blog Post -->
+            <div class="blog-post z-depth-1 margin-bottom-50"> 
+                <img class="img-responsive" src="{{ article.id | mAvatar(article.fullClassName, 'principal') | mImage(1280, 724, 'rce') }}" alt="" /> 
+                {% for tag in article.tags %}
+                <span class="tags">{{ tag.name }}</span>
+                {% endfor %}
+                <a href="{{ path('show_noticia', {'slug' : article.slug }) }}" class="post-tittle">{{ article.title }}</a>
+                <span class="font-italic font-12px margin-bottom-15 margin-top-15 color-primary-pink">{{ article.showSpanishDate }}</span>
+                <br/>
+                {{ article.description | raw }}
+            </div>
+          </div>
+          <!-- Sidebar -->
+          {{ render(controller('AppBundle:Default:articleSideBar')) }}
+        </div>
+      </div>
+    </section>
+    
+    <!-- News Letter -->
+    {{ render(controller('AppBundle:Default:newsletterForm')) }}
+  </div>
+<!-- End Content -->     
+{% endblock %}

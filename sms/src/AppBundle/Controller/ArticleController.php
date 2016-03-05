@@ -20,6 +20,13 @@ use AppBundle\Form\ArticleTagType;
 class ArticleController extends Controller
 {
 
+    private function flushArticleCache()
+    {
+      $cache = $this->get('fscache');
+      $cache->delete(Article::RECENTARTICLES);
+      $cache->delete(Article::PASTYEARARTICLESDATA);
+    }
+    
     /**
      * Lists all Article entities.
      *
@@ -67,9 +74,7 @@ class ArticleController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
-            $cache = $this->get('fscache');
-            $cache->delete(Article::RECENTARTICLES);
-            $cache->delete(Article::PASTYEARARTICLESDATA);
+            $this->flushArticleCache();
             return $this->redirect($this->generateUrl('admin_article_edit', array('id' => $entity->getId())));
         }
 
@@ -197,7 +202,7 @@ class ArticleController extends Controller
 
         if ($editForm->isValid()) {
             $em->flush();
-
+            $this->flushArticleCache();
             return $this->redirect($this->generateUrl('admin_article_edit', array('id' => $id)));
         }
 
@@ -226,6 +231,7 @@ class ArticleController extends Controller
 
             $em->remove($entity);
             $em->flush();
+            $this->flushArticleCache();
         }
 
         return $this->redirect($this->generateUrl('admin_article'));
@@ -300,6 +306,7 @@ class ArticleController extends Controller
           $em->persist($entity);
           $em->flush();
           // 
+          $this->flushArticleCache();
           $html = $this->renderView('AppBundle:Article:_articleCategoryRow.html.twig', array(
             'category' => $entity,
           ));
@@ -367,6 +374,7 @@ class ArticleController extends Controller
             $html = $this->renderView('AppBundle:Article:_articleCategoryRow.html.twig', array(
               'category' => $entity,
             ));
+            $this->flushArticleCache();
             $result = true;
             $message = 'Categoria guardada';
             //return $this->redirect($this->generateUrl('admin_article_edit', array('id' => $id)));
@@ -392,6 +400,7 @@ class ArticleController extends Controller
 
       $em->remove($entity);
       $em->flush();
+      $this->flushArticleCache();
       $response = new JsonResponse();
       $response->setData(array('result' => true, 'message' => 'Categoria borrada con exito', 'id' => $id));
       return $response;
@@ -449,6 +458,7 @@ class ArticleController extends Controller
           $em->persist($entity);
           $em->flush();
           // 
+          $this->flushArticleCache();
           $html = $this->renderView('AppBundle:Article:_articleTagRow.html.twig', array(
             'tag' => $entity,
           ));
@@ -516,6 +526,7 @@ class ArticleController extends Controller
             $html = $this->renderView('AppBundle:Article:_articleTagRow.html.twig', array(
               'tag' => $entity,
             ));
+            $this->flushArticleCache();
             $result = true;
             $message = 'Etiqueta guardada';
             //return $this->redirect($this->generateUrl('admin_article_edit', array('id' => $id)));
@@ -541,6 +552,7 @@ class ArticleController extends Controller
 
       $em->remove($entity);
       $em->flush();
+      $this->flushArticleCache();
       $response = new JsonResponse();
       $response->setData(array('result' => true, 'message' => 'Etiqueta borrada con exito', 'id' => $id));
       return $response;

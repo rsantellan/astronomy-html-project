@@ -3,8 +3,15 @@
     <ul class="bg-defult">
         {% for article in articles %}
         <li class="media">
-            <div class="media-left"> <a href="#"> <img src='{{ article.id | mAvatar(article.fullClassName, 'principal') | mImage(50, 50, 'rce') }}' class="media-object" /></a> </div>
-            <div class="media-body"> <a class="media-heading2" href="#.">{{ article.title }}</a> <span style="color:#CCC">{{ article.showSpanishDate }}</span> </div>
+            <div class="media-left"> 
+                <a href="{{ path('show_noticia', {'slug' : article.slug }) }}"> 
+                    <img src='{{ article.id | mAvatar(article.fullClassName, 'principal') | mImage(50, 50, 'rce') }}' class="media-object" />
+                </a> 
+            </div>
+            <div class="media-body"> 
+                <a class="media-heading2" href="{{ path('show_noticia', {'slug' : article.slug }) }}">{{ article.title }}</a> 
+                <span style="color:#CCC">{{ article.showSpanishDate }}</span> 
+            </div>
         </li>
         {% endfor %}
     </ul>

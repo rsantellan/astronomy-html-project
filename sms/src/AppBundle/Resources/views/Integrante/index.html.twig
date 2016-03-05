@@ -1,0 +1,52 @@
+{% extends 'AppBundle::adminlayout.html.twig' %}
+{% block pagestylesheets %}
+
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}
+
+{% block body -%}
+<div class="row">
+    <div class="col-lg-8">    
+        <section class="panel panel-info">
+            <header class="panel-heading">{% trans %}integrante_list_title{% endtrans %}</header>
+            <div class="panel-body">
+                <div class="table-responsive no-border">
+                    <table class="table table-bordered table-striped mg-t">
+                        <thead>
+                            <tr>
+                                <th>{% trans %}integrante_name{% endtrans %}</th>
+                                <th>{% trans %}integrante_position{% endtrans %}</th>
+                                <th>{% trans %}integrante_order{% endtrans %}</th>
+                                <th>{% trans %}integrante_acciones{% endtrans %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for entity in entities %}
+                                <tr>
+                                    <td>{{ entity.name }}</td>
+                                    <td>{{ entity.position }}</td>
+                                    <td>{{ entity.posicionVisual }}</td>
+                                    <td>
+                                    <ul>
+                                        <li>
+                                            <a href="{{ path('admin_integrante_edit', { 'id': entity.id }) }}"><i class="fa fa-pencil-square-o fa-2x"></i></a>
+                                        </li>
+                                    </ul>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="col-lg-12 text-center">
+                        <a href="{{ path('admin_integrante_new') }}" class="btn btn-info">
+                            {% trans %}integrante_create{% endtrans %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>      
+{% endblock %}

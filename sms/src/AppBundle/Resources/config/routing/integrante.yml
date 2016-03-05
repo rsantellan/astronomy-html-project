@@ -1,0 +1,30 @@
+admin_integrante:
+    path:     /
+    defaults: { _controller: "AppBundle:Integrante:index" }
+
+admin_integrante_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:Integrante:show" }
+
+admin_integrante_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Integrante:new" }
+
+admin_integrante_create:
+    path:     /create
+    defaults: { _controller: "AppBundle:Integrante:create" }
+    methods:  POST
+
+admin_integrante_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:Integrante:edit" }
+
+admin_integrante_update:
+    path:     /{id}/update
+    defaults: { _controller: "AppBundle:Integrante:update" }
+    methods:  [POST, PUT]
+
+admin_integrante_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:Integrante:delete" }
+    methods:  [POST, DELETE]

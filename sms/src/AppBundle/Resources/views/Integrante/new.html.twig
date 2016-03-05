@@ -1,0 +1,59 @@
+{% extends 'AppBundle::adminlayout.html.twig' %}
+
+{% block body -%}
+<div class="row">
+  <div class="col-lg-6">
+    <section class="panel">
+      <header class="panel-heading">{% trans %}integrante_create_entry{% endtrans %}</header>
+      <div class="panel-body">
+        <form action="{{ path('admin_integrante_create') }}" method="post" {{ form_enctype(form) }} role="form">
+          <div class="form-group">
+            {{ form_errors(form.name) }}
+            <label for="{{ form.name.vars.id }}">{% trans %}integrante_name{% endtrans %}</label>
+            {{ form_widget(form.name, {'attr' : {'class' : 'form-control'}}) }}
+          </div>
+          <div class="form-group">
+            {{ form_errors(form.position) }}
+            <label for="{{ form.position.vars.id }}">{% trans %}integrante_position{% endtrans %}</label>
+            {{ form_widget(form.position, {'attr' : {'class' : 'form-control'}}) }}
+          </div>
+          <div class="form-group">
+            {{ form_errors(form.description) }}
+            <label for="{{ form.description.vars.id }}">{% trans %}integrante_description{% endtrans %}</label>
+            {{ form_widget(form.description, {'attr' : {'class' : 'form-control'}}) }}
+          </div>
+          <div class="form-group">
+            {{ form_errors(form.googleaccount) }}
+            <label for="{{ form.googleaccount.vars.id }}">{% trans %}integrante_googleaccount{% endtrans %}</label>
+            {{ form_widget(form.googleaccount, {'attr' : {'class' : 'form-control'}}) }}
+          </div>
+          <div class="form-group">
+            {{ form_errors(form.twitteraccount) }}
+            <label for="{{ form.twitteraccount.vars.id }}">{% trans %}integrante_twitteraccount{% endtrans %}</label>
+            {{ form_widget(form.twitteraccount, {'attr' : {'class' : 'form-control'}}) }}
+          </div>
+          <div class="form-group">
+            {{ form_errors(form.facebookaccount) }}
+            <label for="{{ form.facebookaccount.vars.id }}">{% trans %}integrante_facebookaccount{% endtrans %}</label>
+            {{ form_widget(form.facebookaccount, {'attr' : {'class' : 'form-control'}}) }}
+          </div>
+          <div class="form-group">
+            {{ form_errors(form.posicionVisual) }}
+            <label for="{{ form.posicionVisual.vars.id }}">{% trans %}integrante_posicionVisual{% endtrans %}</label>
+            {{ form_widget(form.posicionVisual, {'attr' : {'class' : 'form-control'}}) }}
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-default">{% trans %}integrante_save{% endtrans %}</button>
+          </div>	
+              {{ form_rest(form) }}
+          </form>
+        </div>
+      </section>
+    </div>
+    <div class="col-lg-8 text-center">
+	  <a href="{{ path('admin_integrante') }}" class="btn btn-info">
+		  {% trans %}integrante_back_to_list{% endtrans %}
+	  </a>
+	</div>
+</div>    
+{% endblock %}

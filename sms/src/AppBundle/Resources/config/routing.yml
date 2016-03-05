@@ -1,3 +1,7 @@
+app_admin_integrante:
+    resource: "@AppBundle/Resources/config/routing/integrante.yml"
+    prefix:   /admin/integrante
+
 app_admin_document:
     resource: "@AppBundle/Resources/config/routing/document.yml"
     prefix:   /admin/document

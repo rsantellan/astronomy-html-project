@@ -394,42 +394,7 @@
 
 
             <!-- Blog -->
-            <section class="blog padding-top-100 padding-bottom-100">
-                <div class="container"> 
-
-                    <!-- HEADING BLOCK -->
-                    <div class="heading-block text-center margin-bottom-80">
-                        <h3>Últimas Novedades</h3>
-                        <hr>
-                        <span class=" margin-top-20">Últimas noticias y publicaciones del proyecto </span> </div>
-
-                    <!-- Blog Row -->
-                    <div class="row"> 
-
-                        <!-- Blog Post -->
-                        <div class="col-md-4">
-                            <div class="blog-post z-depth-1"> <img class="img-responsive" src="images/blog-img-1.jpg" alt="" > <span class="tags">ETIQUETA 1, ETIQUETA 2</span> <a href="noticia_ejemplo.html" class="post-tittle">	Ejemplo de noticia nro 1</a> <span class="font-italic font-12px margin-bottom-15 margin-top-15 color-primary-pink">22 de noviembre, 2015</span>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec orci sed diam sollicitudin finibus. Ut tortor odio, vulputate eget tempor a, euismod eu quam. Nunc vitae ligula sem. Proin tincidunt purus leo, et congue quam lobortis ac.  </p>
-
-                                <a href="noticia_ejemplo.html" class="waves-effect waves-light btn btn-white">Leer Más</a> </div>
-                        </div>
-                        <!-- Blog Post -->
-                        <div class="col-md-4">
-                            <div class="blog-post z-depth-1"> <img class="img-responsive" src="images/blog-img-2.jpg" alt="" > <span class="tags">ETIQUETA 1, ETIQUETA 2</span> <a href="noticia_ejemplo.html" class="post-tittle">	Ejemplo de noticia nro 2</a> <span class="font-italic font-12px margin-bottom-15 margin-top-15 color-primary-pink">22 de noviembre, 2015</span>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec orci sed diam sollicitudin finibus. Ut tortor odio, vulputate eget tempor a, euismod eu quam. Nunc vitae ligula sem. Proin tincidunt purus leo, et congue quam lobortis ac.  </p>
-                                <a href="noticia_ejemplo.html" class="waves-effect waves-light btn btn-white">Leer Más</a> </div>
-                        </div>
-
-                        <!-- Blog Post -->
-                        <div class="col-md-4">
-                            <div class="blog-post z-depth-1"> <img class="img-responsive" src="images/blog-img-3.jpg" alt="" > <span class="tags">ETIQUETA 1, ETIQUETA 2</span> <a href="noticia_ejemplo.html" class="post-tittle">	Ejemplo de noticia nro 3</a> <span class="font-italic font-12px margin-bottom-15 margin-top-15 color-primary-pink">22 de noviembre, 2015</span>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec orci sed diam sollicitudin finibus. Ut tortor odio, vulputate eget tempor a, euismod eu quam. Nunc vitae ligula sem. Proin tincidunt purus leo, et congue quam lobortis ac.  </p>
-
-                                <a href="noticia_ejemplo.html" class="waves-effect waves-light btn btn-white">Leer Más</a> </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            {{ render(controller('AppBundle:Default:lastArticles')) }}
 
             <!-- News Letter -->
             {{ render(controller('AppBundle:Default:newsletterForm')) }}

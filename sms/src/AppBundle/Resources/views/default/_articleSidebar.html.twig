@@ -1,0 +1,52 @@
+<div class="col-md-3 padding-left-20">
+    <div class="side-bar"> 
+
+      <!-- Categories -->
+      <h4>categorías</h4>
+      <hr>
+      <ul class="cate">
+        {% for category in categories %}  
+        <li><a href="#.">{{ category.name }} <span>({{ category.articles | length }})</span></a></li>
+        {% endfor %}
+      </ul>
+
+      <!-- Recent Posts -->
+      <h4 class="margin-top-50">Noticias Recientes</h4>
+      <hr>
+      <div class="papu-post margin-t-40">
+        <ul class="bg-defult">
+          {% for article in recentArticles %}
+            <li class="media">
+                <div class="media-left"> 
+                    <a href="{{ path('show_noticia', {'slug' : article.slug }) }}"> 
+                        <img src='{{ article.id | mAvatar(article.fullClassName, 'principal') | mImage(50, 50, 'rce') }}' class="media-object" />
+                    </a> 
+                </div>
+                <div class="media-body">
+                    <a class="media-heading" href="{{ path('show_noticia', {'slug' : article.slug }) }}">{{ article.title }}</a> 
+                    <span style="color:#CCC">{{ article.showSpanishDate }}</span> 
+                </div>
+            </li>
+          {% endfor %}  
+        </ul>
+      </div>
+
+      <!-- Archives -->
+      <h4 class="margin-top-50">Fecha</h4>
+      <hr>
+      <ul class="cate">
+        {% for month in perMonths %}
+            <li><a href="#.">{{ month['month'] }} <span>({{ month['cantidad'] }})</span></a></li>
+        {% endfor %}
+      </ul>
+
+      <!-- TAGS -->
+      <h4 class="margin-top-50">ETIQUETAS</h4>
+      <hr>
+      <ul class="tags">
+        {% for tag in tags %}  
+        <li><a href="#.">{{ tag.name }}</a></li>
+        {% endfor %}  
+      </ul>
+    </div>
+</div>

@@ -18,7 +18,6 @@
       <div class="container">
         <div class="row">
           <div class="col-md-9 padding-right-50"> 
-            
            {% for article in articles %}
            <!-- Blog Post --> 
            <div class="blog-post z-depth-1 margin-bottom-50"> 
@@ -26,59 +25,24 @@
                {% for tag in article.tags %}
                <span class="tags">{{ tag.name }}</span>
                {% endfor %}
-               <a href="noticia_ejemplo.html" class="post-tittle">{{ article.title }}</a>
+               <a href="{{ path('show_noticia', {'slug' : article.slug }) }}" class="post-tittle">{{ article.title }}</a>
                <span class="font-italic font-12px margin-bottom-15 margin-top-15 color-primary-pink">{{ article.showSpanishDate }}</span>
                <p>{{ article.excerpt }}</p>
-               <a href="noticia_ejemplo.html" class="waves-effect waves-light btn btn-white">leer mas</a> 
+               <a href="{{ path('show_noticia', {'slug' : article.slug }) }}" class="waves-effect waves-light btn btn-white">leer mas</a> 
            </div>
            {% endfor %}
-           </div>
-          <!-- Sidebar -->
-          <div class="col-md-3 padding-left-20">
-            <div class="side-bar"> 
-              
-              <!-- Categories -->
-              <h4>categorías</h4>
-              <hr>
-              <ul class="cate">
-                {% for category in categories %}  
-                <li><a href="#.">{{ category.name }} <span>({{ category.articles | length }})</span></a></li>
-                {% endfor %}
-              </ul>
-              
-              <!-- Recent Posts -->
-              <h4 class="margin-top-50">Noticias Recientes</h4>
-              <hr>
-              <div class="papu-post margin-t-40">
-                <ul class="bg-defult">
-                  {% for article in recentArticles %}
-                    <li class="media">
-                        <div class="media-left"> <a href="#"> <img src='{{ article.id | mAvatar(article.fullClassName, 'principal') | mImage(50, 50, 'rce') }}' class="media-object" /></a> </div>
-                        <div class="media-body"> <a class="media-heading" href="#.">{{ article.title }}</a> <span style="color:#CCC">{{ article.showSpanishDate }}</span> </div>
-                    </li>
-                  {% endfor %}  
-                </ul>
-              </div>
-              
-              <!-- Archives -->
-              <h4 class="margin-top-50">Fecha</h4>
-              <hr>
-              <ul class="cate">
-                {% for month in perMonths %}
-                    <li><a href="#.">{{ month['month'] }} <span>({{ month['cantidad'] }})</span></a></li>
-                {% endfor %}
-              </ul>
-              
-              <!-- TAGS -->
-              <h4 class="margin-top-50">ETIQUETAS</h4>
-              <hr>
-              <ul class="tags">
-                {% for tag in tags %}  
-                <li><a href="#.">{{ tag.name }}</a></li>
-                {% endfor %}  
-              </ul>
-            </div>
+           {% if page == 1 %}
+               <a href="{{ path('noticias')}}">Página Anterior</a>
+           {% endif %}
+           {% if page > 1 %}
+               <a href="{{ path('noticias_page', {'page' : page - 1})}}">Página Anterior</a>
+           {% endif %}
+           {% if perpage == articles | length %}
+               <a href="{{ path('noticias_page', {'page' : page + 1})}}">Página Siguiente</a>
+           {% endif %}
           </div>
+          <!-- Sidebar -->
+          {{ render(controller('AppBundle:Default:articleSideBar')) }}
         </div>
       </div>
     </section>

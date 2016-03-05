@@ -1,0 +1,29 @@
+<section class="blog padding-top-100 padding-bottom-100">
+    <div class="container"> 
+
+        <!-- HEADING BLOCK -->
+        <div class="heading-block text-center margin-bottom-80">
+            <h3>Últimas Novedades</h3>
+            <hr>
+            <span class=" margin-top-20">Últimas noticias y publicaciones del proyecto </span> </div>
+
+        <!-- Blog Row -->
+        <div class="row"> 
+            {% for article in articles %}
+            <!-- Blog Post -->
+            <div class="col-md-4">
+                <div class="blog-post z-depth-1"> 
+                <img class="img-responsive" src="{{ article.id | mAvatar(article.fullClassName, 'principal') | mImage(330, 214, 'rce') }}" alt="" />
+                {% if article.tags | length > 0 %}
+                <span class="tags">{% for tag in article.tags %}{{ tag.name }}{% if not loop.last %}, {% endif %}{% endfor %}</span>
+                {% endif %}
+                <a href="{{ path('show_noticia', {'slug' : article.slug }) }}" class="post-tittle">{{ article.title }}</a> 
+                <span class="font-italic font-12px margin-bottom-15 margin-top-15 color-primary-pink">{{ article.showSpanishDate }}</span>
+                <p>{{ article.excerpt }}</p>
+                <a href="{{ path('show_noticia', {'slug' : article.slug }) }}" class="waves-effect waves-light btn btn-white">Leer Más</a> </div>
+            </div>
+            {% endfor %}
+            
+        </div>
+    </div>
+</section>

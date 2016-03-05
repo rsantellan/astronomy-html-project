@@ -87,7 +87,7 @@
                                 </ul>
                             </li>
                             <li class="{% if (activemenu is defined) and activemenu == 'imagenes' %}active{%endif%}"><a href="imagenes.html">Imágenes y videos</a></li>
-                            <li class="{% if (activemenu is defined) and activemenu == 'acerca' %}active{%endif%}"><a href="acerca.html">Acerca del proyecto</a></li>
+                            <li class="{% if (activemenu is defined) and activemenu == 'acerca' %}active{%endif%}"><a href="{{ path('about') }}">Acerca del proyecto</a></li>
                             <li class="{% if (activemenu is defined) and activemenu == 'noticias' %}active{%endif%}"><a href="{{ path('noticias')}}">Noticias</a> </li>
                         </ul>
                     </nav>
