@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 use AppBundle\Entity\Article;
 use AppBundle\Form\ContactType;
@@ -12,7 +13,7 @@ use AppBundle\Form\ContactType;
 class DefaultController extends Controller
 {
     const ARTICLESPERPAGE = 10;
-  
+    
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
@@ -217,4 +218,164 @@ class DefaultController extends Controller
             'activemenu' => 'sistema',
         ));
     }
+    
+    private function createVideo($estacionId = 0)
+    {
+      $completePath = $this->getNowDirectory($estacionId);
+      $files  = scandir($completePath, SCANDIR_SORT_DESCENDING);
+      $now = new \DateTime();
+      $video_path = sys_get_temp_dir().DIRECTORY_SEPARATOR.$estacionId.$now->format('Y-m-d-H-i').DIRECTORY_SEPARATOR;
+      $video_path = sys_get_temp_dir().DIRECTORY_SEPARATOR.$estacionId.'2016-12-08-10-10'.DIRECTORY_SEPARATOR;
+      
+      if(file_exists($video_path.'video.avi'))
+      {
+        return $video_path.'video.mp4';
+      }
+      if(!is_dir($video_path))
+      {
+        mkdir($video_path, 0755, true);
+      }
+      $counter = 0;
+      $list = array();
+      while($counter <= 180 && $counter < count($files))
+      {
+        if($files[$counter] != '.' && $files[$counter] != '..')
+        {
+          $list[] = $completePath.$files[$counter];
+        }
+        $counter++;
+      }
+      $reversed = array_reverse($list);
+      $counter = 0;
+      foreach($reversed as $file)
+      {
+        copy($file, $video_path.sprintf("img-%03d.jpg", $counter));
+        $counter ++;
+      }
+      $cmd = 'ffmpeg -framerate 1/1 -i '.$video_path.'img-%03d.jpg -r 30 '.$video_path.'video.avi';
+      exec($cmd);
+      return $video_path.'video.avi';
+    }
+    
+    private function getNowDirectory($estacionId)
+    {
+      $path = $this->container->getParameter('images_files');
+      // Get today folder
+      $now = new \DateTime();
+      $completePath = $path.'Images'.DIRECTORY_SEPARATOR.$estacionId.DIRECTORY_SEPARATOR.$now->format('Y/m/d');
+      
+      $completePath = '/home/rodrigo/sns/Images/4/2016/12/08/';
+      return $completePath;
+    }
+    
+    private function getLastImage($estacionId)
+    {
+      $completePath = $this->getNowDirectory($estacionId);
+      $files  = scandir($completePath, SCANDIR_SORT_DESCENDING);
+      if(count($files) > 2)
+      {
+        
+        $info = new \SplFileInfo($completePath.$files[0]);
+        $tmpFile = sys_get_temp_dir().DIRECTORY_SEPARATOR.$info->getFilename();
+        copy($completePath.$files[0], $tmpFile);
+        return $tmpFile;
+      }
+      return null;
+    }
+    
+    public function imagesAction(Request $request)
+    {
+      
+      $images = array(
+         0 => $this->getLastImage(0),  
+         1 => $this->getLastImage(1),  
+         2 => $this->getLastImage(2),  
+         3 => $this->getLastImage(3),  
+         4 => $this->getLastImage(4),  
+      );
+      return $this->render('AppBundle:default:imagenes.html.twig', array(
+            'activemenu' => 'imagenes',
+            'images' => $images,
+            'video' => $this->createVideo(),
+        ));
+    }
+    
+    public function retrieveVideoAction(Request $request, $estacionId)
+    {
+        //ffmpeg -framerate 1/1 -i /tmp/02016-12-08-10-10/img-%03d.jpg -vcodec mpeg4 -r 30 /tmp/02016-12-08-10-10/video.mp4
+      //https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
+        $response = new Response();
+        $response->setPublic();
+        $response->headers->add(array('Content-Type' => 'video/mp4'));
+        $response->setContent(file_get_contents('/tmp/02016-12-08-10-10/video.mp4'));
+        $response->setStatusCode(200);
+        return $response;
+        $this->createVideo();
+        $file = new \Symfony\Component\HttpFoundation\File\File('/tmp/02016-12-08-10-10/video.avi');
+        // in case you need the container
+        //$container = $this->container;
+        $response = new \Symfony\Component\HttpFoundation\StreamedResponse(function() use($file) {
+          $handle = fopen($file->getRealPath(), 'r');
+          while (!feof($handle)) {
+            $buffer = fread($handle, 1024);
+            echo $buffer;
+            flush();
+          }
+          fclose($handle);
+        });
+        //$response->headers->set('Content-Type', $file->getMimeType());
+        $response->headers->set('Content-Type', 'video/mp4');
+        return $response;
+    }
+    
+    public function downloadOriginalFileAction(Request $request, $id)
+    {
+      
+      $document = new \AppBundle\Entity\Document();
+      $em = $this->getDoctrine()->getManager();
+      $query = $em->createQuery("select f from MaithCommonAdminBundle:mFile f join f.album a where a.object_id = :id and a.object_class = :object_class and a.name = :name order by f.orden ASC");
+    //$query = $this->em->createQuery("select a from MaithCommonAdminBundle:mAlbum a where a.object_id = :id and a.object_class = :object_class and a.name = :name ");
+      $query->setParameters(array('id' => $id, 'object_class' => $document->getFullClassName(), 'name' => 'documents'));
+      $query->setMaxResults(1);
+      $file = $query->getOneOrNullResult();
+      if(!$file)
+      {
+        throw $this->createNotFoundException('No se encontro el archivo.');
+      }
+      //$file = $em->getRepository("MaithCommonAdminBundle:mFile")->find($fileId);
+      $content = file_get_contents($file->getFullPath());
+      $response = new Response();
+
+      /* Figure out the MIME type (if not specified) */
+      $known_mime_types = array(
+          "pdf" => "application/pdf",
+          "txt" => "text/plain",
+          "html" => "text/html",
+          "htm" => "text/html",
+          "exe" => "application/octet-stream",
+          "zip" => "application/zip",
+          "doc" => "application/msword",
+          "xls" => "application/vnd.ms-excel",
+          "ppt" => "application/vnd.ms-powerpoint",
+          "gif" => "image/gif",
+          "png" => "image/png",
+          "jpeg" => "image/jpeg",
+          "jpg" => "image/jpg",
+          "php" => "text/plain"
+      );
+      $mime_type = $file->getType();
+      if(!in_array($file->getType(), $known_mime_types))
+      {
+        $file_extension = strtolower(substr(strrchr($file->getName(), "."), 1));
+        if (array_key_exists($file_extension, $known_mime_types)) {
+          $mime_type = $known_mime_types[$file_extension];
+        }
+      }
+      
+      $response->headers->set('Content-Type', $mime_type);
+      $response->headers->set('Content-Disposition', 'attachment;filename="'.$file->getName());
+
+      $response->setContent($content);
+      return $response;
+    }    
 }

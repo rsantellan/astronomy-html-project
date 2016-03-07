@@ -86,7 +86,7 @@
                                     <li><a href="{{ path('estaciones') }}">{% trans %}layout_menu_stations{% endtrans %}</a> </li>
                                 </ul>
                             </li>
-                            <li class="{% if (activemenu is defined) and activemenu == 'imagenes' %}active{%endif%}"><a href="imagenes.html">{% trans %}layout_menu_images_and_videos{% endtrans %}</a></li>
+                            <li class="{% if (activemenu is defined) and activemenu == 'imagenes' %}active{%endif%}"><a href="{{ path('site_images') }}">{% trans %}layout_menu_images_and_videos{% endtrans %}</a></li>
                             <li class="{% if (activemenu is defined) and activemenu == 'acerca' %}active{%endif%}"><a href="{{ path('about') }}">{% trans %}layout_menu_about{% endtrans %}</a></li>
                             <li class="{% if (activemenu is defined) and activemenu == 'noticias' %}active{%endif%}"><a href="{{ path('noticias')}}">{% trans %}layout_menu_news{% endtrans %}</a> </li>
                         </ul>
@@ -146,7 +146,7 @@
                 <li><a href="{{ path('homepage')}}">{% trans %}layout_menu_home{% endtrans %}</a></li>
                 <li><a href="{{ path('prototipo') }}">{% trans %}layout_menu_prototype{% endtrans %}</a> </li>
                 <li><a href="{{ path('estaciones') }}">{% trans %}layout_menu_stations{% endtrans %}</a> </li>
-                <li><a href="imagenes.html">{% trans %}layout_menu_images_and_videos{% endtrans %}</a></li>
+                <li><a href="{{ path('site_images') }}">{% trans %}layout_menu_images_and_videos{% endtrans %}</a></li>
                 <li><a href="{{ path('about') }}">{% trans %}layout_menu_about{% endtrans %}</a></li>
                 <li><a href="{{ path('noticias')}}">{% trans %}layout_menu_news{% endtrans %}</a> </li>
             </ul>

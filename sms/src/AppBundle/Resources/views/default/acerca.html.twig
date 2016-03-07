@@ -5,7 +5,7 @@
 <section class="sub-banner bg-parallax" style="background:url({{ asset('images/sg.jpg') }}) no-repeat">
     <div class="container">
         <div class="position-center-center">
-            <h1>Acerca del proyecto</h1>
+            <h1>{% trans %}acerca_page_titulo{% endtrans %}</h1>
         </div>
     </div>
 </section>
@@ -19,13 +19,11 @@
         <div class="container"> 
             <!-- HEADING BLOCK -->
             <div class="heading-block text-center margin-bottom-80">
-                <h3>SNS | Solar Nowcasting System</h3>
+                <h3>{% trans %}acerca_titulo{% endtrans %}</h3>
                 <hr>
-                <span class=" margin-top-20">La variabilidad del recurso solar en el corto plazo y a nivel local, debido a la influencia de la nubosidad, significa un gran desafío para el operador de una red eléctrica con relativa participación de energía solar fotovoltaica. Por ello, se vuelve necesario el desarrollo de sistemas capaces de realizar predicciones de corto plazo del input solar.  
-
-                    </br> </br>  El presente proyecto implica el diseño y construcción de un<a href="#"> sistema</a> de pronóstico infrahorario (nowcasting) de irradiancia solar basado en cámaras todo cielo, el cual estima el campo de velocidad actual de nubes y predice la irradiancia solar global con un horizonte temporal de entre 3 y 20 minutos aproximadamente, dependiendo de la velocidad y altura de base de nubes.
-                    </br> </br>  
-                    El sitio de instalación del sistema es en Salto Grande, departamento de Salto, Uruguay </span>
+                <span class=" margin-top-20">
+                  {% trans %}acerca_titulo_descripcion{% endtrans %}
+                </span>
 
 
 
@@ -39,10 +37,9 @@
              background-size: cover;">
 
         <div class="container">
-            <h6>Difusión</h6>
-            <h3>Ver documentos y publicaciones </h3>
+            {% trans %}acerca_difusion_titulos{% endtrans %}
             {% for document in documents %}
-            <a href="Presentacion SUF.pdf"  target="_blank" class="waves-effect waves-light btn btn-blue margin-right-20">{{ document.name }}</a>
+            <a href="{{ path('download_document', {'id' : document.id }) }}"  target="_blank" class="waves-effect waves-light btn btn-blue margin-right-20">{{ document.name }}</a>
             {% if not loop.last %}
             <br><br> 
             {% endif %}
@@ -55,9 +52,8 @@
         <div class="container"> 
             <!-- HEADING BLOCK -->
             <div class="heading-block text-center margin-bottom-80">
-                <h3>Integrantes</h3>
-                <hr>
-                <span class=" margin-top-20">Equipo del proyecto</span> </div>
+                {% trans %}acerca_integrantes_titulos{% endtrans %}
+            </div>
         </div>
 
         <!-- Team -->

@@ -310,6 +310,208 @@
         <source>layout_footer_title</source>
         <target>Sistema de pronóstico infrahorario (nowcasting) de irradiancia solar basado en cámaras todo cielo.</target>
       </trans-unit>
+      <trans-unit id="94d0f460048329a012789d648104899e" resname="menu_admin_integrantes">
+        <source>menu_admin_integrantes</source>
+        <target>Integrantes</target>
+      </trans-unit>
+      <trans-unit id="c831066348b2880c30c97d9f0ec18582" resname="acerca_titulo">
+        <source>acerca_titulo</source>
+        <target>SNS | Solar Nowcasting System</target>
+      </trans-unit>
+      <trans-unit id="2266b11df1c98797717cd74e3f7a627f" resname="acerca_titulo_descripcion">
+        <source>acerca_titulo_descripcion</source>
+        <target><![CDATA[ La variabilidad del recurso solar en el corto plazo y a nivel local, debido a la influencia de la nubosidad, significa un gran desafío para el operador de una red eléctrica con relativa participación de energía solar fotovoltaica. Por ello, se vuelve necesario el desarrollo de sistemas capaces de realizar predicciones de corto plazo del input solar.  
+                    </br> </br>  El presente proyecto implica el diseño y construcción de un<a href="#"> sistema</a> de pronóstico infrahorario (nowcasting) de irradiancia solar basado en cámaras todo cielo, el cual estima el campo de velocidad actual de nubes y predice la irradiancia solar global con un horizonte temporal de entre 3 y 20 minutos aproximadamente, dependiendo de la velocidad y altura de base de nubes.
+                    </br> </br>  
+                    El sitio de instalación del sistema es en Salto Grande, departamento de Salto, Uruguay 
+        ]]></target>
+      </trans-unit>
+      <trans-unit id="6f8eb17c8dc6cb456f903526cc2ff13f" resname="acerca_difusion_titulos">
+        <source>acerca_difusion_titulos</source>
+        <target><![CDATA[<h6>Difusión</h6>
+            <h3>Ver documentos y publicaciones </h3>]]></target>
+      </trans-unit>
+      <trans-unit id="3fc2144f9b0fd2b21a7420c110aa732b" resname="acerca_integrantes_titulos">
+        <source>acerca_integrantes_titulos</source>
+        <target><![CDATA[<h3>Integrantes</h3>
+                <hr>
+                <span class=" margin-top-20">Equipo del proyecto</span>]]></target>
+      </trans-unit>
+      <trans-unit id="4fbfad4863c93c42c68ef0aaea495226" resname="acerca_page_titulo">
+        <source>acerca_page_titulo</source>
+        <target>Acerca del proyecto</target>
+      </trans-unit>
+      <trans-unit id="3f191d7fc54b74b1b9d32dfdc5c75501" resname="prototipo_page_titulo">
+        <source>prototipo_page_titulo</source>
+        <target>Prototipo desarrollado</target>
+      </trans-unit>
+      <trans-unit id="72b4fff4846d285aef16755adf4394ab" resname="prototipo_titulo">
+        <source>prototipo_titulo</source>
+        <target>SNS | Solar Nowcasting System</target>
+      </trans-unit>
+      <trans-unit id="10363483f46654354356861f56f5426a" resname="prototipo_titulo_descripcion">
+        <source>prototipo_titulo_descripcion</source>
+        <target>El prototipo desarrollado está compuesto por los siguientes subsistemas</target>
+      </trans-unit>
+      <trans-unit id="7013937b43b085cc6472d4c3885960ea" resname="prototipo_contenido_descripcion">
+        <source>prototipo_contenido_descripcion</source>
+        <target><![CDATA[<div class="col-md-8"><!-- Nav tabs -->
+<ul class="nav nav-pills" role="tablist">
+<li role="presentation" class="active"><a href="#captura" role="tab" data-toggle="tab"><i class="fa fa-crosshairs"></i> CAPTURA </a></li>
+<li role="presentation"><a href="#alimentacion" role="tab" data-toggle="tab"><i class="fa fa-plug"></i> ALIMENTACI&Oacute;N </a></li>
+<li role="presentation"><a href="#comunicacion" role="tab" data-toggle="tab"><i class="fa fa-comments-o"></i> COMUNICACI&Oacute;N </a></li>
+<li role="presentation"><a href="#monitoreo" role="tab" data-toggle="tab"><i class="fa fa-pencil-square-o"></i> MONITOREO Y CONTROL </a></li>
+<li role="presentation"><a href="#sensores" role="tab" data-toggle="tab"> <i class="fa fa-server"></i> SENSORES </a></li>
+<li role="presentation"><a href="#software" role="tab" data-toggle="tab"><i class="fa fa-code"></i> SOFTWARE </a></li>
+</ul>
+<!-- Tab panes -->
+<div class="tab-content"><!-- Branch -->
+<div role="tabpanel" class="tab-pane fade in active" id="captura">
+<div class="row">
+<div class="col-md-6">
+<h6>Est&aacute; conformado por una c&aacute;mara Canon EOS 60D y una lente Sigma Fisheye. Estos componentes se encuentran dentro de un gabinete met&aacute;lico, estando la lente protegida por un domo de policarbonato.</h6>
+</div>
+<div class="col-md-6">
+<p><img src="http://sms.local:9560/upload/tiny/prototipo/sns_23.jpg" height="328" width="380" /></p>
+</div>
+</div>
+</div>
+<!-- project -->
+<div role="tabpanel" class="tab-pane fade" id="alimentacion">
+<div class="row">
+<div class="col-md-6">
+<h6>El sistema de alimentaci&oacute;n el&eacute;ctrica es un sistema aut&oacute;nomo basado en dos m&oacute;dulos fotovoltaicos marca Kyocera, una bater&iacute;a estacionaria de ciclo profundo, un controlador de carga y boosters DC para elevar la tensi&oacute;n a los valores requeridos por la PC y la c&aacute;mara. El sistema est&aacute; dise&ntilde;ado para 3 d&iacute;as de autonom&iacute;a.</h6>
+</div>
+<div class="col-md-6">
+<p><img src="http://sms.local:9560/upload/tiny/prototipo/sns_24.jpg" height="310" width="420" /></p>
+</div>
+</div>
+</div>
+<!-- news -->
+<div role="tabpanel" class="tab-pane fade" id="comunicacion">
+<div class="row">
+<div class="col-md-6">
+<h6>Est&aacute; conformado por un modem de Banda Ancha M&oacute;vil (BAM) que se conecta a la red 3G de Antel, y una antena exterior Yagi de 12 dBd de ganancia.</h6>
+<p><img src="http://sms.local:9560/upload/tiny/prototipo/sns_25.jpg" height="403" width="350" /></p>
+</div>
+<div class="col-md-6">
+<h6>Asimismo, forma parte de este subsistema un receptor GPS que es utilizado para obtenci&oacute;n de coordenadas y tiempo.</h6>
+<p><img src="http://sms.local:9560/upload/tiny/prototipo/sns_26.jpg" height="413" width="350" /></p>
+</div>
+</div>
+</div>
+<!-- news -->
+<div role="tabpanel" class="tab-pane fade" id="monitoreo">
+<div class="row">
+<div class="col-md-6">
+<h6>Est&aacute; conformado por sensores de temperatura, humedad y tensi&oacute;n, dos resistencias para calentamiento del domo, un m&oacute;dulo Arduino y un software de control de desarrollo propio.</h6>
+</div>
+<div class="col-md-6">
+<p><img src="http://sms.local:9560/upload/tiny/prototipo/prototipo2.png" height="448" width="350" /></p>
+</div>
+</div>
+</div>
+<!-- news -->
+<div role="tabpanel" class="tab-pane fade" id="sensores">
+<div class="row">
+<div class="col-md-6">
+<h6>Los sensores de temperatura y humedad est&aacute;n ubicados al interior del gabinete, para el monitoreo de las condiciones a las que est&aacute; sometida la c&aacute;mara. Los sensores de tensi&oacute;n monitorean la tensi&oacute;n de bater&iacute;as, PC y c&aacute;mara.</h6>
+</div>
+<div class="col-md-6">
+<p><img src="http://sms.local:9560/upload/tiny/prototipo/sns_27.jpg" height="564" width="350" /></p>
+</div>
+</div>
+</div>
+<!-- contact -->
+<div role="tabpanel" class="tab-pane fade" id="software">
+<div class="row">
+<div class="col-md-4">
+<h6>El software desarrollado, denominado CanonCC, permite la adquisici&oacute;n una vez por minuto y de forma autom&aacute;tica de una imagen, y su env&iacute;o tambi&eacute;n autom&aacute;tico a un servidor FTP especificado por el usuario.</h6>
+</div>
+<div class="col-md-8">
+<p><img src="http://sms.local:9560/upload/tiny/prototipo/sns_28.jpg" height="295" width="500" /></p>
+<p>Asimismo, permite: <br />● Configurar par&aacute;metros fundamentales de la c&aacute;mara (exposici&oacute;n, apertura, sensibilidad). <br />● Obtener coordenadas y tiempo del receptor GPS. <br />● Obtener autom&aacute;ticamente los valores de los sensores de temperatura, humedad y tensi&oacute;n, una vez por minuto y mostrarlos en la interfaz gr&aacute;fica de la aplicaci&oacute;n. <br />● Configurar el accionamiento del calentamiento del domo.</p>
+</div>
+</div>
+</div>
+</div>
+</div>]]></target>
+      </trans-unit>
+      <trans-unit id="e6bb9400c746f623fdec79917b974233" resname="estaciones_page_titulo">
+        <source>estaciones_page_titulo</source>
+        <target>Estaciones</target>
+      </trans-unit>
+      <trans-unit id="6c328d1b9b14242b970fef8ec3359ea6" resname="estaciones_page_header">
+        <source>estaciones_page_header</source>
+        <target><![CDATA[                    <h3>Estaciones</h3>
+                    <hr>
+                    <span class=" margin-top-20">El sistema está compuesto por 5 estaciones instaladas en un entorno de la planta fotovoltaica de Salto Grande "Asahi”. 
+                        En cada estación hay instalado un sistema de desarrollo propio, construido por el equipo de investigación a partir de un prototipo innovador que incorpora aspectos de software y hardware.  </span>  ]]></target>
+      </trans-unit>
+      <trans-unit id="c72565a968a7e344d5a75ee881d8c958" resname="estaciones_timeline_content">
+        <source>estaciones_timeline_content</source>
+        <target><![CDATA[ <!-- Right Services -->
+                    <ul class="row">
+                        <li class="col-sm-6 pull-right padding-left-100 margin-bottom-30">
+                            <h4>LES</h4>
+                            <p><strong>Ubicada en el Laboratorio de Energía Solar (LES). </br>
+                                    LAT: -31° 16.9630’ / LON: -57° 55.0930’ / ALT (AMSL): 53.2 m</strong></p>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+
+                    <!-- Left Services -->
+                    <ul class="row second">
+                        <li class="col-sm-6 pull-left text-right padding-right-100">
+                            <h4>Escuela 70 “Salto Grande”</h4>
+                            <p>  <strong>  Ubicada en la Escuela No 70 “Salto Grande”.</br>
+                                    LAT: -31° 15.4524’ / LON: -57° 53.4037’ /ALT (AMSL): 64.8 m </strong></p>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+
+                    <!-- Right Services -->
+                    <ul class="row tird">
+                        <li class="col-sm-6 pull-right padding-left-100 margin-bottom-30">
+                            <h4>Escuela 91”Portugal”</h4>
+                            <p><strong> Ubicada en la Escuela No 91 “Portugal”. 
+                                    LAT: -31° 19.0293’ / LON: -57° 53.0127’ / ALT (AMSL): 55.2 m</strong></p>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+
+                    <!-- Left Services -->
+                    <ul class="row a">
+                        <li class="col-sm-6 pull-left text-right padding-right-100">
+                            <h4>CTM</h4>
+                            <p>  <strong>  
+                                    Descripción: Ubicada en el predio de la Comisión Técnica Mixta de Salto Grande (CTM). 
+                                    LAT: A definir.
+                                    LON: A definir.
+                                    ALT: A definir.
+                                </strong></p>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+
+                    <!-- Right Services -->
+                    <ul class="row b">
+                        <li class="col-sm-6 pull-right padding-left-100 margin-bottom-30">
+                            <h4>Escuela 26 “Osimani Llerena”</h4>
+                            <p><strong> 
+                                    Descripción: Ubicada en la Escuela No 26 “Osimani Llerena”. 
+                                    LAT: -31° 18.9205’
+                                    LON: -57° 57.1291’
+                                    ALT (AMSL): 55.2 m</strong></p>
+                        </li>
+                    </ul> ]]></target>
+      </trans-unit>
+      <trans-unit id="aecee5edc0763017f46e72ccc6313921" resname="estaciones_sistema_title">
+        <source>estaciones_sistema_title</source>
+        <target><![CDATA[                <h3 class=" no-margin">Sevidor Central</h3>
+                <hr>
+                <span class=" margin-top-20">En el LES, además de ubicarse una estación, se encuentra el servidor central que procesa las imágenes recibidas y genera la información relevante que se sube a este sitio web. </span> ]]></target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

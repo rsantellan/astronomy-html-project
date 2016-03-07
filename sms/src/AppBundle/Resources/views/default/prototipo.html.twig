@@ -5,164 +5,34 @@
     <section class="sub-banner bg-parallax" style="background:url({{ asset('images/sg.jpg') }}) no-repeat">
         <div class="container">
             <div class="position-center-center">
-                <h1>Prototipo desarrollado</h1>
+                <h1>{% trans %}prototipo_page_titulo{% endtrans %}</h1>
             </div>
         </div>
     </section>
-
-
     <!-- Content -->
     <div id="content"> 
-
         <!-- Services -->
         <section class="welcome padding-top-100 padding-bottom-30 ">
             <div class="container"> 
                 <!-- HEADING BLOCK -->
                 <div class="heading-block text-center margin-bottom-80">
-                    <h3>SNS | Solar Nowcasting System</h3>
+                    <h3>{% trans %}prototipo_titulo{% endtrans %}</h3>
                     <hr>
-                    <span class=" margin-top-20">El prototipo desarrollado está compuesto por los siguientes subsistemas
+                    <span class=" margin-top-20">
+                      {% trans %}prototipo_titulo_descripcion{% endtrans %}
                     </span>
-
-
-
                 </div>
-
             </div>
         </section>
-
-
-
-
         <!-- TAB SECTION -->
         <section class="light-gray-bg tabs-sect padding-bottom-100 padding-top-100">
             <div class="container">
                 <div class="row">
                     <div class="col-md-4"> <img class="img-responsive" src="{{ asset('images/intro-tabs2.png') }}" alt="" > </div>
-                    <div class="col-md-8"> 
-
-                        <!-- Nav tabs -->
-                        <ul class="nav nav-pills" role="tablist">
-                            <li role="presentation" class="active"><a href="#captura" role="tab" data-toggle="tab"><i class="fa fa-crosshairs"></i> CAPTURA </a></li>
-                            <li role="presentation"><a href="#alimentacion" role="tab" data-toggle="tab"><i class="fa fa-plug"></i> ALIMENTACIÓN </a></li>
-                            <li role="presentation"><a href="#comunicacion" role="tab" data-toggle="tab"><i class="fa fa-comments-o"></i> COMUNICACIÓN </a></li>
-                            <li role="presentation"><a href="#monitoreo" role="tab" data-toggle="tab"><i class="fa fa-pencil-square-o"></i> MONITOREO Y CONTROL </a></li>
-                            <li role="presentation"><a href="#sensores" role="tab" data-toggle="tab"> <i class="fa fa-server"></i> SENSORES </a></li>
-                            <li role="presentation"><a href="#software" role="tab" data-toggle="tab"><i class="fa fa-code"></i> SOFTWARE </a></li>
-                        </ul>
-
-                        <!-- Tab panes -->
-                        <div class="tab-content"> 
-
-                            <!-- Branch -->
-                            <div role="tabpanel" class="tab-pane fade in active" id="captura">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <h6>Está conformado por una cámara Canon EOS 60D y una lente Sigma Fisheye. </br></br>Estos componentes se encuentran dentro de un gabinete metálico, estando la lente protegida por un domo de policarbonato.</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p><img src="{{ asset('images/sns_23.jpg') }}" width="380" ></p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- project -->
-                            <div role="tabpanel" class="tab-pane fade" id="alimentacion">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <h6>El sistema de alimentación eléctrica es un sistema autónomo basado en dos módulos fotovoltaicos marca Kyocera, una batería estacionaria de ciclo profundo, un controlador de carga y boosters DC para elevar la tensión a los valores requeridos por la PC y la cámara. </br></br>
-                                            El sistema está diseñado para 3 días de autonomía.
-                                        </h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p><img src="{{ asset('images/sns_24.jpg') }}" width="420" ></p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- news -->
-                            <div role="tabpanel" class="tab-pane fade" id="comunicacion">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <h6>Está conformado por un modem de Banda Ancha Móvil (BAM) que se conecta a la red 3G de Antel, y una antena exterior Yagi de 12 dBd de ganancia. </h6>
-                                        <p><img src="{{ asset('images/sns_25.jpg') }}" width="350" ></p>
-
-
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6>Asimismo, forma parte de este subsistema un receptor GPS que es utilizado para obtención de coordenadas y tiempo. </h6>
-                                        <p><img src="{{ asset('images/sns_26.jpg') }}" width="350" ></p>
-
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                            <!-- news -->
-                            <div role="tabpanel" class="tab-pane fade" id="monitoreo">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <h6>Está conformado por sensores de temperatura, humedad y tensión, dos resistencias para calentamiento del domo, un módulo Arduino y un software de control de desarrollo propio. </h6>
-
-                                    </div>
-                                    <div class="col-md-6">
-
-                                        <p><img src="{{ asset('images/prototipo2.png') }}" width="350" ></p>
-
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-
-                            <!-- news -->
-                            <div role="tabpanel" class="tab-pane fade" id="sensores">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <h6>Los sensores de temperatura y humedad están ubicados al interior del gabinete, para el monitoreo de las condiciones a las que está sometida la cámara.</br></br>
-                                            Los sensores de tensión monitorean la tensión de baterías, PC y cámara.
-                                        </h6>
-
-
-                                    </div>
-                                    <div class="col-md-6">
-
-                                        <p><img src="{{ asset('images/sns_27.jpg') }}" width="350" ></p>
-
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- contact -->
-                            <div role="tabpanel" class="tab-pane fade" id="software">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <h6>El software desarrollado, denominado CanonCC, permite la adquisición una vez por minuto y de forma automática de una imagen, y su envío también automático a un servidor FTP especificado por el usuario.</h6>
-
-
-                                    </div>
-                                    <div class="col-md-8">
-
-                                        <p><img src="{{ asset('images/sns_28.jpg') }}" width="500" ></p>
-                                        <p>                   
-                                            Asimismo, permite:</br>
-                                            ●	Configurar parámetros fundamentales de la cámara (exposición, apertura, sensibilidad).</br>
-                                            ●	Obtener coordenadas y tiempo del receptor GPS.</br>
-                                            ●	Obtener automáticamente los valores de los sensores de temperatura, humedad y tensión, una vez por minuto y mostrarlos en la interfaz gráfica de la aplicación.</br>
-                                            ●	Configurar el accionamiento del calentamiento del domo.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {% trans %}prototipo_contenido_descripcion{% endtrans %}
                 </div>
             </div>
         </section>
-
         <!-- PROMO -->
         {{ include ('AppBundle:default:_promoBlock.html.twig') }}
         <!-- Blog -->

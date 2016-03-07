@@ -29,3 +29,16 @@ prototipo:
 estaciones:
     path:     /estaciones.html
     defaults: { _controller: "AppBundle:Default:estaciones" }
+
+download_document:
+    path:     /{id}/descargar-archivo
+    defaults: { _controller: "AppBundle:Default:downloadOriginalFile" }
+
+retrieve_video:
+    path:     /{estacionId}/video
+    defaults: { _controller: "AppBundle:Default:retrieveVideo" }
+    
+
+site_images:
+    path:     /imagenes.html
+    defaults: { _controller: "AppBundle:Default:images" }    
