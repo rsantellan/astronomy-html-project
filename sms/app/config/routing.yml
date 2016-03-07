@@ -14,6 +14,10 @@ maith_common_admin:
 maith_common_users:
     resource: "@MaithCommonUsersBundle/Resources/config/routing.yml"
     prefix:   /
+
+maith_common_translator:
+    resource: "@MaithCommonTranslatorBundle/Resources/config/routing.yml"
+    prefix:   /
   
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

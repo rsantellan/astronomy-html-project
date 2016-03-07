@@ -122,6 +122,194 @@
         <source>article_create_entry</source>
         <target>Crear</target>
       </trans-unit>
+      <trans-unit id="ad63cc4748bb17dee866ba01660006a8" resname="document_update_entry">
+        <source>document_update_entry</source>
+        <target>Crear documento</target>
+      </trans-unit>
+      <trans-unit id="35ae7e9fdfec4ab4d055d89125d6ed14" resname="document_name">
+        <source>document_name</source>
+        <target>Nombre</target>
+      </trans-unit>
+      <trans-unit id="147f91c26d530688e7959e5a51f73293" resname="document_save">
+        <source>document_save</source>
+        <target>Guardar</target>
+      </trans-unit>
+      <trans-unit id="110aa411d96ec3b82f33c40afe4778ea" resname="document_back_to_list">
+        <source>document_back_to_list</source>
+        <target>Volver al listado</target>
+      </trans-unit>
+      <trans-unit id="cb9fab6f44cfcfbd1098d52f6023da0d" resname="document_delete">
+        <source>document_delete</source>
+        <target>Eliminar</target>
+      </trans-unit>
+      <trans-unit id="5755496f4583edacb88f3fae443d0391" resname="document_list_title">
+        <source>document_list_title</source>
+        <target>Listado de documentos</target>
+      </trans-unit>
+      <trans-unit id="f2e68e57b0b351786d54822076f8aa69" resname="document_file">
+        <source>document_file</source>
+        <target>Archivo</target>
+      </trans-unit>
+      <trans-unit id="7a552c301654326ceb6367399f96ff84" resname="document_title">
+        <source>document_title</source>
+        <target>Titulo</target>
+      </trans-unit>
+      <trans-unit id="81f2acf731af765a3f595da904438cef" resname="document_createdat">
+        <source>document_createdat</source>
+        <target>Creado el</target>
+      </trans-unit>
+      <trans-unit id="e79b5201b24a214507768f1ae2a8ed0a" resname="document_create">
+        <source>document_create</source>
+        <target>Crear documento</target>
+      </trans-unit>
+      <trans-unit id="892cacd0a124aecc41517a5660ddf6c6" resname="document_create_entry">
+        <source>document_create_entry</source>
+        <target>Crear nuevo</target>
+      </trans-unit>
+      <trans-unit id="7b2f68bd792e71b03adb6b53a8ebe3ff" resname="integrante_update_entry">
+        <source>integrante_update_entry</source>
+        <target>Actualizar integrante</target>
+      </trans-unit>
+      <trans-unit id="12aa3c8e85be2ea8482443d9c3f2b24c" resname="integrante_name">
+        <source>integrante_name</source>
+        <target>Nombre</target>
+      </trans-unit>
+      <trans-unit id="9dae6be519344599fd625f5cbd2fb90d" resname="integrante_position">
+        <source>integrante_position</source>
+        <target>Posición</target>
+      </trans-unit>
+      <trans-unit id="c095399086cd9dc04aac1aa681099f3a" resname="integrante_description">
+        <source>integrante_description</source>
+        <target>Descripción</target>
+      </trans-unit>
+      <trans-unit id="1ba9c98f00b24e7cdb03c9a6d6703323" resname="integrante_googleaccount">
+        <source>integrante_googleaccount</source>
+        <target>Cuenat de google</target>
+      </trans-unit>
+      <trans-unit id="d41cec845e09b3a65ad7e9e9af993c49" resname="integrante_twitteraccount">
+        <source>integrante_twitteraccount</source>
+        <target>Cuenta de twitter</target>
+      </trans-unit>
+      <trans-unit id="ac26775b802ee770ebc251c40f02c7dc" resname="integrante_facebookaccount">
+        <source>integrante_facebookaccount</source>
+        <target>Cuenta de facebook</target>
+      </trans-unit>
+      <trans-unit id="713a3eaa0af02e035a710e4f173e5df6" resname="integrante_posicionVisual">
+        <source>integrante_posicionVisual</source>
+        <target>Posición en el listado</target>
+      </trans-unit>
+      <trans-unit id="a8a41bda7be228948060967f981c83df" resname="integrante_save">
+        <source>integrante_save</source>
+        <target>Guardar</target>
+      </trans-unit>
+      <trans-unit id="c22688c65c40e7870a6fbb5786030735" resname="integrante_back_to_list">
+        <source>integrante_back_to_list</source>
+        <target>Volver al listado</target>
+      </trans-unit>
+      <trans-unit id="5fe7cc0dab8dbbb196877c2771a876d8" resname="integrante_delete">
+        <source>integrante_delete</source>
+        <target>Eliminar</target>
+      </trans-unit>
+      <trans-unit id="201eb418d7ebc1b0fea5c90675f0405c" resname="integrante_list_title">
+        <source>integrante_list_title</source>
+        <target>Listado de integrantes</target>
+      </trans-unit>
+      <trans-unit id="5bce8361a81516e0308312551ee08c90" resname="integrante_order">
+        <source>integrante_order</source>
+        <target>Orden</target>
+      </trans-unit>
+      <trans-unit id="d850e4a1767bd46dd9bd73dd2930fab2" resname="integrante_acciones">
+        <source>integrante_acciones</source>
+        <target>Acciones</target>
+      </trans-unit>
+      <trans-unit id="12630770503388e6a530ead7b6f42122" resname="integrante_create">
+        <source>integrante_create</source>
+        <target>Crear</target>
+      </trans-unit>
+      <trans-unit id="e68b0625b3c6a32809d4bd8f8e699815" resname="integrante_create_entry">
+        <source>integrante_create_entry</source>
+        <target>Crear</target>
+      </trans-unit>
+      <trans-unit id="7343866c830525bc5381b6b987e6b053" resname="menu_admin_documents">
+        <source>menu_admin_documents</source>
+        <target>Documentos</target>
+      </trans-unit>
+      <trans-unit id="e630b9b7b98f445595b6834584b926fe" resname="admin_menu_user_management">
+        <source>admin_menu_user_management</source>
+        <target>Usuarios</target>
+      </trans-unit>
+      <trans-unit id="5da0cfbc35a9a95af20bc2133bb62682" resname="admin_menu_usuarios">
+        <source>admin_menu_usuarios</source>
+        <target>Usuarios</target>
+      </trans-unit>
+      <trans-unit id="9daf39fc23717754a37aa366a73b9bdf" resname="admin_menu_grupos_roles">
+        <source>admin_menu_grupos_roles</source>
+        <target>Permisos</target>
+      </trans-unit>
+      <trans-unit id="4fc2c1d0cfc48e29d50502b199f283ca" resname="layout_contact_email">
+        <source>layout_contact_email</source>
+        <target>contacto@dominio.com.uy</target>
+      </trans-unit>
+      <trans-unit id="a4c0f5a636d1be3368cbc268c5a546a7" resname="layout_contact_phone">
+        <source>layout_contact_phone</source>
+        <target>+598 402 46 54</target>
+      </trans-unit>
+      <trans-unit id="b45582b7a6c5a1693f89db04644a1439" resname="layout_start_session">
+        <source>layout_start_session</source>
+        <target>Iniciar Sesión</target>
+      </trans-unit>
+      <trans-unit id="d6e20f8745bd6ac708ad2ed9beafffb4" resname="layout_facebook_account">
+        <source>layout_facebook_account</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="e3a3df16515ccc27bae8a7add1ef6d1e" resname="layout_twitter_account">
+        <source>layout_twitter_account</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="d61fac06739e847a2588d80e1c45c9c8" resname="layout_google_account">
+        <source>layout_google_account</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="9f4365f3fce7457912fbf5486923e557" resname="layout_linkedin_account">
+        <source>layout_linkedin_account</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="725f26a726c0bc029dd8198af2bcbe5e" resname="layout_menu_home">
+        <source>layout_menu_home</source>
+        <target>Inicio</target>
+      </trans-unit>
+      <trans-unit id="084473dd604c4de551374c3c6d4ca532" resname="layout_menu_system">
+        <source>layout_menu_system</source>
+        <target>Sistema</target>
+      </trans-unit>
+      <trans-unit id="8c4b3aed6f1aecccccee044fcc432bfb" resname="layout_menu_prototype">
+        <source>layout_menu_prototype</source>
+        <target>Prototipo</target>
+      </trans-unit>
+      <trans-unit id="59e46ce678da0d0e591c86e8a9cbff0b" resname="layout_menu_stations">
+        <source>layout_menu_stations</source>
+        <target>Estaciones</target>
+      </trans-unit>
+      <trans-unit id="6b8df4a031525cce8c04e95ed07a090e" resname="layout_menu_images_and_videos">
+        <source>layout_menu_images_and_videos</source>
+        <target>Imágenes y videos</target>
+      </trans-unit>
+      <trans-unit id="05cd17351ba791250f2bdc7d405e1b16" resname="layout_menu_about">
+        <source>layout_menu_about</source>
+        <target>Acerca del proyecto</target>
+      </trans-unit>
+      <trans-unit id="43682365160be7dbeff39488267c6dc1" resname="layout_menu_news">
+        <source>layout_menu_news</source>
+        <target>Noticias</target>
+      </trans-unit>
+      <trans-unit id="83c0fe9468267dd276f2832682ffce9f" resname="layout_menu_contacts">
+        <source>layout_menu_contacts</source>
+        <target>Consultas?</target>
+      </trans-unit>
+      <trans-unit id="2522485a10e1b5ffc1e3d900be5c351e" resname="layout_footer_title">
+        <source>layout_footer_title</source>
+        <target>Sistema de pronóstico infrahorario (nowcasting) de irradiancia solar basado en cámaras todo cielo.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

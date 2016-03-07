@@ -49,13 +49,13 @@
                 <div class="col-md-6">
                     <ul class="row">
                         <li class="margin-right-20">
-                            <p><i class="fa fa-envelope-o margin-right-10"></i>contacto@dominio.com.uy</p>
+                            <p><i class="fa fa-envelope-o margin-right-10"></i>{% trans %}layout_contact_email{% endtrans %}</p>
                         </li>
                         <li class="margin-right-20">
-                            <p><i class="fa fa-phone margin-right-10"></i> +598 402 46 54</p>
+                            <p><i class="fa fa-phone margin-right-10"></i>{% trans %}layout_contact_phone{% endtrans %}</p>
                         </li>
                         <li>
-                            <p><i class="fa fa-user margin-right-10"></i> <a href="iniciar_sesion.html">Iniciar Sesión</a></p>
+                            <p><i class="fa fa-user margin-right-10"></i> <a href="iniciar_sesion.html">{% trans %}layout_start_session{% endtrans %}</a></p>
                         </li>
                     </ul>
                 </div>
@@ -63,10 +63,10 @@
                 <div class="col-md-6 text-right social-top"> 
                     <!-- Social Icon -->
                     <ul class="social-icons">
-                        <li><a href="#."><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#."><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#."><i class="fa fa-google"></i></a></li>
-                        <li><a href="#."><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="{% trans %}layout_facebook_account{% endtrans %}"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="{% trans %}layout_twitter_account{% endtrans %}"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="{% trans %}layout_google_account{% endtrans %}"><i class="fa fa-google"></i></a></li>
+                        <li><a href="{% trans %}layout_linkedin_account{% endtrans %}"><i class="fa fa-linkedin"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -79,19 +79,19 @@
                     <!-- Nav -->
                     <nav>
                         <ul id="ownmenu" class="ownmenu">
-                            <li  class="{% if (activemenu is defined) and activemenu == 'inicio' %}active{%endif%}"><a href="{{ path('homepage')}}">Inicio</a></li>
-                            <li class="{% if (activemenu is defined) and activemenu == 'sistema' %}active{%endif%}"><a href="#">Sistema</a>
+                            <li  class="{% if (activemenu is defined) and activemenu == 'inicio' %}active{%endif%}"><a href="{{ path('homepage')}}">{% trans %}layout_menu_home{% endtrans %}</a></li>
+                            <li class="{% if (activemenu is defined) and activemenu == 'sistema' %}active{%endif%}"><a href="#">{% trans %}layout_menu_system{% endtrans %}</a>
                                 <ul class="dropdown">
-                                    <li><a href="prototipo.html">Prototipo</a> </li>
-                                    <li><a href="estaciones.html">Estaciones</a> </li>
+                                    <li><a href="{{ path('prototipo') }}">{% trans %}layout_menu_prototype{% endtrans %}</a> </li>
+                                    <li><a href="{{ path('estaciones') }}">{% trans %}layout_menu_stations{% endtrans %}</a> </li>
                                 </ul>
                             </li>
-                            <li class="{% if (activemenu is defined) and activemenu == 'imagenes' %}active{%endif%}"><a href="imagenes.html">Imágenes y videos</a></li>
-                            <li class="{% if (activemenu is defined) and activemenu == 'acerca' %}active{%endif%}"><a href="{{ path('about') }}">Acerca del proyecto</a></li>
-                            <li class="{% if (activemenu is defined) and activemenu == 'noticias' %}active{%endif%}"><a href="{{ path('noticias')}}">Noticias</a> </li>
+                            <li class="{% if (activemenu is defined) and activemenu == 'imagenes' %}active{%endif%}"><a href="imagenes.html">{% trans %}layout_menu_images_and_videos{% endtrans %}</a></li>
+                            <li class="{% if (activemenu is defined) and activemenu == 'acerca' %}active{%endif%}"><a href="{{ path('about') }}">{% trans %}layout_menu_about{% endtrans %}</a></li>
+                            <li class="{% if (activemenu is defined) and activemenu == 'noticias' %}active{%endif%}"><a href="{{ path('noticias')}}">{% trans %}layout_menu_news{% endtrans %}</a> </li>
                         </ul>
                     </nav>
-                    <a href="{{ path('contacto')}}" class="waves-effect waves-ripple any-help z-depth-1">Consultas?</a> </div>
+                    <a href="{{ path('contacto')}}" class="waves-effect waves-ripple any-help z-depth-1">{% trans %}layout_menu_contacts{% endtrans %}</a> </div>
             </div>
         </header>
         <!-- End Header --> 
@@ -105,15 +105,14 @@
                 <div class="row"> 
 
                     <!-- About --> <div class="col-md-3"> <img class="margin-bottom-20" src="{{ asset('images/logo-footer.png') }}" alt="" >
-                        <p>Sistema de pronóstico infrahorario (nowcasting) de irradiancia solar basado en cámaras todo cielo.</p>
+                        <p>{% trans %}layout_footer_title{% endtrans %}</p>
 
                         <!-- Social Icon -->
                         <ul class="social-icons">
-                            <li><a href="#."><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#."><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#."><i class="fa fa-google"></i></a></li>
-                            <li><a href="#."><i class="fa fa-linkedin"></i></a></li>
-
+                            <li><a href="{% trans %}layout_facebook_account{% endtrans %}"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="{% trans %}layout_twitter_account{% endtrans %}"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="{% trans %}layout_google_account{% endtrans %}"><i class="fa fa-google"></i></a></li>
+                            <li><a href="{% trans %}layout_linkedin_account{% endtrans %}"><i class="fa fa-linkedin"></i></a></li>
                         </ul>
                     </div>
 
@@ -129,13 +128,13 @@
                     <!-- flickr -->
                     <div class="col-md-3">
                         <h5>INFO</h5>
-                        <p><i class="fa fa-envelope-o margin-right-10"></i>contacto@dominio.com.uy</p>
+                        <p><i class="fa fa-envelope-o margin-right-10"></i>{% trans %}layout_contact_email{% endtrans %}</p>
                         </li>
                         <li class="margin-right-20">
-                            <p><i class="fa fa-phone margin-right-10"></i> +598 402 46 54</p>
+                            <p><i class="fa fa-phone margin-right-10"></i>{% trans %}layout_contact_phone{% endtrans %}</p>
                         </li>
                         <li>
-                            <p><i class="fa fa-user margin-right-10"></i> Iniciar Sesión</p>
+                            <p><i class="fa fa-user margin-right-10"></i>{% trans %}layout_start_session{% endtrans %}</p>
                             <p>El proyecto cuenta con el apoyo de </p>
                             <img class="margin-bottom-20" src="{{ asset('images/logoanii.png') }}" height="80" alt="" >
                     </div>
@@ -144,18 +143,18 @@
 
             <!-- Links -->
             <ul class="bottom-links">
-                <li><a href="{{ path('homepage')}}">Inicio</a></li>
-                <li><a href="#">Sistema</a>
-                <li><a href="imagenes.html">Imágenes y videos</a></li>
-                <li><a href="acerca.html">Acerca del proyecto</a>
-                <li><a href="{{ path('noticias')}}">Noticias</a> </li>
-                <li><a href="{{ path('contacto')}}"> contacto</a></li>
+                <li><a href="{{ path('homepage')}}">{% trans %}layout_menu_home{% endtrans %}</a></li>
+                <li><a href="{{ path('prototipo') }}">{% trans %}layout_menu_prototype{% endtrans %}</a> </li>
+                <li><a href="{{ path('estaciones') }}">{% trans %}layout_menu_stations{% endtrans %}</a> </li>
+                <li><a href="imagenes.html">{% trans %}layout_menu_images_and_videos{% endtrans %}</a></li>
+                <li><a href="{{ path('about') }}">{% trans %}layout_menu_about{% endtrans %}</a></li>
+                <li><a href="{{ path('noticias')}}">{% trans %}layout_menu_news{% endtrans %}</a> </li>
             </ul>
 
             <!-- Rights -->
             <div class="rights">
                 <p> SNS | Solar Nowcasting System | Sistema de nowcasting solar</br>
-                    © 2015 Diseño <a href="http://www.sintropiadesign.com" target="_blank">Sintropía</a>/<a href="http://www.rodrigosantellan.com" target="_blank">RS</a><br/><br/><br/>
+                    © {{ 'now' | date('Y') }}2015 Diseño <a href="http://www.sintropiadesign.com" target="_blank">Sintropía</a>/<a href="http://www.rodrigosantellan.com" target="_blank">RS</a><br/><br/><br/>
                 </p>
             </div>
     </div>

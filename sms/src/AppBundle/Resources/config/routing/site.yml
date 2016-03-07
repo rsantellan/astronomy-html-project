@@ -21,3 +21,11 @@ contact_send:
 about:
     path:     /acerca.html
     defaults: { _controller: "AppBundle:Default:about" }
+
+prototipo:
+    path:     /prototipo.html
+    defaults: { _controller: "AppBundle:Default:prototipo" }
+
+estaciones:
+    path:     /estaciones.html
+    defaults: { _controller: "AppBundle:Default:estaciones" }

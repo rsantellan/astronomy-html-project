@@ -203,4 +203,18 @@ class DefaultController extends Controller
             'documents' => $documents,
         ));
     }
+    
+    public function prototipoAction(Request $request)
+    {
+      return $this->render('AppBundle:default:prototipo.html.twig', array(
+            'activemenu' => 'sistema',
+        ));
+    }
+    
+    public function estacionesAction(Request $request)
+    {
+      return $this->render('AppBundle:default:estaciones.html.twig', array(
+            'activemenu' => 'sistema',
+        ));
+    }
 }

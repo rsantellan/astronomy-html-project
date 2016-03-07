@@ -1,0 +1,142 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block body %}
+    <!--======= SUB BANNER =========-->
+    <section class="sub-banner bg-parallax" style="background:url({{ asset('images/sg.jpg') }}) no-repeat">
+        <div class="container">
+            <div class="position-center-center">
+                <h1>Estaciones</h1>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <div id="content"> 
+
+        <!-- SERVICES -->
+        <section class="education padding-top-60 padding-bottom-60">
+            <div class="container"> 
+
+                <!-- HEADING BLOCK -->
+                <div class="heading-block text-center margin-bottom-60">
+                    <h3>Estaciones</h3>
+                    <hr>
+                    <span class=" margin-top-20">El sistema está compuesto por 5 estaciones instaladas en un entorno de la planta fotovoltaica de Salto Grande "Asahi”. 
+                        En cada estación hay instalado un sistema de desarrollo propio, construido por el equipo de investigación a partir de un prototipo innovador que incorpora aspectos de software y hardware.  </span> </div>
+
+
+
+                <!-- Services -->
+                <div class="time-line"> 
+
+                    <!-- Right Services -->
+                    <ul class="row">
+                        <li class="col-sm-6 pull-right padding-left-100 margin-bottom-30">
+                            <h4>LES</h4>
+                            <p><strong>Ubicada en el Laboratorio de Energía Solar (LES). </br>
+                                    LAT: -31° 16.9630’ / LON: -57° 55.0930’ / ALT (AMSL): 53.2 m</strong></p>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+
+                    <!-- Left Services -->
+                    <ul class="row second">
+                        <li class="col-sm-6 pull-left text-right padding-right-100">
+                            <h4>Escuela 70 “Salto Grande”</h4>
+                            <p>  <strong>  Ubicada en la Escuela No 70 “Salto Grande”.</br>
+                                    LAT: -31° 15.4524’ / LON: -57° 53.4037’ /ALT (AMSL): 64.8 m </strong></p>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+
+                    <!-- Right Services -->
+                    <ul class="row tird">
+                        <li class="col-sm-6 pull-right padding-left-100 margin-bottom-30">
+                            <h4>Escuela 91”Portugal”</h4>
+                            <p><strong> Ubicada en la Escuela No 91 “Portugal”. 
+                                    LAT: -31° 19.0293’ / LON: -57° 53.0127’ / ALT (AMSL): 55.2 m</strong></p>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+
+                    <!-- Left Services -->
+                    <ul class="row a">
+                        <li class="col-sm-6 pull-left text-right padding-right-100">
+                            <h4>CTM</h4>
+                            <p>  <strong>  
+                                    Descripción: Ubicada en el predio de la Comisión Técnica Mixta de Salto Grande (CTM). 
+                                    LAT: A definir.
+                                    LON: A definir.
+                                    ALT: A definir.
+                                </strong></p>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+
+                    <!-- Right Services -->
+                    <ul class="row b">
+                        <li class="col-sm-6 pull-right padding-left-100 margin-bottom-30">
+                            <h4>Escuela 26 “Osimani Llerena”</h4>
+                            <p><strong> 
+                                    Descripción: Ubicada en la Escuela No 26 “Osimani Llerena”. 
+                                    LAT: -31° 18.9205’
+                                    LON: -57° 57.1291’
+                                    ALT (AMSL): 55.2 m</strong></p>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+
+
+                </div>
+            </div>
+        </section>
+
+        <!-- PORTFOLIO -->
+        <section class="portfolio port-wrap light-gray-bg padding-bottom-60 padding-top-60">
+            <div class="container"> 
+                <!-- HEADING BLOCK -->
+                <div class="heading-block text-center margin-bottom-80">
+                    <h3 class=" no-margin">Sistema</h3>
+                    <hr>
+                    <span class=" margin-top-20">Cuatro de las cinco estaciones se encuentran equidistantes (a unos 3km) de la restante, ubicada en el Laboratorio de Energía Solar (LES), a pocos metros de la planta fotovoltaica Asahi.
+                    </span> </div>
+
+                <iframe src="https://www.google.com/maps/d/embed?mid=zhPR3Y5kc0yA.kCj8n2PPt-Fs" width="100%" height="480"></iframe>
+
+            </div>
+    </div>
+</section>
+
+
+
+
+<section class=" padding-top-30">
+    <div class="container"> 
+
+        <div class="heading-block text-center ">
+            <div class="heading-block text-center   margin-top-50">
+                <h3 class=" no-margin">Sevidor Central</h3>
+                <hr>
+                <span class=" margin-top-20">En el LES, además de ubicarse una estación, se encuentra el servidor central que procesa las imágenes recibidas y genera la información relevante que se sube a este sitio web. </span>
+
+
+                <div align="center"><img src="{{ asset('images/les.jpg') }}"></div>
+
+            </div>
+        </div>
+</section>
+
+{{ include ('AppBundle:default:_promoBlock.html.twig') }}
+
+<div align="center">
+    <!-- Blog -->
+</div>
+<!-- Blog -->
+{{ render(controller('AppBundle:Default:lastArticles')) }}
+<!-- News Letter -->
+{{ render(controller('AppBundle:Default:newsletterForm')) }}
+</div>
+<!-- End Content --> 
+
+
+{% endblock %}

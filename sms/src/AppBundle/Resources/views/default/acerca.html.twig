@@ -10,106 +10,92 @@
     </div>
 </section>
 
+
 <!-- Content -->
 <div id="content"> 
 
-    <!-- Content -->
-    <div id="content"> 
+    <!-- Services -->
+    <section class="welcome padding-top-100 padding-bottom-30 ">
+        <div class="container"> 
+            <!-- HEADING BLOCK -->
+            <div class="heading-block text-center margin-bottom-80">
+                <h3>SNS | Solar Nowcasting System</h3>
+                <hr>
+                <span class=" margin-top-20">La variabilidad del recurso solar en el corto plazo y a nivel local, debido a la influencia de la nubosidad, significa un gran desafío para el operador de una red eléctrica con relativa participación de energía solar fotovoltaica. Por ello, se vuelve necesario el desarrollo de sistemas capaces de realizar predicciones de corto plazo del input solar.  
 
-        <!-- Services -->
-        <section class="welcome padding-top-100 padding-bottom-30 ">
-            <div class="container"> 
-                <!-- HEADING BLOCK -->
-                <div class="heading-block text-center margin-bottom-80">
-                    <h3>SNS | Solar Nowcasting System</h3>
-                    <hr>
-                    <span class=" margin-top-20">La variabilidad del recurso solar en el corto plazo y a nivel local, debido a la influencia de la nubosidad, significa un gran desafío para el operador de una red eléctrica con relativa participación de energía solar fotovoltaica. Por ello, se vuelve necesario el desarrollo de sistemas capaces de realizar predicciones de corto plazo del input solar.  
-
-                        </br> </br>  El presente proyecto implica el diseño y construcción de un<a href="#"> sistema</a> de pronóstico infrahorario (nowcasting) de irradiancia solar basado en cámaras todo cielo, el cual estima el campo de velocidad actual de nubes y predice la irradiancia solar global con un horizonte temporal de entre 3 y 20 minutos aproximadamente, dependiendo de la velocidad y altura de base de nubes.
-                        </br> </br>  
-                        El sitio de instalación del sistema es en Salto Grande, departamento de Salto, Uruguay </span>
+                    </br> </br>  El presente proyecto implica el diseño y construcción de un<a href="#"> sistema</a> de pronóstico infrahorario (nowcasting) de irradiancia solar basado en cámaras todo cielo, el cual estima el campo de velocidad actual de nubes y predice la irradiancia solar global con un horizonte temporal de entre 3 y 20 minutos aproximadamente, dependiendo de la velocidad y altura de base de nubes.
+                    </br> </br>  
+                    El sitio de instalación del sistema es en Salto Grande, departamento de Salto, Uruguay </span>
 
 
-
-                </div>
 
             </div>
-        </section>
 
-        <!-- PROMO -->
-        <section class="promo text-center padding-bottom-100 padding-top-100" style="background:url({{ asset('images/bg/promo-bg.jpg') }}) center center no-repeat;
-                 background-size: cover;">
+        </div>
+    </section>
 
-            <div class="container">
-                <h6>Difusión</h6>
-                <h3>Ver documentos y publicaciones </h3>
-                {% for document in documents %}
-                <a href="Presentacion SUF.pdf"  target="_blank" class="waves-effect waves-light btn btn-blue margin-right-20">{{ document.name }}</a>
-                {% if not loop.last %}
-                <br><br> 
-                {% endif %}
-                {% endfor %}
-            </div>
-        </section>
+    <!-- PROMO -->
+    <section class="promo text-center padding-bottom-100 padding-top-100" style="background:url({{ asset('images/bg/promo-bg.jpg') }}) center center no-repeat;
+             background-size: cover;">
+
+        <div class="container">
+            <h6>Difusión</h6>
+            <h3>Ver documentos y publicaciones </h3>
+            {% for document in documents %}
+            <a href="Presentacion SUF.pdf"  target="_blank" class="waves-effect waves-light btn btn-blue margin-right-20">{{ document.name }}</a>
+            {% if not loop.last %}
+            <br><br> 
+            {% endif %}
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section class="padding-top-100 padding-bottom-100">
+        <div class="container"> 
+            <!-- HEADING BLOCK -->
+            <div class="heading-block text-center margin-bottom-80">
+                <h3>Integrantes</h3>
+                <hr>
+                <span class=" margin-top-20">Equipo del proyecto</span> </div>
+        </div>
 
         <!-- Team -->
-        <section class="padding-top-100 padding-bottom-100">
-            <div class="container"> 
-                <!-- HEADING BLOCK -->
-                <div class="heading-block text-center margin-bottom-80">
-                    <h3>Integrantes</h3>
-                    <hr>
-                    <span class=" margin-top-20">Equipo del proyecto</span> </div>
-            </div>
-
-            <!-- Team -->
-            <div class="expert-team">
-                <div class="container">
-                    <ul class="row">
-                        {% for integrante in integrantes %}
-                        <!-- TEAM MEMBER -->
-                        <li class="col-md-3">
-                            <article class="z-depth-1 padding-30">
-                                <div class="img-circle"> 
-                                    <img src="{{ integrante.id | mAvatar(integrante.fullClassName, 'imagen') | mImage(330, 214, 'o') }}" alt="{{ integrante.name }}" />
-                                    <h5>{{ integrante.name }}</h5>
-                                    <span>{{ integrante.position }}</span>
-                                    <p>{{ integrante.description }}</p>
-                                    <ul class="social-icons">
-                                        <li><a href="{{ integrante.googleaccount }}"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="{{ integrante.twitteraccount }}"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="{{ integrante.facebookaccount }}"><i class="fa fa-google"></i></a></li>
-                                    </ul>
-                                </div>
-                            </article>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-
-
-        <!-- PROMO -->
-        <section class="promo pink-bg padding-bottom-60 padding-top-60">
+        <div class="expert-team">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-7">
-                        <h3 class="text-white text-uppercase no-margin">Desea probar SNS? </h3>
-                    </div>
-                    <div class="col-md-5 text-center">
-                        <a href="imagenes.html" class="waves-effect waves-light btn  btn-white margin-right-20">ver imágenes</a> 
-                        <a href="{{ path('contacto')}}" class="waves-effect btn btn-blue margin-left-20">contactanos</a> 
-                    </div>
-                </div>
+                <ul class="row">
+                    {% for integrante in integrantes %}
+                    <!-- TEAM MEMBER -->
+                    <li class="col-md-3">
+                        <article class="z-depth-1 padding-30">
+                            <div class="img-circle"> 
+                                <img src="{{ integrante.id | mAvatar(integrante.fullClassName, 'imagen') | mImage(330, 214, 'o') }}" alt="{{ integrante.name }}" />
+                                <h5>{{ integrante.name }}</h5>
+                                <span>{{ integrante.position }}</span>
+                                <p>{{ integrante.description }}</p>
+                                <ul class="social-icons">
+                                    <li><a href="{{ integrante.googleaccount }}"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="{{ integrante.twitteraccount }}"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="{{ integrante.facebookaccount }}"><i class="fa fa-google"></i></a></li>
+                                </ul>
+                            </div>
+                        </article>
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Blog -->
-        {{ render(controller('AppBundle:Default:lastArticles')) }}
-        <!-- News Letter -->
-        {{ render(controller('AppBundle:Default:newsletterForm')) }}
-    </div>
-    <!-- End Content --> 
-    {% endblock %}
+
+
+    <!-- PROMO -->
+    {{ include ('AppBundle:default:_promoBlock.html.twig') }}
+
+    <!-- Blog -->
+    {{ render(controller('AppBundle:Default:lastArticles')) }}
+    <!-- News Letter -->
+    {{ render(controller('AppBundle:Default:newsletterForm')) }}
+</div>
+<!-- End Content --> 
+{% endblock %}

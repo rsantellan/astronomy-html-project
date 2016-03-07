@@ -109,3 +109,7 @@ jms_security_extra:
 services:
     fos_user.doctrine_registry:
         alias: doctrine
+
+maith_common_translator:
+    translation_bundles: # Que bundles voy a traducir
+        - AppBundle
