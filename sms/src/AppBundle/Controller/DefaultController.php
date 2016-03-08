@@ -13,6 +13,7 @@ use AppBundle\Form\ContactType;
 class DefaultController extends Controller
 {
     const ARTICLESPERPAGE = 10;
+    const VIDEONAME = 'video.mp4';
     
     public function indexAction(Request $request)
     {
@@ -227,9 +228,9 @@ class DefaultController extends Controller
       $video_path = sys_get_temp_dir().DIRECTORY_SEPARATOR.$estacionId.$now->format('Y-m-d-H-i').DIRECTORY_SEPARATOR;
       $video_path = sys_get_temp_dir().DIRECTORY_SEPARATOR.$estacionId.'2016-12-08-10-10'.DIRECTORY_SEPARATOR;
       
-      if(file_exists($video_path.'video.avi'))
+      if(file_exists($video_path.self::VIDEONAME))
       {
-        return $video_path.'video.mp4';
+        return $video_path.self::VIDEONAME;
       }
       if(!is_dir($video_path))
       {
@@ -252,9 +253,11 @@ class DefaultController extends Controller
         copy($file, $video_path.sprintf("img-%03d.jpg", $counter));
         $counter ++;
       }
-      $cmd = 'ffmpeg -framerate 1/1 -i '.$video_path.'img-%03d.jpg -r 30 '.$video_path.'video.avi';
-      exec($cmd);
-      return $video_path.'video.avi';
+      $cmd = $this->container->getParameter('ffmpeg_location').' -framerate 1 -i '.$video_path.'img-%03d.jpg -c:v libx264 -r 30 -pix_fmt yuv420p '.$video_path.self::VIDEONAME;
+      //$cmd = 'ffmpeg -framerate 1/1 -i '.$video_path.'img-%03d.jpg -r 30 '.$video_path.'video.avi';
+      $return = exec($cmd);
+
+      return $video_path.$video_path.self::VIDEONAME;
     }
     
     private function getNowDirectory($estacionId)
@@ -304,27 +307,12 @@ class DefaultController extends Controller
     {
         //ffmpeg -framerate 1/1 -i /tmp/02016-12-08-10-10/img-%03d.jpg -vcodec mpeg4 -r 30 /tmp/02016-12-08-10-10/video.mp4
       //https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
+        $videoPath = $this->createVideo($estacionId);
         $response = new Response();
         $response->setPublic();
         $response->headers->add(array('Content-Type' => 'video/mp4'));
-        $response->setContent(file_get_contents('/tmp/02016-12-08-10-10/video.mp4'));
+        $response->setContent(file_get_contents($videoPath));
         $response->setStatusCode(200);
-        return $response;
-        $this->createVideo();
-        $file = new \Symfony\Component\HttpFoundation\File\File('/tmp/02016-12-08-10-10/video.avi');
-        // in case you need the container
-        //$container = $this->container;
-        $response = new \Symfony\Component\HttpFoundation\StreamedResponse(function() use($file) {
-          $handle = fopen($file->getRealPath(), 'r');
-          while (!feof($handle)) {
-            $buffer = fread($handle, 1024);
-            echo $buffer;
-            flush();
-          }
-          fclose($handle);
-        });
-        //$response->headers->set('Content-Type', $file->getMimeType());
-        $response->headers->set('Content-Type', 'video/mp4');
         return $response;
     }
     

@@ -19,3 +19,4 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     images_files:    /home/rodrigo/sns/Output
+    ffmpeg_location: /home/rodrigo/bin/ffmpeg
