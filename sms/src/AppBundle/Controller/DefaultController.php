@@ -254,6 +254,7 @@ class DefaultController extends Controller
         $counter ++;
       }
       $cmd = $this->container->getParameter('ffmpeg_location').' -framerate 1 -i '.$video_path.'img-%03d.jpg -c:v libx264 -r 30 -pix_fmt yuv420p '.$video_path.self::VIDEONAME;
+      var_dump($cmd);
       //$cmd = 'ffmpeg -framerate 1/1 -i '.$video_path.'img-%03d.jpg -r 30 '.$video_path.'video.avi';
       $return = exec($cmd);
 
