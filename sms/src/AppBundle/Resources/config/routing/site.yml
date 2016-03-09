@@ -39,6 +39,10 @@ retrieve_video:
     defaults: { _controller: "AppBundle:Default:retrieveVideo" }
     
 
+proyecto-imagenes:
+    path:     /proyecto/imagenes.html
+    defaults: { _controller: "AppBundle:Default:estaciones" }
+    
 site_images:
     path:     /imagenes.html
     defaults: { _controller: "AppBundle:Default:images" }    

@@ -1,0 +1,30 @@
+admin_estacion:
+    path:     /
+    defaults: { _controller: "AppBundle:Estacion:index" }
+
+admin_estacion_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:Estacion:show" }
+
+admin_estacion_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Estacion:new" }
+
+admin_estacion_create:
+    path:     /create
+    defaults: { _controller: "AppBundle:Estacion:create" }
+    methods:  POST
+
+admin_estacion_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:Estacion:edit" }
+
+admin_estacion_update:
+    path:     /{id}/update
+    defaults: { _controller: "AppBundle:Estacion:update" }
+    methods:  [POST, PUT]
+
+admin_estacion_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:Estacion:delete" }
+    methods:  [POST, DELETE]
