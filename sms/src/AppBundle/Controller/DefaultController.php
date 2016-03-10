@@ -96,6 +96,13 @@ class DefaultController extends Controller
       return $categories;
     }
     
+    private function retrieveEstaciones($em)
+    {
+      $estaciones = $em->createQuery('select e from AppBundle:Estacion e order by e.position asc')->getResult();
+      return $estaciones;
+    }
+    
+    
     private function retrieveArticleTags($em)
     {
       $tags = $em->createQuery('select at from AppBundle:ArticleTag at')->getResult();
@@ -215,8 +222,34 @@ class DefaultController extends Controller
     
     public function estacionesAction(Request $request)
     {
+      $em = $this->getDoctrine()->getManager();
+      $dbEstaciones = $this->retrieveEstaciones($em);
+      $estacionesClasses = array(
+          0 => '',
+          1 => 'second',
+          2 => 'tird',
+          3 => 'a',
+          4 => 'b',
+      );
+      $estaciones = array();
+      $counter = 0;
+      foreach($dbEstaciones as $estacion)
+      {
+        $liClass = 'col-sm-6 pull-right padding-left-100 margin-bottom-30';
+        if($counter % 2 != 0)
+        {
+          $liClass = 'col-sm-6 pull-left text-right padding-right-100';
+        }
+        $estaciones[] = array(
+            'class' => $estacionesClasses[$counter],
+            'liClass' => $liClass,
+            'estacion' => $estacion,
+        );
+        $counter++;
+      }
       return $this->render('AppBundle:default:estaciones.html.twig', array(
             'activemenu' => 'sistema',
+            'estaciones' => $estaciones,
         ));
     }
     
@@ -289,18 +322,22 @@ class DefaultController extends Controller
     
     public function imagesAction(Request $request)
     {
-      
-      $images = array(
-         0 => $this->getLastImage(0),  
-         1 => $this->getLastImage(1),  
-         2 => $this->getLastImage(2),  
-         3 => $this->getLastImage(3),  
-         4 => $this->getLastImage(4),  
-      );
+      $em = $this->getDoctrine()->getManager();
+      $dbEstaciones = $this->retrieveEstaciones($em);
+      $estaciones = array();
+      foreach($dbEstaciones as $estacion)
+      {
+        $estaciones[] = array(
+            //'position' => $estacion->getPosition(),
+            'image' => $this->getLastImage($estacion->getPosition()),
+            'estacion' => $estacion,
+        );
+      }
       return $this->render('AppBundle:default:imagenes.html.twig', array(
             'activemenu' => 'imagenes',
-            'images' => $images,
-            'video' => $this->createVideo(),
+            'estaciones' => $estaciones,
+            
+            //'video' => $this->createVideo(),
         ));
     }
     

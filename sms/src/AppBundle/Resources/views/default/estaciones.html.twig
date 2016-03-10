@@ -26,7 +26,16 @@
                 
                 <!-- Services -->
                 <div class="time-line"> 
-                    {% trans %}estaciones_timeline_content{% endtrans %}
+                    {% for estacionData in estaciones %}
+                    <ul class="row {{ estacionData['class'] }}">
+                      <li class="{{ estacionData['liClass'] }}">
+                        <h4>{{ estacionData['estacion'].name }}</h4>
+                        <p><strong>{{ estacionData['estacion'].location }}</strong></p>
+                      </li>
+                    </ul>
+                    {% endfor %}
+                    <div class="clearfix"></div>
+                    {#% trans %}estaciones_timeline_content{% endtrans %#}
                     <div class="clearfix"></div>
 
 
