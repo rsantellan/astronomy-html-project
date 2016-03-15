@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 use AppBundle\Entity\Article;
 use AppBundle\Form\ContactType;
+use AppBundle\Form\NewsletterType;
 
 class DefaultController extends Controller
 {
@@ -45,12 +46,39 @@ class DefaultController extends Controller
             
         ));
     }
-    
+
     public function newsletterFormAction(Request $request)
     {
+        $form = $this->createForm(new NewsletterType());
         return $this->render('AppBundle:default:_newsletterForm.html.twig', array(
-            
+            'form' => $form->createView(),
         ));
+    }
+    
+    public function saveNewsletterAction(Request $request)
+    {
+        $form = $this->createForm(new NewsletterType());
+        $form->handleRequest($request);
+        $result = false;
+        $formView = false;
+        if ($form->isValid()) {
+          $message = \Swift_Message::newInstance()
+                    ->setSubject('[SMS] Usuario agregado al newsletter')
+                    ->setFrom(array('info@sns.com.uy' => 'SNS'))
+                    ->setReplyTo($form->get('email')->getData())
+                    ->setTo('rsantellan@gmail.com')
+                    ->setBody('Se agrego al newsletter');
+
+          $this->get('mailer')->send($message);
+          $result = true;
+        }else{
+          $formView = $this->renderView('AppBundle:default:_newsletterForm.html.twig', array(
+            'form' => $form->createView(),
+        ));
+        }
+        $response = new JsonResponse();
+        $response->setData(array('result' => $result, 'html' => $formView));
+        return $response;
     }
     
     private function retrieveRecentArticles()

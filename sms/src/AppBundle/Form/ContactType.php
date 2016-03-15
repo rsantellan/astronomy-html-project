@@ -74,31 +74,7 @@ class ContactType extends AbstractType{
         ));
       
     }
-    /*
-    public function setDefaultOptions(OptionsResolverInterface $resolver) {
-        $collectionConstraint = new Collection(array(
-            'name' => array(
-                new NotBlank(array('message' => 'El nombre no puede estar vacio')),
-                new Length(array('min' => 2))
-            ),
-            'email' => array(
-                new NotBlank(array('message' => 'El E-Mail no puede estar vacio')),
-                new Email(array('message' => 'Invalid email address.'))
-            ),
-            'phone' => array(
 
-            ),
-            'message' => array(
-                new NotBlank(array('message' => 'El mensaje no puede estar vacio')),
-                new Length(array('min' => 5))
-            )
-        ));
-
-        $resolver->setDefaults(array(
-            'constraints' => $collectionConstraint
-        ));
-    }
-    */
     public function getName()
     {
         return 'appbundle_contacttype';

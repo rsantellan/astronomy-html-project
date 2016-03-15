@@ -1,5 +1,5 @@
 <!-- News Letter -->
-<div class="container">
+<div class="container" id="newsletterformContainer">
     <section class="news-letter">
         <div class="row">
             <div class="col-md-6">
@@ -7,8 +7,15 @@
                 <p>Mantenerse informado sobre el proyecto</p>
             </div>
             <div class="col-md-6">
-                <form>      <input type="email" class="z-depth-1" placeholder="Dirección de mail" required>
+              <div class="" style='display: none' id='newsletterformMessage'>
+                <h5>Gracias por suscribirse al newsletter</h5>
+              </div>
+                <form action="{{ path('sendnewsletter')}}" method="POST" onsubmit="return sendNewsletterFormData(this);" id="newsletterform">      
+                    {{ form_errors(form.email) }}
+                    {{ form_widget(form.email, {'attr' : {'class' : 'z-depth-1', 'placeholder' : "Dirección de mail" }}) }}
+                    {# <input type="email" class="z-depth-1" placeholder="Dirección de mail" required> #}
                     <button type="submit" class="btn waves-effect waves-light">suscribirme</button>
+                    {{ form_rest(form) }}
                 </form>
             </div>
         </div>

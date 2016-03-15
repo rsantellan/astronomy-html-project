@@ -46,3 +46,8 @@ proyecto-imagenes:
 site_images:
     path:     /imagenes.html
     defaults: { _controller: "AppBundle:Default:images" }    
+    
+sendnewsletter:
+    path:     /send-newsletter
+    defaults: { _controller: "AppBundle:Default:saveNewsletter" }    
+    methods:  POST
