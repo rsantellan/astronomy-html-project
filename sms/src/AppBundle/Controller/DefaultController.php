@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 use AppBundle\Entity\Article;
+use AppBundle\Entity\NewsletterEmail;
 use AppBundle\Form\ContactType;
 use AppBundle\Form\NewsletterType;
 
@@ -57,11 +58,17 @@ class DefaultController extends Controller
     
     public function saveNewsletterAction(Request $request)
     {
-        $form = $this->createForm(new NewsletterType());
+        $entity = new NewsletterEmail();
+        $form = $this->createForm(new NewsletterType($entity));
         $form->handleRequest($request);
         $result = false;
         $formView = false;
         if ($form->isValid()) {
+          $data = $form->getData();
+          $entity->setEmail($data->getEmail());
+          $em = $this->getDoctrine()->getManager();
+          $em->persist($entity);
+          $em->flush();
           $message = \Swift_Message::newInstance()
                     ->setSubject('[SMS] Usuario agregado al newsletter')
                     ->setFrom(array('info@sns.com.uy' => 'SNS'))

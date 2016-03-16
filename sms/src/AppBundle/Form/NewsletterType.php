@@ -39,9 +39,20 @@ class NewsletterType extends AbstractType{
         ));
 
         $resolver->setDefaults(array(
-            'constraints' => $collectionConstraint
+            'constraints' => $collectionConstraint,
+            
         ));
       
+    }
+
+    /**
+     * @param OptionsResolverInterface $resolver
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => 'AppBundle\Entity\NewsletterEmail'
+        ));
     }
 
     public function getName()
