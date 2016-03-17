@@ -11,6 +11,7 @@ use AppBundle\Entity\Article;
 use AppBundle\Entity\NewsletterEmail;
 use AppBundle\Form\ContactType;
 use AppBundle\Form\NewsletterType;
+use Alchemy\Zippy\Zippy;
 
 class DefaultController extends Controller
 {
@@ -137,6 +138,11 @@ class DefaultController extends Controller
       return $estaciones;
     }
     
+    private function retrieveEstacion($em, $estacionId)
+    {
+      $estacion = $em->createQuery('select e from AppBundle:Estacion e where e.id = :id')->setParameters(array('id' => $estacionId))->getOneOrNullResult();
+      return $estacion;
+    }
     
     private function retrieveArticleTags($em)
     {
@@ -290,7 +296,7 @@ class DefaultController extends Controller
     
     private function createVideo($estacionId = 0)
     {
-      $completePath = $this->getNowDirectory($estacionId);
+      $completePath = $this->getDateDirectory($estacionId);
       $files  = scandir($completePath, SCANDIR_SORT_DESCENDING);
       $now = new \DateTime();
       $video_path = sys_get_temp_dir().DIRECTORY_SEPARATOR.$estacionId.$now->format('Y-m-d-H-i').DIRECTORY_SEPARATOR;
@@ -322,27 +328,46 @@ class DefaultController extends Controller
         $counter ++;
       }
       $cmd = $this->container->getParameter('ffmpeg_location').' -framerate 1 -i '.$video_path.'img-%03d.jpg -c:v libx264 -r 30 -pix_fmt yuv420p '.$video_path.self::VIDEONAME;
-      var_dump($cmd);
+      //var_dump($cmd);
       //$cmd = 'ffmpeg -framerate 1/1 -i '.$video_path.'img-%03d.jpg -r 30 '.$video_path.'video.avi';
       $return = exec($cmd);
 
       return $video_path.$video_path.self::VIDEONAME;
     }
     
-    private function getNowDirectory($estacionId)
+    private function getDateDirectory($estacionId, $datestring = null, $subFolder = 'Images')
     {
       $path = $this->container->getParameter('images_files');
       // Get today folder
-      $now = new \DateTime();
-      $completePath = $path.'Images'.DIRECTORY_SEPARATOR.$estacionId.DIRECTORY_SEPARATOR.$now->format('Y/m/d');
+      if($datestring == null)
+      {
+        $now = new \DateTime();
+        $datestring = $now->format('Y/m/d');
+      }
+      
+      $completePath = $path.$subFolder.DIRECTORY_SEPARATOR.$estacionId.DIRECTORY_SEPARATOR.$datestring;
       
       $completePath = '/home/rodrigo/sns/Images/4/2016/12/08/';
+      $completePath = '/home/rodrigo/sns/'.$subFolder.'/0/2015/09/04/';
       return $completePath;
+    }
+    
+    private function getOutputImagesForStation($estacionPosition)
+    {
+      $path = $this->container->getParameter('images_files').'Output'.DIRECTORY_SEPARATOR;
+      $images = array(
+          'Decision' => $path.$estacionPosition.'_Decision.jpg',
+          'DecisionPrev' => $path.$estacionPosition.'_DecisionPrevious.jpg',
+          'Prediction180' => $path.$estacionPosition.'_prediction180.tif',
+          'Prediction300' => $path.$estacionPosition.'_prediction300.tif',
+          'Prediction600' => $path.$estacionPosition.'_prediction600.tif',
+      );
+      return $images;
     }
     
     private function getLastImage($estacionId)
     {
-      $completePath = $this->getNowDirectory($estacionId);
+      $completePath = $this->getDateDirectory($estacionId);
       $files  = scandir($completePath, SCANDIR_SORT_DESCENDING);
       if(count($files) > 2)
       {
@@ -363,7 +388,6 @@ class DefaultController extends Controller
       foreach($dbEstaciones as $estacion)
       {
         $estaciones[] = array(
-            //'position' => $estacion->getPosition(),
             'image' => $this->getLastImage($estacion->getPosition()),
             'estacion' => $estacion,
         );
@@ -371,9 +395,118 @@ class DefaultController extends Controller
       return $this->render('AppBundle:default:imagenes.html.twig', array(
             'activemenu' => 'imagenes',
             'estaciones' => $estaciones,
-            
-            //'video' => $this->createVideo(),
         ));
+    }
+    
+    public function proyectoImagesAction(Request $request)
+    {
+      $em = $this->getDoctrine()->getManager();
+      $dbEstaciones = $this->retrieveEstaciones($em);
+      $estaciones = array();
+      foreach($dbEstaciones as $estacion)
+      {
+        $estaciones[] = array(
+            'image' => $this->getLastImage($estacion->getPosition()),
+            'estacion' => $estacion,
+        );
+      }
+      return $this->render('AppBundle:default:proyectoImagenes.html.twig', array(
+            'activemenu' => 'imagenes',
+            'estaciones' => $estaciones,
+        ));
+    }
+
+    public function proyectoEstacionAction(Request $request, $estacionId)
+    {
+      $em = $this->getDoctrine()->getManager();
+      $estacion = $this->retrieveEstacion($em, $estacionId);
+      return $this->render('AppBundle:default:estacion.html.twig', array(
+            'activemenu' => 'imagenes',
+            'estacion' => $estacion,
+            'images' => $this->getOutputImagesForStation($estacion->getPosition()),
+      ));
+    }
+    
+    public function proyectoEstacionDescargarArchivoAction(Request $request, $estacionId)
+    {
+      $em = $this->getDoctrine()->getManager();
+      $estacion = $this->retrieveEstacion($em, $estacionId);
+      $now = new \DateTime();
+      $date = $request->get('date', $now->format('Y-m-d'));
+      $usedDate = \DateTime::createFromFormat('Y-m-d', $date);
+      if(!$usedDate)
+      {
+        $usedDate = $now;
+      }
+      $completePath = $this->getDateDirectory($estacion->getPosition(), $usedDate->format('Y/m/d'), 'Output');
+      $fileName = $usedDate->format('Y-m-d').'.txt';
+      $fileName = '2015-09-04.txt';
+      if(file_exists($completePath.$fileName))
+      {
+        $response = new Response();
+        $response->headers->set('Content-Type', 'text/plain');
+        $response->headers->set('Content-Disposition', 'attachment;filename="'.$fileName);
+
+        $response->setContent(file_get_contents($completePath.$fileName));
+        return $response;
+      }
+      $this->get('session')->getFlashBag()->add('notif-error', 'El archivo no existe para ese día.');
+      return $this->redirect($this->generateUrl('proyecto-estacion', array('estacionId' => $estacionId)));
+    }
+    
+    public function proyectoEstacionDescargarImagenesAction(Request $request, $estacionId)
+    {
+      $em = $this->getDoctrine()->getManager();
+      $estacion = $this->retrieveEstacion($em, $estacionId);
+      $now = new \DateTime();
+      $date = $request->get('date', $now->format('Y-m-d'));
+      $usedDate = \DateTime::createFromFormat('Y-m-d', $date);
+      if(!$usedDate)
+      {
+        $usedDate = $now;
+      }
+      $time = $request->get('usr_time', $now->format('H:i'));
+      if($time == '')
+      {
+        $time = $now->format('H:i');
+      }
+      $auxTime = explode(':', $time);
+      $usedDate->setTime($auxTime[0], $auxTime[1]);
+      
+      
+      $completePath = $this->getDateDirectory($estacion->getPosition(), $usedDate->format('Y/m/d'));
+      //var_dump($completePath);
+      $files  = scandir($completePath, SCANDIR_SORT_DESCENDING);
+      $regex = $usedDate->format('Y-m-d H');
+      // @TODO Comentar
+      $regex = '2015-09-04-11';
+      $zipFiles = array();
+      foreach($files as $file)
+      {
+        if(substr_count($file, $regex))
+        {
+          $zipFiles[] = $completePath.$file;
+        }
+      }
+      $zippy = Zippy::load();
+      // creates
+      $zipBaseName = 'images-'.$regex.'.zip';
+      $zipName = sys_get_temp_dir().DIRECTORY_SEPARATOR.$zipBaseName;
+      try{
+        $zippy->create($zipName, $zipFiles);
+      } catch (\Exception $ex) {
+
+        $this->get('session')->getFlashBag()->add('notif-error', $ex->getMessage());
+        return $this->redirect($this->generateUrl('proyecto-estacion', array('estacionId' => $estacionId)));
+      }
+      
+      
+      $response = new Response();
+      $response->headers->set('Content-Type', 'application/zip');
+      $response->headers->set('Content-Disposition', 'attachment;filename="'.$zipBaseName);
+
+      $response->setContent(file_get_contents($zipName));
+      return $response;
     }
     
     public function retrieveVideoAction(Request $request, $estacionId)

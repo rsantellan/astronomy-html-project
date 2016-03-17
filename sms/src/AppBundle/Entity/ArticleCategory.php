@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ArticleCategory
  *
- * @ORM\Table(name="sms_article_category")
+ * @ORM\Table(name="sns_article_category")
  * @ORM\Entity
  */
 class ArticleCategory

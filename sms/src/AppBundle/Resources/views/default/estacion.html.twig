@@ -1,0 +1,223 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block body %}
+    <!--======= SUB BANNER =========-->
+    <section class="sub-banner bg-parallax" style="background:url({{ asset('images/sg.jpg') }}) no-repeat">
+        <div class="container">
+            <div class="position-center-center">
+                <h1>{% trans %}proyecto_estacion_titulo{% endtrans %}{{ estacion.position}} - {{ estacion.name }}</h1>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <div id="content"> 
+
+        <!-- PORTFOLIO -->
+        <section class="portfolio port-wrap padding-bottom-40 padding-top-40">
+            <div class="container"> 
+
+
+
+                <section class="welcome padding-top-0 padding-bottom-10 ">
+                    <div class="container"> 
+                        <!-- HEADING BLOCK -->
+                        <div class="heading-block text-center margin-bottom-10">
+                            <h4>Nubosidad</h4>
+                            <hr>
+                            <span class=" margin-top-20">HLU: 11:15:02</br>
+                                FN: 44 %</br>
+                                SP: 1.00</span>
+
+
+
+                        </div>
+
+                    </div>
+                </section>
+
+
+                <p style="text-align:center">  
+                    <img align="middle" src="{{ images['DecisionPrev'] | mImage(567, 400, 'o') }}" width="400px" />   
+                    <img align="middle" src="{{ images['Decision'] | mImage(567, 400, 'o') }}" width="400px" />    
+                </p>
+
+
+
+            </div>
+
+
+
+    </div>
+
+</section>
+
+
+
+
+
+<section class="welcome padding-top-0 padding-bottom-60 ">
+    <div class="container"> 
+        <!-- HEADING BLOCK -->
+        <div class="heading-block text-center margin-bottom-10">
+            <h4>Desplazamiento</h4>
+            <hr>
+            <span class=" margin-top-20">
+                vN: 2.3 m/s (8.3 km/h).</br>
+                vE: -2.1 m/s (7.6 km/h).</br>
+                |v|: 3.1 m/s (11 km/h).</span>
+
+
+
+        </div>
+        <p style="text-align:center">  <img align="middle" src="images/foto1.jpg" width="400px" >    </p>
+
+
+    </div>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+
+<section class="welcome padding-top-0 padding-bottom-60 ">
+    <div class="container"> 
+        <!-- HEADING BLOCK -->
+        <div class="heading-block text-center margin-bottom-10">
+            <h4>Predicción posición futura de nubes</h4>
+            <hr>   <span class=" margin-top-20 padding-bottom-40">Estación 0</span>
+
+            <!-- PORTFOLIO ITEMS -->
+            <div class="items row col-4 with-space"> 
+
+                <!-- ITEM -->
+                <article class="portfolio-item"> 
+                    <div class="portfolio-image">
+                        <img class="img-responsive" alt="Ver Imagen SNS" src="{{ images['Prediction180'] | mImage(567, 400, 'o') }}" />  
+                    </div>
+                    <p>Predicción de mapa de nubes a 3 min</br>
+                        (imagen “X_prediction180.jpg”)
+                    </p>  
+                </article>
+
+
+                <article class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img class="img-responsive" alt="Ver Imagen SNS" src="{{ images['Prediction300'] | mImage(567, 400, 'o') }}" />  
+                    </div>
+                    <p> Predicción de mapa de nubes a 5 min</br>(imagen “X_prediction300.jpg”)</p>  
+                </article>
+
+                <article class="portfolio-item"> 
+                    <div class="portfolio-image">
+                        <img class="img-responsive" alt="Ver Imagen SNS" src="{{ images['Prediction600'] | mImage(567, 400, 'o') }}" />  
+                    </div>
+                    <p>Predicción de mapa de nubes a 10 min</br>(imagen “X_prediction300.jpg”)</p>  
+                </article>
+
+
+
+            </div>
+        </div>
+</section>
+
+
+
+
+
+
+
+
+<section class="welcome padding-top-50 padding-bottom-30 ">
+    <div class="container"> 
+        <!-- HEADING BLOCK -->
+        <div class="heading-block text-center margin-bottom-80">
+            <h3>Paquete de Imágenes Estación 0</h3>
+            <hr>
+            <span class=" margin-top-20">Descargar un paquete de fotos de un día y hora seleccionada (formato zip o rar)</span>
+
+            </br></br>
+
+            <div class="contact-right"> 
+
+
+                <!-- FORM -->
+                <form role="form" id="contact_form" class="contact-form" method="post" action="{{ path('download-estacion-image-pack', {'estacionId' : estacion.id})}}" >
+
+                    <ul class="row"> 
+                        <li class="col-sm-4"><input type="date" name="date" /></li>
+                        <li class="col-sm-4"><input type="time" name="usr_time" /></li>   
+                        <li class="col-sm-4"> <button type="submit" class="btn" value="submit" id="btn_submit">Descargar</button> </li>
+                        {% if app.session.flashbag.has('notif-error') %}
+                            {% for flashmessage in app.session.flashbag.get('notif-error') %}
+                                {{ flashmessage}}
+                              {% endfor %}
+                        {% endif %}
+                    </ul>
+                </form>
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+
+
+
+
+<section class="welcome padding-top-0 padding-bottom-30 ">
+    <div class="container"> 
+        <!-- HEADING BLOCK -->
+        <div class="heading-block text-center margin-bottom-80">
+            <h3>Datos Estación 0</h3>
+            <hr>
+            <span class=" margin-top-20">Descargar los datos de un día seleccionado (Formato TXT) </span>
+            <p>Fila 1 hora, minuto y segundo de la imágen - Fila 2 parámetro sp - Fila 3 altura de base CBH - Fila 4 porcentaje de nubosidad CF - Fila 5 velocidad norte del viento |vn| - Fila 6 velocidad este del viento |ve| - Fila 7 magnitud de la velocidad del viento |v|         </p>
+
+
+
+
+            </br></br>
+
+            <div class="contact-right"> 
+
+
+                <!-- FORM -->
+                <form role="form" id="contact_form" class="contact-form" method="post" action="{{ path('download-estacion-files', {'estacionId' : estacion.id})}}">
+                    <ul class="row"> 
+                        <li class="col-sm-4"><input type="date" name="date"></li>
+                        <li class="col-sm-4"> <button type="submit" class="btn" value="submit" id="btn_submit">Descargar</button> </li>
+                    </ul>
+                </form>
+
+
+
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+</section>
+
+<!-- News Letter -->
+{{ render(controller('AppBundle:Default:newsletterForm')) }}
+</div>
+<!-- End Content --> 
+
+
+{% endblock %}

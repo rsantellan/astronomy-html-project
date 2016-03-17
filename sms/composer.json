@@ -44,6 +44,7 @@
         "genemu/form-bundle": "2.2.*",
         "ircmaxell/password-compat": "1.*",
         "imagine/Imagine": "dev-master",
+        "alchemy/zippy" : "0.3.5",
         "Maith/Common/AdminBundle": "dev-master",
         "Maith/Common/ImageBundle": "dev-master",
         "Maith/Common/TranslatorBundle": "dev-master",

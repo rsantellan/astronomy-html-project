@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * NewsletterEmail
  *
- * @ORM\Table(name="newsletter_email")
+ * @ORM\Table(name="sns_newsletter_email")
  * @ORM\Entity
  */
 class NewsletterEmail

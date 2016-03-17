@@ -8,7 +8,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * Integrante
  *
- * @ORM\Table(name="sms_integrante")
+ * @ORM\Table(name="sns_integrante")
  * @ORM\Entity
  */
 class Integrante

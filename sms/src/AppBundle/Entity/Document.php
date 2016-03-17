@@ -8,7 +8,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * Document
  *
- * @ORM\Table(name="sms_document")
+ * @ORM\Table(name="sns_document")
  * @ORM\Entity
  */
 class Document

@@ -41,7 +41,19 @@ retrieve_video:
 
 proyecto-imagenes:
     path:     /proyecto/imagenes.html
-    defaults: { _controller: "AppBundle:Default:estaciones" }
+    defaults: { _controller: "AppBundle:Default:proyectoImages" }
+
+proyecto-estacion:
+    path:     /proyecto/{estacionId}/estacion.html
+    defaults: { _controller: "AppBundle:Default:proyectoEstacion" }
+
+download-estacion-image-pack:
+    path:     /proyecto/{estacionId}/descargar
+    defaults: { _controller: "AppBundle:Default:proyectoEstacionDescargarImagenes" }
+
+download-estacion-files:
+    path:     /proyecto/{estacionId}/file/descargar
+    defaults: { _controller: "AppBundle:Default:proyectoEstacionDescargarArchivo" }
     
 site_images:
     path:     /imagenes.html

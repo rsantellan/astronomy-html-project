@@ -8,7 +8,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * Article
  *
- * @ORM\Table(name="sms_article")
+ * @ORM\Table(name="sns_article")
  * @ORM\Entity
  */
 class Article

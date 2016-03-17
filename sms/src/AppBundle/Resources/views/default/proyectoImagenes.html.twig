@@ -1,0 +1,54 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block body %}
+  <!--======= SUB BANNER =========-->
+  <section class="sub-banner bg-parallax" style="background:url({{ asset('images/sg.jpg') }}) no-repeat">
+    <div class="container">
+      <div class="position-center-center">
+        <h1>Imágenes y videos</h1>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Content -->
+  <div id="content"> 
+
+
+
+
+    <!-- PORTFOLIO -->
+    <section class="portfolio port-wrap padding-bottom-100 padding-top-100">
+      <div class="container"> 
+        <!-- HEADING BLOCK -->
+        <div class="heading-block text-center margin-bottom-80">
+          <h3 class=" no-margin">Datos</h3>
+          <hr>
+          <span class=" margin-top-20">Para acceder a la información de la estación haga clic en la misma.</span> </div>
+
+        <!-- PORTFOLIO ITEMS -->
+        <div class="items row col-5 with-space"> 
+          {% for estacionData in estaciones %}
+          <!-- ITEM -->
+          <article class="portfolio-item pf-web-design">
+            <div class="portfolio-image"> <img class="img-responsive" alt="Ver Imagen SNS" src="{{ estacionData['image'] | mImage(567, 377, 'o') }}"> 
+              <a href="{{ path('proyecto-estacion', {'estacionId' : estacionData['estacion'].id })}}" data-rel="prettyPhoto" class="prettyPhoto lightzoom zoom"><i class="ion-ios-search"></i></a>
+              <div class="portfolio-overlay style-2">
+                <div class="detail-info">
+                  <h3><a href="{{ path('proyecto-estacion', {'estacionId' : estacionData['estacion'].id })}}">Estación {{ estacionData['estacion'].position }}</a></h3>
+                  <span><a href="{{ path('proyecto-estacion', {'estacionId' : estacionData['estacion'].id })}}">{{ estacionData['estacion'].name }}</a></span> </div>
+              </div>
+            </div>
+          </article>
+          {% endfor %}
+
+
+        </div>
+      </div>
+    </section>
+
+    <!-- News Letter -->
+    {{ render(controller('AppBundle:Default:newsletterForm')) }}
+  </div>
+  <!-- End Content -->   
+{% endblock %}
