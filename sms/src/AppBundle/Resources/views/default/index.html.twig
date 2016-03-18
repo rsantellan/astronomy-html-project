@@ -52,7 +52,7 @@
                                  data-elementdelay="0.1" 
                                  data-endelementdelay="0.1" 
                                  data-endspeed="300" 
-                                 style="z-index: 6; white-space: normal;"><a href="acerca.html" class="btn btn-med btn-color">VER PROYECTO</a> </div>
+                                 style="z-index: 6; white-space: normal;"><a href="{{ path('about') }}" class="btn btn-med btn-color">VER PROYECTO</a> </div>
                         </li>
 
                         <!-- SLIDE  -->
@@ -101,7 +101,7 @@
                                  data-elementdelay="0.1" 
                                  data-endelementdelay="0.1" 
                                  data-endspeed="300" 
-                                 style="z-index: 6; white-space: normal;"><a href="prototipo.html" class="btn btn-med btn-color">VER SISTEMA</a> </div>
+                                 style="z-index: 6; white-space: normal;"><a href="{{ path('prototipo') }}" class="btn btn-med btn-color">VER SISTEMA</a> </div>
                         </li>
                     </ul>
                 </div>
@@ -120,7 +120,7 @@
                         <hr>
                         <span class=" margin-top-20">La variabilidad del recurso solar en el corto plazo y a nivel local, debido a la influencia de la nubosidad, significa un gran desafío para el operador de una red eléctrica con relativa participación de energía solar fotovoltaica. Por ello, se vuelve necesario el desarrollo de sistemas capaces de realizar predicciones de corto plazo del input solar.  
 
-                            </br> </br>  El presente proyecto implica el diseño y construcción de un<a href="prototipo.html"> sistema</a> de pronóstico infrahorario (nowcasting) de irradiancia solar basado en cámaras todo cielo, el cual estima el campo de velocidad actual de nubes y predice la irradiancia solar global con un horizonte temporal de entre 3 y 20 minutos aproximadamente, dependiendo de la velocidad y altura de base de nubes. </span>
+                            </br> </br>  El presente proyecto implica el diseño y construcción de un<a href="{{ path('prototipo') }}"> sistema</a> de pronóstico infrahorario (nowcasting) de irradiancia solar basado en cámaras todo cielo, el cual estima el campo de velocidad actual de nubes y predice la irradiancia solar global con un horizonte temporal de entre 3 y 20 minutos aproximadamente, dependiendo de la velocidad y altura de base de nubes. </span>
 
 
 
@@ -135,7 +135,7 @@
                         <div class="col-md-7">
                             <h3 class="text-white text-uppercase no-margin">Desea probar SNS? </h3>
                         </div>
-                        <div class="col-md-5 text-center"> <a href="imagenes.html" class="waves-effect waves-light btn  btn-white margin-right-20">ver imágenes</a> <a href="contacto.html" class="waves-effect btn btn-blue margin-left-20">contactanos</a> </div>
+                        <div class="col-md-5 text-center"> <a href="{{ path('site_images') }}" class="waves-effect waves-light btn  btn-white margin-right-20">ver imágenes</a> <a href="{{ path('contacto') }}" class="waves-effect btn btn-blue margin-left-20">contactanos</a> </div>
                     </div>
                 </div>
             </section>
@@ -197,7 +197,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="col-md-5"> <img class="img-responsive" src="images/intro-tabs.png" alt="" > </div>
+                        <div class="col-md-5"> <img class="img-responsive" src="{{ asset('images/intro-tabs.png') }}" alt="" > </div>
                     </div>
             </div>
             
@@ -227,7 +227,7 @@
                                             <p>Está conformado por una cámara Canon EOS 60D y una lente Sigma Fisheye. </p>
                                         </div>
                                         <div class="media-right">
-                                            <div class="icon"> <img src="images/list-icon-1.png" alt=""></div>
+                                            <div class="icon"> <img src="{{ asset('images/list-icon-1.png') }}" alt=""></div>
                                         </div>
                                     </div>
                                 </li>
@@ -239,7 +239,7 @@
                                             </p>
                                         </div>
                                         <div class="media-right">
-                                            <div class="icon"> <img src="images/list-icon-2.png" alt=""></div>
+                                            <div class="icon"> <img src="{{ asset('images/list-icon-2.png') }}" alt=""></div>
                                         </div>
                                     </div>
                                 </li>
@@ -250,7 +250,7 @@
                                             <p>Modem de Banda Ancha Móvil (BAM) conectado a la red 3G de Antel, y una antena exterior Yagi de 12 dBd de ganancia. </p>
                                         </div>
                                         <div class="media-right">
-                                            <div class="icon"> <img src="images/list-icon-3.png" alt=""></div>
+                                            <div class="icon"> <img src="{{ asset('images/list-icon-3.png') }}" alt=""></div>
                                         </div>
                                     </div>
                                 </li>
@@ -258,7 +258,7 @@
                         </div>
 
                         <!-- LIST IMAGE -->
-                        <div class="col-md-4 text-center no-padding"> <img class="img-responsive" src="images/prototipo.png" alt=""> </div>
+                        <div class="col-md-4 text-center no-padding"> <img class="img-responsive" src="{{ asset('images/prototipo.png') }}" alt=""> </div>
 
                         <!-- LIST ICON RIGHT -->
                         <div class="col-md-4">
@@ -266,7 +266,7 @@
                                 <li>
                                     <div class="media">
                                         <div class="media-left">
-                                            <div class="icon"> <img src="images/list-icon-4.png" alt=""> </div>
+                                            <div class="icon"> <img src="{{ asset('images/list-icon-4.png') }}" alt=""> </div>
                                         </div>
                                         <div class="media-body">
                                             <h4>Monitoreo y control</h4>
@@ -277,7 +277,7 @@
                                 <li>
                                     <div class="media">
                                         <div class="media-left">
-                                            <div class="icon"> <img src="images/list-icon-5.png" alt=""> </div>
+                                            <div class="icon"> <img src="{{ asset('images/list-icon-5.png') }}" alt=""> </div>
                                         </div>
                                         <div class="media-body">
                                             <h4>Sensores</h4>
@@ -289,7 +289,7 @@
                                 <li>
                                     <div class="media">
                                         <div class="media-left">
-                                            <div class="icon"> <img src="images/list-icon-6.png" alt=""> </div>
+                                            <div class="icon"> <img src="{{ asset('images/list-icon-6.png') }}" alt=""> </div>
                                         </div>
                                         <div class="media-body">
                                             <h4>Software</h4>
@@ -317,76 +317,20 @@
 
                 <!-- PORTFOLIO ITEMS -->
                 <div class="items row col-5"> 
-
+                    {% for estacion in estaciones %}
                     <!-- ITEM -->
-                    <article class="portfolio-item pf-web-design">
-                        <div class="portfolio-image"> <a href="imagenes.html"> <img class="img-responsive" alt="Estaciones" src="images/portfolio/img-1.jpg"> </a>
+                    <article class="{{ estacion['class'] }}">
+                        <div class="portfolio-image"> <a href="{{ path('site_images') }}"> <img class="img-responsive" alt="Estaciones" src="{{ asset('images/portfolio/img-'~ loop.index ~ '.jpg') }}"> </a>
                             <div class="portfolio-overlay style-2">
                                 <div class="detail-info">
-                                    <h3><a href="imagenes.html">LES</a></h3>
-                                    <span><a href="imagenes.html">Ver Imagenes</a></span> </div>
+                                    <h3><a href="{{ path('site_images') }}">{{ estacion['estacion'].name }}</a></h3>
+                                    <span><a href="{{ path('site_images') }}">Ver Imagenes</a></span> </div>
                             </div>
                         </div>
                     </article>
-
-                    <!-- ITEM -->
-                    <article class="portfolio-item pf-photography pf-branding-design">
-                        <div class="portfolio-image"> <a href="imagenes.html"> <img class="img-responsive" alt="Estaciones" src="images/portfolio/img-2.jpg"> </a>
-                            <div class="portfolio-overlay style-2">
-                                <div class="detail-info">
-                                    <h3><a href="imagenes.html">Escuela 70 “Salto Grande”</a></h3>
-                                    <span><a href="imagenes.html">Ver Imagenes</a></span> </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- ITEM -->
-                    <article class="portfolio-item pf-web-design pf-branding-design">
-                        <div class="portfolio-image"> <a href="#."> <img class="img-responsive" alt="Estaciones" src="images/portfolio/img-3.jpg"> </a>
-                            <div class="portfolio-overlay style-2">
-                                <div class="detail-info">
-                                    <h3><a href="imagenes.html">Escuela 91”Portugal”</a></h3>
-                                    <span><a href="imagenes.html">Ver Imagenes</a></span> </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- ITEM -->
-                    <article class="portfolio-item pf-web-design pf-digital-art ">
-                        <div class="portfolio-image"> <a href="#."> <img class="img-responsive" alt="Estaciones" src="images/portfolio/img-4.jpg"> </a>
-                            <div class="portfolio-overlay style-2">
-                                <div class="detail-info">
-                                    <h3><a href="imagenes.html">Escuela 26 “Osimani Llerena”</a></h3>
-                                    <span><a href="imagenes.html">Ver Imagenes</a></span> </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- ITEM -->
-                    <article class="portfolio-item pf-web-design pf-digital-art ">
-                        <div class="portfolio-image"> <a href="imagenes.html"> <img class="img-responsive" alt="Estaciones" src="images/portfolio/img-5.jpg"> </a>
-                            <div class="portfolio-overlay style-2">
-                                <div class="detail-info">
-                                    <h3><a href="imagenes.html">CTM</a></h3>
-                                    <span><a href="imagenes.html">Ver Imagenes</a></span> </div>
-                            </div>
-                        </div>
-                    </article>
-
-
-
+                    {% endfor %}
                 </div>
             </section>
-
-
-
-
-
-
-
-
-
-
             <!-- Blog -->
             {{ render(controller('AppBundle:Default:lastArticles')) }}
 

@@ -80,7 +80,7 @@
                     <nav>
                         <ul id="ownmenu" class="ownmenu">
                             <li  class="{% if (activemenu is defined) and activemenu == 'inicio' %}active{%endif%}"><a href="{{ path('homepage')}}">{% trans %}layout_menu_home{% endtrans %}</a></li>
-                            <li class="{% if (activemenu is defined) and activemenu == 'sistema' %}active{%endif%}"><a href="#">{% trans %}layout_menu_system{% endtrans %}</a>
+                            <li class="{% if (activemenu is defined) and activemenu == 'sistema' %}active{%endif%}"><a href="javascript:void(0)">{% trans %}layout_menu_system{% endtrans %}</a>
                                 <ul class="dropdown">
                                     <li><a href="{{ path('prototipo') }}">{% trans %}layout_menu_prototype{% endtrans %}</a> </li>
                                     <li><a href="{{ path('estaciones') }}">{% trans %}layout_menu_stations{% endtrans %}</a> </li>

@@ -22,9 +22,32 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $slider = $em->getRepository('AppBundle:Slider')->findOneBy(array('name' => 'inicial'));
+        $dbEstaciones = $this->retrieveEstaciones($em);
+        $estacionesClasses = array(
+            0 => 'portfolio-item pf-web-design',
+            1 => 'portfolio-item pf-photography pf-branding-design',
+            2 => 'portfolio-item pf-web-design pf-branding-design',
+            3 => 'portfolio-item pf-web-design pf-digital-art',
+            4 => 'portfolio-item pf-web-design pf-digital-art',
+        );
+        $estaciones = array();
+        $counter = 0;
+        foreach($dbEstaciones as $estacion)
+        {
+          $estaciones[] = array(
+              'class' => $estacionesClasses[$counter],
+              'estacion' => $estacion,
+          );
+          $counter++;
+          if($counter == 4)
+          {
+            $counter = 0;
+          }
+        }
         return $this->render('AppBundle:default:index.html.twig', array(
             'slider' => $slider,
             'activemenu' => 'inicio',
+            'estaciones' => $estaciones,
         ));
     }
     
