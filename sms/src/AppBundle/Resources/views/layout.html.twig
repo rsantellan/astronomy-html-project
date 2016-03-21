@@ -54,8 +54,18 @@
                         <li class="margin-right-20">
                             <p><i class="fa fa-phone margin-right-10"></i>{% trans %}layout_contact_phone{% endtrans %}</p>
                         </li>
-                        <li>
-                            <p><i class="fa fa-user margin-right-10"></i> <a href="{{ path('proyecto-imagenes')}}">{% trans %}layout_start_session{% endtrans %}</a></p>
+                        <li class="">
+                            <p><i class="fa fa-user margin-right-10"></i>
+                                {% if app.user and is_granted('IS_AUTHENTICATED_FULLY') %}
+                                    <a href="{{ path('proyecto-imagenes')}}">Ver imagenes</a>
+                                    {#
+                                    {{ app.user.username }}
+                                    <a role="menuitem" tabindex="-1" href="{{ path('fos_user_security_logout')}}">Salir</a>
+                                    #}
+                                {% else %}
+                                    <a href="{{ path('proyecto-imagenes')}}">{% trans %}layout_start_session{% endtrans %}</a>
+                                {% endif %}    
+                            </p>
                         </li>
                     </ul>
                 </div>

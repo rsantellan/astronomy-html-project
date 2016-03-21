@@ -369,9 +369,10 @@ class DefaultController extends Controller
       }
       
       $completePath = $path.$subFolder.DIRECTORY_SEPARATOR.$estacionId.DIRECTORY_SEPARATOR.$datestring;
-      
+      /*
       $completePath = '/home/rodrigo/sns/Images/4/2016/12/08/';
       $completePath = '/home/rodrigo/sns/'.$subFolder.'/0/2015/09/04/';
+      */
       return $completePath;
     }
     
@@ -379,11 +380,13 @@ class DefaultController extends Controller
     {
       $path = $this->container->getParameter('images_files').'Output'.DIRECTORY_SEPARATOR;
       $images = array(
+          'Original' => $path.$estacionPosition.'_Original.jpg',
           'Decision' => $path.$estacionPosition.'_Decision.jpg',
           'DecisionPrev' => $path.$estacionPosition.'_DecisionPrevious.jpg',
           'Prediction180' => $path.$estacionPosition.'_prediction180.tif',
           'Prediction300' => $path.$estacionPosition.'_prediction300.tif',
           'Prediction600' => $path.$estacionPosition.'_prediction600.tif',
+          'Desplazamiento' => $path.$estacionPosition.'_skymap.tif',
       );
       return $images;
     }

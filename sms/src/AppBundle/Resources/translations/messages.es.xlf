@@ -454,6 +454,54 @@
                 <hr>
                 <span class=" margin-top-20">En el LES, además de ubicarse una estación, se encuentra el servidor central que procesa las imágenes recibidas y genera la información relevante que se sube a este sitio web. </span> ]]></target>
       </trans-unit>
+      <trans-unit id="c4706e4071432a864ab0b758cbf2f835" resname="proyecto_estacion_titulo">
+        <source>proyecto_estacion_titulo</source>
+        <target>Imágenes</target>
+      </trans-unit>
+      <trans-unit id="8031dca5d3ce53e948f99679408a1d61" resname="estacion_update_entry">
+        <source>estacion_update_entry</source>
+        <target>Actualizar</target>
+      </trans-unit>
+      <trans-unit id="191563bb4f89b6a32ebb38503ab61db1" resname="estacion_name">
+        <source>estacion_name</source>
+        <target>Nombre</target>
+      </trans-unit>
+      <trans-unit id="b737ef81279df5c2fa1c176a6f5fdd2c" resname="estacion_position">
+        <source>estacion_position</source>
+        <target>Posición</target>
+      </trans-unit>
+      <trans-unit id="79bd93ba40bc5579c22206ea1fe7958f" resname="estacion_location">
+        <source>estacion_location</source>
+        <target>Lugar</target>
+      </trans-unit>
+      <trans-unit id="4e951b7d39b834113b1fa1c8b59a64be" resname="estacion_save">
+        <source>estacion_save</source>
+        <target>Guardar</target>
+      </trans-unit>
+      <trans-unit id="4f8895cf9b4245f9c07dae9b00496dc0" resname="estacion_back_to_list">
+        <source>estacion_back_to_list</source>
+        <target>Volver al listado</target>
+      </trans-unit>
+      <trans-unit id="15506624a71c19f06be2620c7663c002" resname="estacion_delete">
+        <source>estacion_delete</source>
+        <target>Eliminar</target>
+      </trans-unit>
+      <trans-unit id="99bc461ea091bac55c6651ec1838c014" resname="estacion_list_title">
+        <source>estacion_list_title</source>
+        <target>Listado de estaciones</target>
+      </trans-unit>
+      <trans-unit id="ab7e309a6778cfaf4719a917a2ba5a15" resname="estacion_acciones">
+        <source>estacion_acciones</source>
+        <target>Acciones</target>
+      </trans-unit>
+      <trans-unit id="d5b9d5da63c186c4764729a0a3931086" resname="estacion_create">
+        <source>estacion_create</source>
+        <target>Crear</target>
+      </trans-unit>
+      <trans-unit id="548d62dca8c9a4bc4e98d301735ccaa8" resname="estacion_create_entry">
+        <source>estacion_create_entry</source>
+        <target>Crear</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
