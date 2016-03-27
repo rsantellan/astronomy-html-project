@@ -369,10 +369,10 @@ class DefaultController extends Controller
       }
       
       $completePath = $path.$subFolder.DIRECTORY_SEPARATOR.$estacionId.DIRECTORY_SEPARATOR.$datestring;
-      /*
+      
       $completePath = '/home/rodrigo/sns/Images/4/2016/12/08/';
       $completePath = '/home/rodrigo/sns/'.$subFolder.'/0/2015/09/04/';
-      */
+      
       return $completePath;
     }
     
@@ -450,15 +450,43 @@ class DefaultController extends Controller
             'activemenu' => 'imagenes',
             'estacion' => $estacion,
             'images' => $this->getOutputImagesForStation($estacion->getPosition()),
+            'data' => $this->retrieveEstacionData($estacion),
       ));
     }
     
-    public function proyectoEstacionDescargarArchivoAction(Request $request, $estacionId)
+    private function retrieveEstacionData(\AppBundle\Entity\Estacion $estacion)
     {
-      $em = $this->getDoctrine()->getManager();
-      $estacion = $this->retrieveEstacion($em, $estacionId);
       $now = new \DateTime();
-      $date = $request->get('date', $now->format('Y-m-d'));
+      $fileInfo = $this->getEstacionFilename($estacion, $now->format('Y-m-d'));
+      $completePath = $fileInfo['completePath'];
+      $fileName = $fileInfo['fileName'];
+      $dataRow = array();
+      if (($handle = fopen($completePath.$fileName, "r")) !== FALSE) {
+        while (($data = fgetcsv($handle)) !== FALSE) {
+            $dataRow = $data;
+        }
+        fclose($handle);
+      }
+      //var_dump($dataRow);
+      return array(
+          'nubosidad' => array(
+              'hlu' => $dataRow[0],
+              'fn' => $dataRow[3],
+              'sp' => $dataRow[1],
+          ),
+          'desplazamiento' => array(
+              'vN' => $dataRow[4],
+              'vE' => $dataRow[5],
+              'v' => $dataRow[6],
+          ),
+      );
+      die;
+    }
+    
+    private function getEstacionFilename(\AppBundle\Entity\Estacion $estacion, $date)
+    {
+      $now = new \DateTime();
+      
       $usedDate = \DateTime::createFromFormat('Y-m-d', $date);
       if(!$usedDate)
       {
@@ -467,6 +495,22 @@ class DefaultController extends Controller
       $completePath = $this->getDateDirectory($estacion->getPosition(), $usedDate->format('Y/m/d'), 'Output');
       $fileName = $usedDate->format('Y-m-d').'.txt';
       $fileName = '2015-09-04.txt';
+      return array(
+          'completePath' => $completePath,
+          'fileName' => $fileName,
+      );
+    }
+    
+    public function proyectoEstacionDescargarArchivoAction(Request $request, $estacionId)
+    {
+      $em = $this->getDoctrine()->getManager();
+      $estacion = $this->retrieveEstacion($em, $estacionId);
+      $now = new \DateTime();
+      $date = $request->get('date', $now->format('Y-m-d'));
+      $fileInfo = $this->getEstacionFilename($estacion, $date);
+      $completePath = $fileInfo['completePath'];
+      $fileName = $fileInfo['fileName'];
+      
       if(file_exists($completePath.$fileName))
       {
         $response = new Response();

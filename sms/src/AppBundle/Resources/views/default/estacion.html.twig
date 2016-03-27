@@ -25,9 +25,9 @@
                         <div class="heading-block text-center margin-bottom-10">
                             <h4>Nubosidad</h4>
                             <hr>
-                            <span class=" margin-top-20">HLU: 11:15:02</br>
-                                FN: 44 %</br>
-                                SP: 1.00</span>
+                            <span class=" margin-top-20">HLU: {{ data['nubosidad']['hlu']}}<br/>
+                                FN: {{ data['nubosidad']['fn']}}%<br/>
+                                SP: {{ data['nubosidad']['sp']}}</span>
 
 
 
@@ -63,9 +63,9 @@
             <h4>Desplazamiento</h4>
             <hr>
             <span class=" margin-top-20">
-                vN: 2.3 m/s (8.3 km/h).</br>
-                vE: -2.1 m/s (7.6 km/h).</br>
-                |v|: 3.1 m/s (11 km/h).</span>
+                vN: {{ data['desplazamiento']['vN']}} m/s (8.3 km/h).</br>
+                vE: {{ data['desplazamiento']['vE']}} m/s (7.6 km/h).</br>
+                |v|:{{ data['desplazamiento']['v']}} m/s (11 km/h).</span>
 
 
 
