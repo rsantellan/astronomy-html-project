@@ -94,7 +94,7 @@ class DefaultController extends Controller
           $em->persist($entity);
           $em->flush();
           $message = \Swift_Message::newInstance()
-                    ->setSubject('[SMS] Usuario agregado al newsletter')
+                    ->setSubject('[SNS] Usuario agregado al newsletter')
                     ->setFrom(array('info@sns.com.uy' => 'SNS'))
                     ->setReplyTo($form->get('email')->getData())
                     ->setTo('rsantellan@gmail.com')
@@ -247,8 +247,8 @@ class DefaultController extends Controller
       $formView = false;
       if ($form->isValid()) {
         $message = \Swift_Message::newInstance()
-                  ->setSubject('[SMS] Contacto desde sitio web')
-                  ->setFrom(array('info@sms.com.uy' => 'SMS'))
+                  ->setSubject('[SNS] Contacto desde sitio web')
+                  ->setFrom(array('info@sms.com.uy' => 'SNS'))
                   ->setReplyTo($form->get('email')->getData())
                   ->setTo('rsantellan@gmail.com')
                   ->setBody('Mail de algo');
@@ -322,8 +322,21 @@ class DefaultController extends Controller
       $completePath = $this->getDateDirectory($estacionId);
       $files  = scandir($completePath, SCANDIR_SORT_DESCENDING);
       $now = new \DateTime();
-      $video_path = sys_get_temp_dir().DIRECTORY_SEPARATOR.$estacionId.$now->format('Y-m-d-H-i').DIRECTORY_SEPARATOR;
-      $video_path = sys_get_temp_dir().DIRECTORY_SEPARATOR.$estacionId.'2016-12-08-10-10'.DIRECTORY_SEPARATOR;
+      
+      $counter = 0;
+      $list = array();
+      while($counter <= 180 && $counter < count($files))
+      {
+        if($files[$counter] != '.' && $files[$counter] != '..')
+        {
+          $list[] = $completePath.DIRECTORY_SEPARATOR.$files[$counter];
+        }
+        $counter++;
+      }
+      $reversed = array_reverse($list);
+      
+      //$video_path = $this->getCacheVideoDir().DIRECTORY_SEPARATOR.$estacionId.$now->format('Y-m-d-H-i').DIRECTORY_SEPARATOR;
+      $video_path = $this->getCacheVideoDir().DIRECTORY_SEPARATOR.$estacionId.md5(serialize($reversed)).DIRECTORY_SEPARATOR;
       
       if(file_exists($video_path.self::VIDEONAME))
       {
@@ -333,29 +346,27 @@ class DefaultController extends Controller
       {
         mkdir($video_path, 0755, true);
       }
-      $counter = 0;
-      $list = array();
-      while($counter <= 180 && $counter < count($files))
-      {
-        if($files[$counter] != '.' && $files[$counter] != '..')
-        {
-          $list[] = $completePath.$files[$counter];
-        }
-        $counter++;
-      }
-      $reversed = array_reverse($list);
+      //var_dump(md5(serialize($reversed)));
+      //die;
       $counter = 0;
       foreach($reversed as $file)
       {
+        //var_dump($file);
         copy($file, $video_path.sprintf("img-%03d.jpg", $counter));
-        $counter ++;
+        $counter++;
       }
+      
+      // Changing the video to 50%
+      $cmdImagemagick = 'for file in '.$video_path.'*; do convert $file -resize 50% $file; done';
+      exec($cmdImagemagick);
+      
       $cmd = $this->container->getParameter('ffmpeg_location').' -framerate 1 -i '.$video_path.'img-%03d.jpg -c:v libx264 -r 30 -pix_fmt yuv420p '.$video_path.self::VIDEONAME;
-      //var_dump($cmd);
+      //$cmd = $this->container->getParameter('ffmpeg_location').' -framerate 1 -i '.$video_path.'img-%03d.jpg -c:v mpeg4 -r 30 '.$video_path.self::VIDEONAME; 
+      //var_dump($cmd);die;
       //$cmd = 'ffmpeg -framerate 1/1 -i '.$video_path.'img-%03d.jpg -r 30 '.$video_path.'video.avi';
       $return = exec($cmd);
 
-      return $video_path.$video_path.self::VIDEONAME;
+      return $video_path.self::VIDEONAME;
     }
     
     private function getDateDirectory($estacionId, $datestring = null, $subFolder = 'Images')
@@ -369,11 +380,31 @@ class DefaultController extends Controller
       }
       
       $completePath = $path.$subFolder.DIRECTORY_SEPARATOR.$estacionId.DIRECTORY_SEPARATOR.$datestring;
-      
+      /*
       $completePath = '/home/rodrigo/sns/Images/4/2016/12/08/';
       $completePath = '/home/rodrigo/sns/'.$subFolder.'/0/2015/09/04/';
-      
+      */
       return $completePath;
+    }
+    
+    private function getCacheDir()
+    {
+      $cacheDir = $this->get('kernel')->getCacheDir().DIRECTORY_SEPARATOR.'snsimages';
+      if(!is_dir($cacheDir))
+      {
+        mkdir($cacheDir, 0755, true);
+      }
+      return $cacheDir;
+    }
+    
+    private function getCacheVideoDir()
+    {
+      $cacheDir = $this->get('kernel')->getCacheDir().DIRECTORY_SEPARATOR.'video';
+      if(!is_dir($cacheDir))
+      {
+        mkdir($cacheDir, 0755, true);
+      }
+      return $cacheDir;
     }
     
     private function getOutputImagesForStation($estacionPosition)
@@ -394,14 +425,24 @@ class DefaultController extends Controller
     private function getLastImage($estacionId)
     {
       $completePath = $this->getDateDirectory($estacionId);
-      $files  = scandir($completePath, SCANDIR_SORT_DESCENDING);
-      if(count($files) > 2)
+      try{
+        $files  = scandir($completePath, SCANDIR_SORT_DESCENDING);
+        if(count($files) > 2)
+        {
+
+          $info = new \SplFileInfo($completePath.$files[0]);
+          
+          
+          $tmpFile = $this->getCacheDir().DIRECTORY_SEPARATOR.$info->getFilename();
+          if(!file_exists($tmpFile))
+          {
+              copy($completePath.DIRECTORY_SEPARATOR.$files[0], $tmpFile);
+          }
+          return $tmpFile;
+        }
+      }catch(\Exception $e)
       {
-        
-        $info = new \SplFileInfo($completePath.$files[0]);
-        $tmpFile = sys_get_temp_dir().DIRECTORY_SEPARATOR.$info->getFilename();
-        copy($completePath.$files[0], $tmpFile);
-        return $tmpFile;
+        $this->get('logger')->debug(sprintf("The directory: %s don't exists. Error: %s", $completePath, $e->getMessage()));
       }
       return null;
     }
@@ -418,6 +459,7 @@ class DefaultController extends Controller
             'estacion' => $estacion,
         );
       }
+      
       return $this->render('AppBundle:default:imagenes.html.twig', array(
             'activemenu' => 'imagenes',
             'estaciones' => $estaciones,
@@ -436,6 +478,7 @@ class DefaultController extends Controller
             'estacion' => $estacion,
         );
       }
+      
       return $this->render('AppBundle:default:proyectoImagenes.html.twig', array(
             'activemenu' => 'imagenes',
             'estaciones' => $estaciones,
@@ -450,55 +493,7 @@ class DefaultController extends Controller
             'activemenu' => 'imagenes',
             'estacion' => $estacion,
             'images' => $this->getOutputImagesForStation($estacion->getPosition()),
-            'data' => $this->retrieveEstacionData($estacion),
       ));
-    }
-    
-    private function retrieveEstacionData(\AppBundle\Entity\Estacion $estacion)
-    {
-      $now = new \DateTime();
-      $fileInfo = $this->getEstacionFilename($estacion, $now->format('Y-m-d'));
-      $completePath = $fileInfo['completePath'];
-      $fileName = $fileInfo['fileName'];
-      $dataRow = array();
-      if (($handle = fopen($completePath.$fileName, "r")) !== FALSE) {
-        while (($data = fgetcsv($handle)) !== FALSE) {
-            $dataRow = $data;
-        }
-        fclose($handle);
-      }
-      //var_dump($dataRow);
-      return array(
-          'nubosidad' => array(
-              'hlu' => $dataRow[0],
-              'fn' => $dataRow[3],
-              'sp' => $dataRow[1],
-          ),
-          'desplazamiento' => array(
-              'vN' => $dataRow[4],
-              'vE' => $dataRow[5],
-              'v' => $dataRow[6],
-          ),
-      );
-      die;
-    }
-    
-    private function getEstacionFilename(\AppBundle\Entity\Estacion $estacion, $date)
-    {
-      $now = new \DateTime();
-      
-      $usedDate = \DateTime::createFromFormat('Y-m-d', $date);
-      if(!$usedDate)
-      {
-        $usedDate = $now;
-      }
-      $completePath = $this->getDateDirectory($estacion->getPosition(), $usedDate->format('Y/m/d'), 'Output');
-      $fileName = $usedDate->format('Y-m-d').'.txt';
-      $fileName = '2015-09-04.txt';
-      return array(
-          'completePath' => $completePath,
-          'fileName' => $fileName,
-      );
     }
     
     public function proyectoEstacionDescargarArchivoAction(Request $request, $estacionId)
@@ -507,10 +502,14 @@ class DefaultController extends Controller
       $estacion = $this->retrieveEstacion($em, $estacionId);
       $now = new \DateTime();
       $date = $request->get('date', $now->format('Y-m-d'));
-      $fileInfo = $this->getEstacionFilename($estacion, $date);
-      $completePath = $fileInfo['completePath'];
-      $fileName = $fileInfo['fileName'];
-      
+      $usedDate = \DateTime::createFromFormat('Y-m-d', $date);
+      if(!$usedDate)
+      {
+        $usedDate = $now;
+      }
+      $completePath = $this->getDateDirectory($estacion->getPosition(), $usedDate->format('Y/m/d'), 'Output');
+      $fileName = $usedDate->format('Y-m-d').'.txt';
+      $fileName = '2015-09-04.txt';
       if(file_exists($completePath.$fileName))
       {
         $response = new Response();

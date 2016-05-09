@@ -1,5 +1,10 @@
 {% extends 'AppBundle::layout.html.twig' %}
-
+{% block javascripts %}
+<script src="{{ asset('js/jquery.colorbox-min.js') }}"></script>
+{% endblock %}
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('css/colorbox.css') }}" />
+{% endblock %}
 {% block body %}
   <!--======= SUB BANNER =========-->
   <section class="sub-banner bg-parallax" style="background:url({{ asset('images/sg.jpg') }}) no-repeat">
@@ -12,14 +17,14 @@
 
 
   <!-- Content -->
-  <div id="content"> 
+  <div id="content">
 
 
 
 
     <!-- PORTFOLIO -->
     <section class="portfolio port-wrap padding-bottom-100 padding-top-100">
-      <div class="container"> 
+      <div class="container">
         <!-- HEADING BLOCK -->
         <div class="heading-block text-center margin-bottom-80">
           <h3 class=" no-margin">Imágenes y videos</h3>
@@ -27,16 +32,18 @@
           <span class=" margin-top-20">Para acceder a la última imagen adquirida por una estación, haga click en la imagen que corresponda.</span> </div>
 
         <!-- PORTFOLIO ITEMS -->
-        <div class="items row col-5 with-space"> 
+        <div class="items row col-5 with-space">
           {% for estacionData in estaciones %}
           <!-- ITEM -->
+          {% set estacionImageUrl  =  estacionData['image'] | mImage(567, 377, 'o')%}
           <article class="portfolio-item pf-web-design">
-            <div class="portfolio-image"> <img class="img-responsive" alt="Ver Imagen SNS" src="{{ estacionData['image'] | mImage(567, 377, 'o') }}"> 
-              <a href="#" data-rel="prettyPhoto" class="prettyPhoto lightzoom zoom"><i class="ion-ios-search"></i></a>
+            <div class="portfolio-image">
+              <img class="img-responsive" alt="Ver Imagen SNS" src="{{ estacionImageUrl }}">
+              <a href="{{ estacionImageUrl }}" data-rel="prettyPhoto" class="prettyPhoto lightzoom zoom"><i class="ion-ios-search"></i></a>
               <div class="portfolio-overlay style-2">
                 <div class="detail-info">
-                  <h3><a href="#">Estación {{ estacionData['estacion'].position }}</a></h3>
-                  <span><a href="#">{{ estacionData['estacion'].name }}</a></span> </div>
+                  <h3><a href="javascript:void(0)" onclick="$.colorbox({photo: true, href:'{{ estacionImageUrl }}'});">Estación {{ estacionData['estacion'].position }}</a></h3>
+                  <span><a href="javascript:void(0)" onclick="$.colorbox({photo: true, href:'{{ estacionImageUrl }}'});">{{ estacionData['estacion'].name }}</a></span> </div>
               </div>
             </div>
           </article>
@@ -51,40 +58,41 @@
     <!-- PROMO -->
     <section class="video-sec text-center padding-bottom-100 padding-top-100" style="background:url({{ asset('images/bg/promo-bg.jpg')}}) no-repeat;">
       <div class="container">
-        <h3 class="text-white text-uppercase letter-space-2">Video</h3> 
+        <h3 class="text-white text-uppercase letter-space-2">Video</h3>
         <h5 class="text-white text-uppercase ">
           Si desea generar una animación de las últimas 3 horas, haga click en la estación que corresponda</br></br>
 		<input type="radio" value="0" name="estacion" />
-        Estación 0 
+        Estación 0
         <input type="radio" value="1" name="estacion" />
-        Estación 1 
+        Estación 1
         <input type="radio" value="2" name="estacion" />
-        Estación 2 
+        Estación 2
         <input type="radio" value="3" name="estacion" />
-        Estación 3 
-        <input type="radio" value="4" name="estacion" /> 
-        Estación 4 
+        Estación 3
+        <input type="radio" value="4" name="estacion" />
+        Estación 4
         <input type="radio" value="5" name="estacion" />
         Estación 5
         </h5>
 
-        <a href="#." class="waves-effect waves-light video-btn"><i class="fa fa-play"></i></a>
-       
+        <a href="javascript:void(0)" onclick="$('#video-player-id').attr('src', $('#video-player-id').attr('src-alt'));$.colorbox({width: '80%', height: '80%', html:$('#videoContainer').html()});" class="waves-effect waves-light video-btn"><i class="fa fa-play"></i></a>
+
       </div>
     </section>
-      
+
     <!-- Simple video example -->
-    <!--
-   <video src="{{ path('retrieve_video', {'estacionId' : 0} )}}" autoplay>
-    Sorry, your browser doesn't support embedded videos, 
-    but don't worry, you can <a href="videofile.ogg">download it</a>
-    and watch it with your favorite video player!
-   </video>  
-    -->
+    <div id="videoContainer" style="display:none">
+     <video id="video-player-id" src="" src-alt="{{ path('retrieve_video', {'estacionId' : 0} )}}">
+      Sorry, your browser doesn't support embedded videos,
+      but don't worry, you can <a href="videofile.ogg">download it</a>
+      and watch it with your favorite video player!
+     </video>
+    </div>
+
     <!-- Blog -->
     {{ render(controller('AppBundle:Default:lastArticles')) }}
     <!-- News Letter -->
     {{ render(controller('AppBundle:Default:newsletterForm')) }}
   </div>
-  <!-- End Content -->   
+  <!-- End Content -->
 {% endblock %}
