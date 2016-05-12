@@ -3010,3 +3010,16 @@ footer .rights p {
 	margin-top: 30px;
 	display: inline-block;
 }
+
+
+
+/**********************
+ * 
+ * Custom
+ * 
+ **********************/ 
+
+.btn-yellow{
+   color: yellow !important;
+   font-weight: bolder !important;
+}
