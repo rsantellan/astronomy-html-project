@@ -5,20 +5,36 @@
     <section class="sub-banner bg-parallax" style="background:url({{ asset('images/sg.jpg') }}) no-repeat">
         <div class="container">
             <div class="position-center-center">
-                <h1>{% trans %}proyecto_estacion_titulo{% endtrans %}{{ estacion.position}} - {{ estacion.name }}</h1>
+                <h1>{% trans %}proyecto_estacion_titulo{% endtrans %} {{ estacion.position}} - {{ estacion.name }}</h1>
             </div>
         </div>
     </section>
 
     <!-- Content -->
     <div id="content"> 
-
         <!-- PORTFOLIO -->
         <section class="portfolio port-wrap padding-bottom-40 padding-top-40">
             <div class="container"> 
-
-
-
+                <section class="welcome padding-top-0 padding-bottom-10 ">
+                    <div class="container"> 
+                        <!-- HEADING BLOCK -->
+                        <div class="heading-block text-center margin-bottom-10">
+                            <h4>Nubosidad</h4>
+                        </div>
+                    </div>
+                </section>
+                <p style="text-align:center">  
+                    <img align="middle" src="{{ images['radianciaglobalvstiempo'] | mImage(567, 400, 'o') }}" width="400px" />   
+                    <img align="middle" src="{{ images['fracciondenubosidadvstiempo'] | mImage(567, 400, 'o') }}" width="400px" />    
+                    <img align="middle" src="{{ images['alturadebasedenubevstiempo'] | mImage(567, 400, 'o') }}" width="400px" />   
+                    <img align="middle" src="{{ images['desplazamientomedionubesvstiempo'] | mImage(567, 400, 'o') }}" width="400px" />    
+                </p>
+            </div>
+          </div>
+        </section>
+        <!-- PORTFOLIO -->
+        <section class="portfolio port-wrap padding-bottom-40 padding-top-40">
+            <div class="container"> 
                 <section class="welcome padding-top-0 padding-bottom-10 ">
                     <div class="container"> 
                         <!-- HEADING BLOCK -->
@@ -28,11 +44,7 @@
                             <span class=" margin-top-20">HLU: {{ data['nubosidad']['hlu']}}<br/>
                                 FN: {{ data['nubosidad']['fn']}}%<br/>
                                 SP: {{ data['nubosidad']['sp']}}</span>
-
-
-
                         </div>
-
                     </div>
                 </section>
 
@@ -41,15 +53,8 @@
                     <img align="middle" src="{{ images['Original'] | mImage(567, 400, 'o') }}" width="400px" />   
                     <img align="middle" src="{{ images['Decision'] | mImage(567, 400, 'o') }}" width="400px" />    
                 </p>
-
-
-
             </div>
-
-
-
     </div>
-
 </section>
 
 
@@ -63,9 +68,9 @@
             <h4>Desplazamiento</h4>
             <hr>
             <span class=" margin-top-20">
-                vN: {{ data['desplazamiento']['vN']}} m/s (8.3 km/h).</br>
-                vE: {{ data['desplazamiento']['vE']}} m/s (7.6 km/h).</br>
-                |v|:{{ data['desplazamiento']['v']}} m/s (11 km/h).</span>
+                vN: {{ data['desplazamiento']['vN']}} m/s ({{ data['desplazamiento']['vNkm']}} km/h).</br>
+                vE: {{ data['desplazamiento']['vE']}} m/s ({{ data['desplazamiento']['vEkm']}} km/h).</br>
+                |v|:{{ data['desplazamiento']['v']}} m/s ({{ data['desplazamiento']['vkm']}} km/h).</span>
 
 
 
@@ -102,8 +107,7 @@
                     <div class="portfolio-image">
                         <img class="img-responsive" alt="Ver Imagen SNS" src="{{ images['Prediction180'] | mImage(567, 400, 'o') }}" />  
                     </div>
-                    <p>Predicción de mapa de nubes a 3 min</br>
-                        (imagen “X_prediction180.jpg”)
+                    <p>Predicción de mapa de nubes a 3 min
                     </p>  
                 </article>
 
@@ -112,14 +116,14 @@
                     <div class="portfolio-image">
                         <img class="img-responsive" alt="Ver Imagen SNS" src="{{ images['Prediction300'] | mImage(567, 400, 'o') }}" />  
                     </div>
-                    <p> Predicción de mapa de nubes a 5 min</br>(imagen “X_prediction300.jpg”)</p>  
+                    <p> Predicción de mapa de nubes a 5 min</p>  
                 </article>
 
                 <article class="portfolio-item"> 
                     <div class="portfolio-image">
                         <img class="img-responsive" alt="Ver Imagen SNS" src="{{ images['Prediction600'] | mImage(567, 400, 'o') }}" />  
                     </div>
-                    <p>Predicción de mapa de nubes a 10 min</br>(imagen “X_prediction300.jpg”)</p>  
+                    <p>Predicción de mapa de nubes a 10 min</p>  
                 </article>
 
 

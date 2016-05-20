@@ -360,7 +360,7 @@ class DefaultController extends Controller
       $cmdImagemagick = 'for file in '.$video_path.'*; do convert $file -resize 50% $file; done';
       exec($cmdImagemagick);
       
-      $cmd = $this->container->getParameter('ffmpeg_location').' -framerate 1 -i '.$video_path.'img-%03d.jpg -c:v libx264 -r 30 -pix_fmt yuv420p '.$video_path.self::VIDEONAME;
+      $cmd = $this->container->getParameter('ffmpeg_location').' -framerate 5 -i '.$video_path.'img-%03d.jpg -c:v libx264 -r 30 -pix_fmt yuv420p '.$video_path.self::VIDEONAME;
       //$cmd = $this->container->getParameter('ffmpeg_location').' -framerate 1 -i '.$video_path.'img-%03d.jpg -c:v mpeg4 -r 30 '.$video_path.self::VIDEONAME; 
       //var_dump($cmd);die;
       //$cmd = 'ffmpeg -framerate 1/1 -i '.$video_path.'img-%03d.jpg -r 30 '.$video_path.'video.avi';
@@ -369,17 +369,22 @@ class DefaultController extends Controller
       return $video_path.self::VIDEONAME;
     }
     
-    private function getDateDirectory($estacionId, $datestring = null, $subFolder = 'Images')
+    private function getDateDirectory($estacionId, $datestring = null, $subFolder = 'Images', $counter = 0)
     {
       $path = $this->container->getParameter('images_files');
       // Get today folder
+      $now = new \DateTime();
       if($datestring == null)
       {
-        $now = new \DateTime();
         $datestring = $now->format('Y/m/d');
       }
       
       $completePath = $path.$subFolder.DIRECTORY_SEPARATOR.$estacionId.DIRECTORY_SEPARATOR.$datestring;
+      if(!is_dir($completePath) && $counter == 0)
+      {
+        $now->sub(new \DateInterval('P1D'));
+        return $this->getDateDirectory($estacionId, $now->format('Y/m/d'), $subFolder, $counter + 1);
+      }
       /*
       $completePath = '/home/rodrigo/sns/Images/4/2016/12/08/';
       $completePath = '/home/rodrigo/sns/'.$subFolder.'/0/2015/09/04/';
@@ -414,10 +419,14 @@ class DefaultController extends Controller
           'Original' => $path.$estacionPosition.'_Original.jpg',
           'Decision' => $path.$estacionPosition.'_Decision.jpg',
           'DecisionPrev' => $path.$estacionPosition.'_DecisionPrevious.jpg',
-          'Prediction180' => $path.$estacionPosition.'_prediction180.tif',
-          'Prediction300' => $path.$estacionPosition.'_prediction300.tif',
-          'Prediction600' => $path.$estacionPosition.'_prediction600.tif',
-          'Desplazamiento' => $path.$estacionPosition.'_skymap.tif',
+          'Prediction180' => $path.$estacionPosition.'_prediction180.png',
+          'Prediction300' => $path.$estacionPosition.'_prediction300.png',
+          'Prediction600' => $path.$estacionPosition.'_prediction600.png',
+          'Desplazamiento' => $path.$estacionPosition.'_skymap.png',
+          'alturadebasedenubevstiempo' => $path.'CBH.png',
+          'fracciondenubosidadvstiempo' => $path.'CF.png',
+          'radianciaglobalvstiempo' => $path.'GHI.png',
+          'desplazamientomedionubesvstiempo' => $path.'v_av.png',
       );
       return $images;
     }
@@ -493,7 +502,73 @@ class DefaultController extends Controller
             'activemenu' => 'imagenes',
             'estacion' => $estacion,
             'images' => $this->getOutputImagesForStation($estacion->getPosition()),
+            'data' => $this->retrieveTextFileData($estacionId),
       ));
+    }
+    
+    private function retrieveTextFileData($estacionId)
+    {
+      $foundCounter = 100;
+      $found = false;
+      $now = new \DateTime();
+      
+      $fileFullPath = null;
+      while(!$found && $foundCounter > 0){
+        $directory = $this->getDateDirectory($estacionId, $now->format('Y/m/d'), 'Output', 1);
+        $foundCounter--;
+        $fileName = $now->format('Y-m-d').'.txt';
+        $fileFullPath = $directory.DIRECTORY_SEPARATOR.$fileName;
+        if(file_exists($fileFullPath)){
+          $found = true;
+        }else{
+          $now->sub(new \DateInterval('P1D'));
+        }
+      }
+      if(!$found)
+      {
+        return array(
+            'desplazamiento' => array(
+              'vN' => 0,
+              'vNkm' => 0,
+              'vE' => 0,
+              'vEkm' => 0,
+              'v' => 0,
+              'vkm' => 0,
+            ),
+            'nubosidad' => array(
+              'hlu' => 0,
+              'fn' => 0,
+              'sp' => 0,
+            ),
+          );
+      }
+      $lastRow = array();
+      if (($handle = fopen($fileFullPath, "r")) !== FALSE) {
+          while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+              $lastRow = $data;
+          }
+          fclose($handle);
+      }
+      $data = array(
+        'desplazamiento' => array(
+          'vN' => $lastRow[4],
+          'vNkm' => floatval($lastRow[4]) * 3.6,
+          'vE' => $lastRow[5],
+          'vEkm' => floatval($lastRow[5]) * 3.6,
+          'v' => $lastRow[6],
+          'vkm' => floatval($lastRow[6]) * 3.6,
+        ),
+        'nubosidad' => array(
+          'hlu' => $lastRow[1],
+          'fn' => $lastRow[2],
+          'sp' => $lastRow[3],
+        ),
+      );
+      return $data;
+      var_dump($lastRow);
+      echo '<hr/>';
+      var_dump($data);
+      die;
     }
     
     public function proyectoEstacionDescargarArchivoAction(Request $request, $estacionId)
@@ -509,16 +584,18 @@ class DefaultController extends Controller
       }
       $completePath = $this->getDateDirectory($estacion->getPosition(), $usedDate->format('Y/m/d'), 'Output');
       $fileName = $usedDate->format('Y-m-d').'.txt';
-      $fileName = '2015-09-04.txt';
-      if(file_exists($completePath.$fileName))
+      $fileFullPath = $completePath.DIRECTORY_SEPARATOR.$fileName;
+      
+      if(file_exists($fileFullPath))
       {
         $response = new Response();
         $response->headers->set('Content-Type', 'text/plain');
         $response->headers->set('Content-Disposition', 'attachment;filename="'.$fileName);
 
-        $response->setContent(file_get_contents($completePath.$fileName));
+        $response->setContent(file_get_contents($fileFullPath));
         return $response;
       }
+      
       $this->get('session')->getFlashBag()->add('notif-error', 'El archivo no existe para ese día.');
       return $this->redirect($this->generateUrl('proyecto-estacion', array('estacionId' => $estacionId)));
     }
@@ -544,31 +621,31 @@ class DefaultController extends Controller
       
       
       $completePath = $this->getDateDirectory($estacion->getPosition(), $usedDate->format('Y/m/d'));
-      //var_dump($completePath);
       $files  = scandir($completePath, SCANDIR_SORT_DESCENDING);
-      $regex = $usedDate->format('Y-m-d H');
-      // @TODO Comentar
-      $regex = '2015-09-04-11';
+      $regex = $usedDate->format('Y-m-d-H');
       $zipFiles = array();
       foreach($files as $file)
       {
         if(substr_count($file, $regex))
         {
-          $zipFiles[] = $completePath.$file;
+          $zipFiles[] = $completePath.DIRECTORY_SEPARATOR.$file;
         }
       }
       $zippy = Zippy::load();
       // creates
       $zipBaseName = 'images-'.$regex.'.zip';
       $zipName = sys_get_temp_dir().DIRECTORY_SEPARATOR.$zipBaseName;
+      
       try{
+        if(file_exists($zipName))
+        {
+          @unlink($zipName);
+        }
         $zippy->create($zipName, $zipFiles);
       } catch (\Exception $ex) {
-
         $this->get('session')->getFlashBag()->add('notif-error', $ex->getMessage());
         return $this->redirect($this->generateUrl('proyecto-estacion', array('estacionId' => $estacionId)));
       }
-      
       
       $response = new Response();
       $response->headers->set('Content-Type', 'application/zip');

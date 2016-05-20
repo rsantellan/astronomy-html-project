@@ -176,7 +176,7 @@ var modals =
         <input type="button" value="Estación 2" name="estacion" src-alt="{{ path('retrieve_video', {'estacionId' : 2} )}}" class="btn btn-default btn-video" onclick="$('.btn-video').removeClass('btn-yellow');$(this).addClass('btn-yellow');"/>
         <input type="button" value="Estación 3" name="estacion" src-alt="{{ path('retrieve_video', {'estacionId' : 3} )}}" class="btn btn-default btn-video" onclick="$('.btn-video').removeClass('btn-yellow');$(this).addClass('btn-yellow');"/>
         <input type="button" value="Estación 4" name="estacion" src-alt="{{ path('retrieve_video', {'estacionId' : 4} )}}" class="btn btn-default btn-video" onclick="$('.btn-video').removeClass('btn-yellow');$(this).addClass('btn-yellow');"/>
-        <input type="button" value="Estación 5" name="estacion" src-alt="{{ path('retrieve_video', {'estacionId' : 5} )}}" class="btn btn-default btn-video" onclick="$('.btn-video').removeClass('btn-yellow');$(this).addClass('btn-yellow');"/>
+        {#<input type="button" value="Estación 5" name="estacion" src-alt="{{ path('retrieve_video', {'estacionId' : 5} )}}" class="btn btn-default btn-video" onclick="$('.btn-video').removeClass('btn-yellow');$(this).addClass('btn-yellow');"/>#}
         </h5>
 
         <a href="javascript:void(0)" onclick="modals.startVideo();" class="waves-effect waves-light video-btn"><i class="fa fa-play"></i></a>
@@ -186,7 +186,7 @@ var modals =
 
     <!-- Simple video example -->
     <div id="videoContainer" style="display:none" class="">
-     <video id="video-player-id" src="" src-alt="{{ path('retrieve_video', {'estacionId' : 0} )}}" class="videoPlayer">
+     <video id="video-player-id" src="" src-alt="{{ path('retrieve_video', {'estacionId' : 0} )}}" class="videoPlayer" controls>
       Sorry, your browser doesn't support embedded videos,
       but don't worry, you can <a href="videofile.ogg">download it</a>
       and watch it with your favorite video player!
